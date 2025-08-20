@@ -217,21 +217,6 @@ st.markdown("""
         transform: translateX(2px);
     }
     
-    .signal-card.new-signal {
-        animation: slideIn 0.3s ease;
-    }
-    
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-    
     .signal-long {
         background: linear-gradient(90deg, rgba(52, 199, 89, 0.1), transparent);
         border-left: 2px solid var(--primary-green);
@@ -244,6 +229,38 @@ st.markdown("""
     
     .signal-hold {
         border-left: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Signal content styles */
+    .signal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .signal-symbol {
+        font-size: 16px;
+        font-weight: 600;
+    }
+    
+    .signal-details {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-top: 4px;
+    }
+    
+    .signal-confidence {
+        text-align: right;
+    }
+    
+    .confidence-value {
+        font-size: 20px;
+        font-weight: 700;
+    }
+    
+    .confidence-label {
+        font-size: 10px;
+        color: var(--text-tertiary);
     }
     
     /* Historical Signal */
@@ -263,12 +280,6 @@ st.markdown("""
     .historical-signal:hover {
         background: var(--bg-hover);
         transform: translateX(2px);
-    }
-    
-    .historical-signal-info {
-        display: flex;
-        align-items: center;
-        gap: 12px;
     }
     
     /* Performance Card */
@@ -328,58 +339,6 @@ st.markdown("""
         background: var(--bg-secondary);
     }
     
-    /* Filter Pills */
-    .filter-pill {
-        display: inline-block;
-        padding: 6px 14px;
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-radius: 20px;
-        margin-right: 6px;
-        margin-bottom: 6px;
-        cursor: pointer;
-        transition: all 0.15s ease;
-        font-size: 11px;
-        font-weight: 500;
-        color: var(--text-secondary);
-    }
-    
-    .filter-pill:hover {
-        background: var(--bg-hover);
-        color: var(--text-primary);
-    }
-    
-    .filter-pill.active {
-        background: var(--primary-green);
-        border-color: var(--primary-green);
-        color: #000;
-    }
-    
-    /* Tabs */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-        background: transparent;
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        color: var(--text-secondary);
-        font-size: 12px;
-        font-weight: 500;
-    }
-    
-    .stTabs [data-baseweb="tab"]:hover {
-        background: var(--bg-hover);
-        color: var(--text-primary);
-    }
-    
-    .stTabs [data-baseweb="tab"][aria-selected="true"] {
-        background: var(--primary-green);
-        color: #000;
-    }
-    
     /* Scrollbar */
     ::-webkit-scrollbar {
         width: 4px;
@@ -395,21 +354,6 @@ st.markdown("""
         border-radius: 2px;
     }
     
-    /* Remove all pulsing animations except for new signals */
-    .loading-dot, .metric-card, .signal-card {
-        animation: none !important;
-    }
-    
-    /* Only animate new signals */
-    .signal-card.highlight {
-        animation: highlight 2s ease;
-    }
-    
-    @keyframes highlight {
-        0% { background: rgba(52, 199, 89, 0.3); }
-        100% { background: var(--bg-secondary); }
-    }
-    
     /* Consecutive indicator */
     .consecutive-indicator {
         display: inline-block;
@@ -423,13 +367,14 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Rest of the imports and helper functions remain the same...
+# [Previous helper functions code here]
+
 # Initialize session state
 if 'last_update' not in st.session_state:
     st.session_state.last_update = datetime.now()
 if 'trades_history' not in st.session_state:
     st.session_state.trades_history = []
-if 'last_signal_count' not in st.session_state:
-    st.session_state.last_signal_count = 0
 
 # Define assets
 ASSETS = ['TSLA', 'HOOD', 'COIN', 'PLTR', 'AAPL']
@@ -627,8 +572,8 @@ def main():
         time_diff = (datetime.now() - last_update).total_seconds()
         is_connected = time_diff < 120
     
-    # Title with connection status
-    st.markdown(f"""
+    # Title with connection status - FIXED HTML
+    title_html = f"""
     <h1 class="main-title">
         SIGNALS DASHBOARD
         <div class="connection-status">
@@ -636,7 +581,8 @@ def main():
             {'LIVE' if is_connected else 'OFFLINE'}
         </div>
     </h1>
-    """, unsafe_allow_html=True)
+    """
+    st.markdown(title_html, unsafe_allow_html=True)
     
     if not status:
         st.markdown("""
@@ -656,7 +602,7 @@ def main():
     # Get market status
     market_status, status_class = get_market_status()
     
-    # Top Metrics
+    # Top Metrics Row
     col1, col2, col3, col4, col5, col6 = st.columns(6)
     
     with col1:
@@ -781,16 +727,7 @@ def main():
                     sig_time = datetime.fromisoformat(sig['timestamp'])
                     time_str = sig_time.strftime('%H:%M:%S')
                     
-                    # Check for consecutive signals
-                    consecutive_html = ""
-                    if sig.get('consecutive_count', 1) > 1 and 'first_signal_time' in sig:
-                        first_time = datetime.fromisoformat(sig['first_signal_time']).strftime('%H:%M')
-                        consecutive_html = f"""
-                        <div class="consecutive-indicator">
-                            📍 Opened at {first_time} • Updated at {time_str} • {sig['consecutive_count']} signals
-                        </div>
-                        """
-                    
+                    # Determine signal properties
                     if sig['action'] == 'LONG':
                         card_class = "signal-long"
                         color = "#34C759"
@@ -804,35 +741,49 @@ def main():
                         color = "rgba(255,255,255,0.6)"
                         icon = "⚪"
                     
-                    st.markdown(f"""
+                    # Build the signal card HTML properly
+                    signal_html = f'''
                     <div class="signal-card {card_class}">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="signal-header">
                             <div>
-                                <span style="font-size: 16px; font-weight: 600; color: {color};">
+                                <div class="signal-symbol" style="color: {color};">
                                     {icon} {symbol} - {sig['action']}
-                                </span>
-                                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">
+                                </div>
+                                <div class="signal-details">
                                     ${sig['price']:.2f} • {time_str}
                                 </div>
-                                {consecutive_html}
+                    '''
+                    
+                    # Add consecutive indicator if needed
+                    if sig.get('consecutive_count', 1) > 1 and 'first_signal_time' in sig:
+                        first_time = datetime.fromisoformat(sig['first_signal_time']).strftime('%H:%M')
+                        signal_html += f'''
+                                <div class="consecutive-indicator">
+                                    📍 Opened at {first_time} • Updated at {time_str} • {sig['consecutive_count']} signals
+                                </div>
+                        '''
+                    
+                    signal_html += f'''
                             </div>
-                            <div style="text-align: right;">
-                                <div style="font-size: 20px; font-weight: 700; color: {color};">
+                            <div class="signal-confidence">
+                                <div class="confidence-value" style="color: {color};">
                                     {sig['confidence']*100:.1f}%
                                 </div>
-                                <div style="font-size: 10px; color: var(--text-tertiary);">CONFIDENCE</div>
+                                <div class="confidence-label">CONFIDENCE</div>
                             </div>
                         </div>
                     </div>
-                    """, unsafe_allow_html=True)
+                    '''
+                    
+                    st.markdown(signal_html, unsafe_allow_html=True)
                 else:
-                    st.markdown(f"""
+                    st.markdown(f'''
                     <div class="signal-card" style="opacity: 0.3;">
                         <div style="font-size: 14px; color: var(--text-tertiary);">
                             {symbol} - No signals today
                         </div>
                     </div>
-                    """, unsafe_allow_html=True)
+                    ''', unsafe_allow_html=True)
         
         with col_right:
             # Current Positions
@@ -851,7 +802,7 @@ def main():
                                 pnl = ((current - entry) / entry * 100)
                                 pnl_color = "#34C759" if pnl > 0 else "#FF453A"
                                 
-                                st.markdown(f"""
+                                position_html = f'''
                                 <div class="signal-card" style="border-left: 2px solid {pnl_color};">
                                     <div style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">
                                         {symbol} - LONG
@@ -875,14 +826,15 @@ def main():
                                         </div>
                                     </div>
                                 </div>
-                                """, unsafe_allow_html=True)
+                                '''
+                                st.markdown(position_html, unsafe_allow_html=True)
                 
                 if not has_positions:
-                    st.markdown("""
+                    st.markdown('''
                     <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
                         No open positions
                     </div>
-                    """, unsafe_allow_html=True)
+                    ''', unsafe_allow_html=True)
     
     with tab2:
         # Historical Signals
@@ -900,7 +852,7 @@ def main():
         filtered_signals = sorted(filtered_signals, key=lambda x: x['timestamp'], reverse=True)
         
         if filtered_signals:
-            for sig in filtered_signals[:100]:  # Show last 100
+            for sig in filtered_signals[:100]:
                 sig_time = datetime.fromisoformat(sig['timestamp'])
                 time_str = sig_time.strftime('%m/%d %H:%M:%S')
                 
@@ -914,9 +866,9 @@ def main():
                     action_color = "rgba(255,255,255,0.5)"
                     icon = "⚪"
                 
-                st.markdown(f"""
+                hist_signal_html = f'''
                 <div class="historical-signal">
-                    <div class="historical-signal-info">
+                    <div style="display: flex; align-items: center; gap: 12px;">
                         <span style="color: {action_color}; font-weight: 600;">
                             {icon} {sig['symbol']} - {sig['action']}
                         </span>
@@ -928,13 +880,14 @@ def main():
                         {sig['confidence']*100:.1f}%
                     </div>
                 </div>
-                """, unsafe_allow_html=True)
+                '''
+                st.markdown(hist_signal_html, unsafe_allow_html=True)
         else:
-            st.markdown("""
+            st.markdown('''
             <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
                 No historical signals
             </div>
-            """, unsafe_allow_html=True)
+            ''', unsafe_allow_html=True)
     
     with tab3:
         # Trade History
@@ -944,7 +897,7 @@ def main():
             recent_trades = sorted(trades_history, key=lambda x: x['exit_time'], reverse=True)[:50]
             
             # Header
-            st.markdown("""
+            st.markdown('''
             <div class="trade-row trade-header">
                 <div>Symbol</div>
                 <div>Exit Time</div>
@@ -953,13 +906,13 @@ def main():
                 <div>P&L %</div>
                 <div>P&L $</div>
             </div>
-            """, unsafe_allow_html=True)
+            ''', unsafe_allow_html=True)
             
             for trade in recent_trades:
                 exit_time = datetime.fromisoformat(trade['exit_time']).strftime('%m/%d %H:%M')
                 pnl_color = "#34C759" if trade['pnl_percent'] > 0 else "#FF453A"
                 
-                st.markdown(f"""
+                trade_html = f'''
                 <div class="trade-row">
                     <div style="font-weight: 600;">{trade['symbol']}</div>
                     <div style="color: var(--text-secondary);">{exit_time}</div>
@@ -972,23 +925,25 @@ def main():
                         ${trade['pnl_dollar']:+.2f}
                     </div>
                 </div>
-                """, unsafe_allow_html=True)
+                '''
+                st.markdown(trade_html, unsafe_allow_html=True)
         else:
-            st.markdown("""
+            st.markdown('''
             <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
                 No completed trades yet
             </div>
-            """, unsafe_allow_html=True)
+            ''', unsafe_allow_html=True)
     
     # Footer
-    st.markdown(f"""
+    footer_html = f'''
     <div style="text-align: center; color: var(--text-tertiary); font-size: 11px; 
          padding: 24px 0; border-top: 1px solid var(--border-color); margin-top: 40px;">
         Last Signal: {last_signal_time.strftime('%H:%M:%S') if last_signal_time else 'N/A'} • 
         Auto-refresh: 5 seconds • 
         {'🟢 Connected' if is_connected else '🔴 Disconnected'}
     </div>
-    """, unsafe_allow_html=True)
+    '''
+    st.markdown(footer_html, unsafe_allow_html=True)
     
     # Auto-refresh
     time.sleep(5)
