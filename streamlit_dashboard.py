@@ -218,21 +218,6 @@ st.markdown("""
         transform: translateX(2px);
     }
     
-    .signal-card.new-signal {
-        animation: slideIn 0.3s ease;
-    }
-    
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-    
     .signal-long {
         background: linear-gradient(90deg, rgba(52, 199, 89, 0.1), transparent);
         border-left: 2px solid var(--primary-green);
@@ -245,6 +230,51 @@ st.markdown("""
     
     .signal-hold {
         border-left: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Live Signal - using same format as historical */
+    .live-signal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        background: var(--bg-secondary);
+        border-radius: 12px;
+        margin-bottom: 10px;
+        border: 1px solid var(--border-color);
+        transition: all 0.15s ease;
+        font-size: 14px;
+    }
+    
+    .live-signal:hover {
+        background: var(--bg-hover);
+        transform: translateX(2px);
+    }
+    
+    .live-signal-long {
+        background: linear-gradient(90deg, rgba(52, 199, 89, 0.1), transparent);
+        border-left: 3px solid var(--primary-green);
+    }
+    
+    .live-signal-exit {
+        background: linear-gradient(90deg, rgba(255, 69, 58, 0.1), transparent);
+        border-left: 3px solid var(--primary-red);
+    }
+    
+    .live-signal-hold {
+        border-left: 3px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .live-signal-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .live-signal-main {
+        display: flex;
+        align-items: center;
+        gap: 12px;
     }
     
     /* Historical Signal */
@@ -329,58 +359,6 @@ st.markdown("""
         background: var(--bg-secondary);
     }
     
-    /* Filter Tabs */
-    .filter-tab {
-        display: inline-block;
-        padding: 6px 14px;
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-radius: 20px;
-        margin-right: 6px;
-        margin-bottom: 6px;
-        cursor: pointer;
-        transition: all 0.15s ease;
-        font-size: 11px;
-        font-weight: 500;
-        color: var(--text-secondary);
-    }
-    
-    .filter-tab:hover {
-        background: var(--bg-hover);
-        color: var(--text-primary);
-    }
-    
-    .filter-tab.active {
-        background: var(--primary-green);
-        border-color: var(--primary-green);
-        color: #000;
-    }
-    
-    /* Tabs */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-        background: transparent;
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        color: var(--text-secondary);
-        font-size: 12px;
-        font-weight: 500;
-    }
-    
-    .stTabs [data-baseweb="tab"]:hover {
-        background: var(--bg-hover);
-        color: var(--text-primary);
-    }
-    
-    .stTabs [data-baseweb="tab"][aria-selected="true"] {
-        background: var(--primary-green);
-        color: #000;
-    }
-    
     /* Scrollbar */
     ::-webkit-scrollbar {
         width: 4px;
@@ -396,21 +374,6 @@ st.markdown("""
         border-radius: 2px;
     }
     
-    /* Remove all pulsing animations except for new signals */
-    .loading-dot, .metric-card, .signal-card {
-        animation: none !important;
-    }
-    
-    /* Only animate new signals */
-    .signal-card.highlight {
-        animation: highlight 2s ease;
-    }
-    
-    @keyframes highlight {
-        0% { background: rgba(52, 199, 89, 0.3); }
-        100% { background: var(--bg-secondary); }
-    }
-    
     /* Consecutive indicator */
     .consecutive-indicator {
         display: inline-block;
@@ -419,38 +382,13 @@ st.markdown("""
         padding: 4px 10px;
         font-size: 10px;
         color: var(--text-secondary);
-        margin-top: 6px;
-    }
-    
-    /* Signal specific styles */
-    .signal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .signal-symbol {
-        font-size: 16px;
-        font-weight: 600;
-    }
-    
-    .signal-details {
-        font-size: 12px;
-        color: var(--text-secondary);
         margin-top: 4px;
     }
     
-    .signal-confidence {
-        text-align: right;
-    }
-    
-    .confidence-value {
-        font-size: 20px;
-        font-weight: 700;
-    }
-    
-    .confidence-label {
-        font-size: 10px;
+    /* Empty state */
+    .empty-state {
+        text-align: center;
+        padding: 40px;
         color: var(--text-tertiary);
     }
 </style>
@@ -818,7 +756,7 @@ def main():
         col_left, col_right = st.columns([3, 2])
         
         with col_left:
-            # Latest Signals Per Asset
+            # Latest Signals Per Asset - USING SAME FORMAT AS HISTORICAL
             st.markdown('<div class="section-header">🎯 Latest Signal Per Asset</div>', unsafe_allow_html=True)
             
             for symbol in ASSETS:
@@ -829,49 +767,50 @@ def main():
                     
                     # Determine signal properties
                     if sig['action'] == 'LONG':
-                        card_class = "signal-long"
+                        card_class = "live-signal-long"
                         color = "#34C759"
                         icon = "🟢"
                     elif sig['action'] == 'EXIT':
-                        card_class = "signal-exit"
+                        card_class = "live-signal-exit"
                         color = "#FF453A"
                         icon = "🔴"
                     else:
-                        card_class = "signal-hold"
+                        card_class = "live-signal-hold"
                         color = "rgba(255,255,255,0.6)"
                         icon = "⚪"
                     
-                    # Build consecutive indicator HTML separately
+                    # Check for consecutive signals
                     consecutive_html = ""
                     if sig.get('consecutive_count', 1) > 1 and 'first_signal_time' in sig:
                         first_time = convert_to_et(sig['first_signal_time']).strftime('%H:%M')
-                        consecutive_html = f'<div class="consecutive-indicator">📍 Opened at {first_time} • Updated at {time_str} • {sig["consecutive_count"]} signals</div>'
+                        consecutive_html = f"""
+                        <div class="consecutive-indicator">
+                            📍 Opened at {first_time} • Updated at {time_str} • {sig['consecutive_count']} signals
+                        </div>
+                        """
                     
-                    # Use st.container and st.markdown for each part
+                    # Use the same format as historical signals (which works!)
                     st.markdown(f"""
-                    <div class="signal-card {card_class}">
-                        <div class="signal-header">
-                            <div>
-                                <div class="signal-symbol" style="color: {color};">
+                    <div class="live-signal {card_class}">
+                        <div class="live-signal-info">
+                            <div class="live-signal-main">
+                                <span style="color: {color}; font-weight: 600; font-size: 16px;">
                                     {icon} {symbol} - {sig['action']}
-                                </div>
-                                <div class="signal-details">
+                                </span>
+                                <span style="color: var(--text-secondary); font-size: 13px;">
                                     ${sig['price']:.2f} • {time_str}
-                                </div>
-                                {consecutive_html}
+                                </span>
                             </div>
-                            <div class="signal-confidence">
-                                <div class="confidence-value" style="color: {color};">
-                                    {sig['confidence']*100:.1f}%
-                                </div>
-                                <div class="confidence-label">CONFIDENCE</div>
-                            </div>
+                            {consecutive_html}
+                        </div>
+                        <div style="color: {color}; font-weight: 700; font-size: 20px;">
+                            {sig['confidence']*100:.1f}%
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
                 else:
                     st.markdown(f"""
-                    <div class="signal-card" style="opacity: 0.3;">
+                    <div class="live-signal" style="opacity: 0.3;">
                         <div style="font-size: 14px; color: var(--text-tertiary);">
                             {symbol} - No signals today
                         </div>
@@ -923,7 +862,7 @@ def main():
                 
                 if not has_positions:
                     st.markdown("""
-                    <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
+                    <div class="empty-state">
                         No open positions
                     </div>
                     """, unsafe_allow_html=True)
@@ -975,7 +914,7 @@ def main():
                 """, unsafe_allow_html=True)
         else:
             st.markdown("""
-            <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
+            <div class="empty-state">
                 No historical signals
             </div>
             """, unsafe_allow_html=True)
@@ -1019,7 +958,7 @@ def main():
                 """, unsafe_allow_html=True)
         else:
             st.markdown("""
-            <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
+            <div class="empty-state">
                 No completed trades yet
             </div>
             """, unsafe_allow_html=True)
