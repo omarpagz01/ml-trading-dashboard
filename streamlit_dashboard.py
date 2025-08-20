@@ -1,6 +1,6 @@
 """
 Signals Dashboard - iOS-Inspired Design
-Clean, minimalist, and beautiful interface
+With Historical Signals and Latest Signal Tracking
 """
 
 import streamlit as st
@@ -12,7 +12,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import time
 import numpy as np
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 
 # Page configuration - MUST BE FIRST
 st.set_page_config(
@@ -178,6 +178,52 @@ st.markdown("""
         background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
     }
     
+    /* Latest Signal Card */
+    .latest-signal-card {
+        background: linear-gradient(135deg, rgba(52, 199, 89, 0.15) 0%, rgba(52, 199, 89, 0.05) 100%);
+        border: 1px solid rgba(52, 199, 89, 0.3);
+        border-radius: 20px;
+        padding: 20px;
+        margin-bottom: 16px;
+        transition: all 0.3s ease;
+    }
+    
+    .consecutive-indicator {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 4px 12px;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 8px;
+    }
+    
+    /* Filter Pills */
+    .filter-pill {
+        display: inline-block;
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 13px;
+        font-weight: 500;
+    }
+    
+    .filter-pill:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .filter-pill.active {
+        background: #34C759;
+        border-color: #34C759;
+        color: #000;
+    }
+    
     /* Tables - iOS style */
     .dataframe {
         font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif !important;
@@ -187,15 +233,6 @@ st.markdown("""
         background: rgba(255,255,255,0.05);
         border-radius: 20px;
         padding: 4px;
-    }
-    
-    /* Charts Container */
-    .chart-container {
-        background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
-        border-radius: 24px;
-        padding: 20px;
-        margin-top: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
     }
     
     /* Custom Scrollbar - iOS style */
@@ -244,94 +281,80 @@ st.markdown("""
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
-    
-    /* Hide Streamlit expander arrows */
-    .css-1x8cf1d {
-        visibility: hidden;
-    }
-    
-    /* Metric value styling override */
-    [data-testid="metric-container"] {
-        background: transparent !important;
-        border: none !important;
-        padding: 0 !important;
-    }
-    
-    [data-testid="metric-container"] > div {
-        background: transparent !important;
-    }
 </style>
 """, unsafe_allow_html=True)
 
 # Initialize session state
 if 'last_update' not in st.session_state:
     st.session_state.last_update = datetime.now()
+if 'selected_filter' not in st.session_state:
+    st.session_state.selected_filter = 'ALL'
 
 # Define your assets
 ASSETS = ['TSLA', 'HOOD', 'COIN', 'PLTR', 'AAPL']
 
 # Helper functions
-def process_signals_with_proper_counting(signals):
-    """Process signals with proper counting logic"""
+def process_signals_for_display(signals):
+    """Process signals to identify unique trades and consecutive signals"""
     if not signals:
-        return [], 0, 0, 0
+        return [], {}, 0, 0
     
     # Sort signals by timestamp
     sorted_signals = sorted(signals, key=lambda x: x['timestamp'])
     
-    # Track positions and unique trades
-    position_states = {}  # symbol -> current_position
-    processed_signals = []
-    unique_long_trades = set()
-    unique_exit_trades = set()
-    last_signal_per_symbol = {}
+    # Track latest signal per symbol
+    latest_signals = {}
+    signal_history = defaultdict(list)
+    position_states = {}
+    unique_long_count = 0
+    unique_exit_count = 0
     
     for sig in sorted_signals:
         symbol = sig['symbol']
         action = sig['action']
         timestamp = sig['timestamp']
         
-        # Initialize position state
+        # Initialize position if needed
         if symbol not in position_states:
-            position_states[symbol] = 'FLAT'
+            position_states[symbol] = {'position': 'FLAT', 'first_entry_time': None}
         
-        current_position = position_states[symbol]
+        # Track signal history
+        signal_history[symbol].append(sig)
         
-        # Check if this is a new signal or duplicate
-        is_duplicate = False
-        if symbol in last_signal_per_symbol:
-            last_action = last_signal_per_symbol[symbol]['action']
-            if action == 'HOLD' and last_action == 'HOLD':
-                is_duplicate = True
-            elif action == 'LONG' and current_position == 'LONG':
-                is_duplicate = True
+        # Process based on action
+        if action == 'LONG':
+            if position_states[symbol]['position'] != 'LONG':
+                # New long position
+                position_states[symbol]['position'] = 'LONG'
+                position_states[symbol]['first_entry_time'] = timestamp
+                unique_long_count += 1
+                sig['is_new_position'] = True
+                sig['consecutive_count'] = 1
+            else:
+                # Consecutive long signal
+                sig['is_new_position'] = False
+                if symbol in latest_signals and latest_signals[symbol]['action'] == 'LONG':
+                    sig['consecutive_count'] = latest_signals[symbol].get('consecutive_count', 1) + 1
+                    sig['first_signal_time'] = position_states[symbol]['first_entry_time']
+                else:
+                    sig['consecutive_count'] = 1
         
-        # Process signal
-        if action == 'LONG' and current_position != 'LONG':
-            position_states[symbol] = 'LONG'
-            unique_long_trades.add(symbol)
-            sig['is_new_trade'] = True
-            sig['is_duplicate'] = False
-        elif action == 'EXIT' and current_position == 'LONG':
-            position_states[symbol] = 'FLAT'
-            unique_exit_trades.add(symbol)
-            sig['is_new_trade'] = True
-            sig['is_duplicate'] = False
-        else:
-            sig['is_new_trade'] = False
-            sig['is_duplicate'] = is_duplicate
+        elif action == 'EXIT':
+            if position_states[symbol]['position'] == 'LONG':
+                position_states[symbol]['position'] = 'FLAT'
+                position_states[symbol]['first_entry_time'] = None
+                unique_exit_count += 1
+                sig['is_new_position'] = True
+            else:
+                sig['is_new_position'] = False
         
-        last_signal_per_symbol[symbol] = sig
-        processed_signals.append(sig)
+        else:  # HOLD
+            sig['is_new_position'] = False
+        
+        # Update latest signal for symbol
+        latest_signals[symbol] = sig
     
-    # Count unique trades
-    unique_longs = len(unique_long_trades)
-    unique_exits = len(unique_exit_trades)
-    
-    # Filter out duplicate HOLD signals for display
-    display_signals = [s for s in processed_signals if not s.get('is_duplicate', False)]
-    
-    return display_signals, unique_longs, unique_exits, len(processed_signals)
+    return sorted_signals, latest_signals, unique_long_count, unique_exit_count
 
 @st.cache_data(ttl=2)
 def load_signals():
@@ -395,24 +418,17 @@ def format_currency(value):
         return "-"
     return f"${value:,.2f}"
 
-def format_percentage(value):
-    """Format percentage values"""
-    if value == 0 or value is None:
-        return "-"
-    color = "#34C759" if value > 0 else "#FF453A"
-    return f'<span style="color: {color}; font-weight: 600;">{value:+.2f}%</span>'
-
 # Main Dashboard
 def main():
-    # Clean title without icon
+    # Clean title
     st.markdown('<h1 class="main-title">SIGNALS DASHBOARD</h1>', unsafe_allow_html=True)
     
     # Load data
     raw_signals = load_signals()
     status = load_status()
     
-    # Process signals with proper counting
-    signals, unique_longs, unique_exits, total_signals = process_signals_with_proper_counting(raw_signals)
+    # Process signals
+    all_signals, latest_signals, unique_longs, unique_exits = process_signals_for_display(raw_signals)
     
     if not status:
         st.markdown("""
@@ -431,7 +447,7 @@ def main():
     # Get market status
     market_status, status_class, status_icon = get_market_status()
     
-    # Top Metrics Row - iOS style cards
+    # Top Metrics Row
     col1, col2, col3, col4, col5, col6 = st.columns(6)
     
     with col1:
@@ -456,7 +472,7 @@ def main():
         st.markdown(f"""
         <div class="metric-card">
             <div class="metric-label">Signals Today</div>
-            <div class="metric-value">{total_signals}</div>
+            <div class="metric-value">{len(all_signals)}</div>
             <div class="metric-delta metric-delta-positive">↑ {unique_longs} longs</div>
         </div>
         """, unsafe_allow_html=True)
@@ -483,11 +499,12 @@ def main():
                         pnl = ((current - entry) / entry * 100)
                         total_pnl += pnl
         
-        pnl_html = format_percentage(total_pnl) if total_pnl != 0 else '<span style="color: rgba(255,255,255,0.5);">-</span>'
+        pnl_color = "#34C759" if total_pnl > 0 else "#FF453A" if total_pnl < 0 else "rgba(255,255,255,0.5)"
+        pnl_text = f"{total_pnl:+.2f}%" if total_pnl != 0 else "-"
         st.markdown(f"""
         <div class="metric-card">
             <div class="metric-label">Total Open P&L</div>
-            <div class="metric-value" style="font-size: 28px;">{pnl_html}</div>
+            <div class="metric-value" style="font-size: 28px; color: {pnl_color};">{pnl_text}</div>
         </div>
         """, unsafe_allow_html=True)
     
@@ -507,82 +524,191 @@ def main():
     col_left, col_right = st.columns([3, 2])
     
     with col_left:
-        # Positions Section
+        # Latest Signals Section
+        st.markdown('<div class="section-header">🎯 Latest Signal Per Asset</div>', unsafe_allow_html=True)
+        
+        latest_container = st.container()
+        with latest_container:
+            for symbol in ASSETS:
+                if symbol in latest_signals:
+                    sig = latest_signals[symbol]
+                    sig_time = datetime.fromisoformat(sig['timestamp'])
+                    time_str = sig_time.strftime('%H:%M:%S')
+                    
+                    # Check for consecutive signals
+                    consecutive_html = ""
+                    if sig.get('consecutive_count', 1) > 1 and 'first_signal_time' in sig:
+                        first_time = datetime.fromisoformat(sig['first_signal_time']).strftime('%H:%M')
+                        consecutive_html = f"""
+                        <div class="consecutive-indicator">
+                            📍 Position opened at {first_time} • Updated at {time_str} ({sig['consecutive_count']} signals)
+                        </div>
+                        """
+                    
+                    if sig['action'] == 'LONG':
+                        card_class = "signal-long"
+                        color = "#34C759"
+                        icon = "🟢"
+                    elif sig['action'] == 'EXIT':
+                        card_class = "signal-exit"
+                        color = "#FF453A"
+                        icon = "🔴"
+                    else:
+                        card_class = "signal-hold"
+                        color = "rgba(255,255,255,0.6)"
+                        icon = "⚪"
+                    
+                    st.markdown(f"""
+                    <div class="signal-card {card_class}" style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="flex: 1;">
+                                <div style="font-size: 18px; font-weight: 600; color: {color}; margin-bottom: 4px;">
+                                    {icon} {symbol} - {sig['action']}
+                                </div>
+                                <div style="color: rgba(255,255,255,0.5); font-size: 13px;">
+                                    ${sig['price']:.2f} • {time_str}
+                                </div>
+                                {consecutive_html}
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="color: rgba(255,255,255,0.4); font-size: 11px; text-transform: uppercase;">Confidence</div>
+                                <div style="color: {color}; font-size: 24px; font-weight: 700;">
+                                    {sig['confidence']*100:.1f}%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.markdown(f"""
+                    <div class="signal-card" style="margin-bottom: 12px; opacity: 0.5;">
+                        <div style="font-size: 16px; color: rgba(255,255,255,0.4);">
+                            {symbol} - No signals today
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+        
+        # Historical Signals Section
+        st.markdown('<div class="section-header">📜 Historical Signals</div>', unsafe_allow_html=True)
+        
+        # Filter Pills
+        col_filter1, col_filter2 = st.columns([3, 1])
+        with col_filter1:
+            # Create filter buttons
+            filter_html = '<div style="margin-bottom: 20px;">'
+            filter_html += f'<span class="filter-pill {"active" if st.session_state.selected_filter == "ALL" else ""}">ALL</span>'
+            for asset in ASSETS:
+                filter_html += f'<span class="filter-pill {"active" if st.session_state.selected_filter == asset else ""}">{asset}</span>'
+            filter_html += '</div>'
+            st.markdown(filter_html, unsafe_allow_html=True)
+            
+            # Asset filter selector
+            selected_asset = st.selectbox(
+                "Filter by Asset",
+                ["ALL"] + ASSETS,
+                key="asset_filter",
+                label_visibility="collapsed"
+            )
+        
+        # Display filtered historical signals
+        historical_container = st.container(height=400)
+        with historical_container:
+            # Filter signals based on selection
+            if selected_asset == "ALL":
+                filtered_signals = [s for s in all_signals if s.get('is_new_position', True)]
+            else:
+                filtered_signals = [s for s in all_signals if s['symbol'] == selected_asset and s.get('is_new_position', True)]
+            
+            # Sort by time descending
+            filtered_signals = sorted(filtered_signals, key=lambda x: x['timestamp'], reverse=True)
+            
+            if filtered_signals:
+                for sig in filtered_signals[:50]:  # Show last 50 signals
+                    sig_time = datetime.fromisoformat(sig['timestamp'])
+                    time_str = sig_time.strftime('%H:%M:%S')
+                    
+                    if sig['action'] == 'LONG':
+                        st.markdown(f"""
+                        <div class="signal-card signal-long">
+                            <div style="display: flex; justify-content: space-between;">
+                                <div>
+                                    <span style="color: #34C759; font-weight: 600;">🟢 {sig['symbol']} - LONG</span>
+                                    <span style="color: rgba(255,255,255,0.4); margin-left: 12px; font-size: 12px;">
+                                        {time_str} • ${sig['price']:.2f}
+                                    </span>
+                                </div>
+                                <div style="color: #34C759; font-weight: 600;">
+                                    {sig['confidence']*100:.1f}%
+                                </div>
+                            </div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                    elif sig['action'] == 'EXIT':
+                        st.markdown(f"""
+                        <div class="signal-card signal-exit">
+                            <div style="display: flex; justify-content: space-between;">
+                                <div>
+                                    <span style="color: #FF453A; font-weight: 600;">🔴 {sig['symbol']} - EXIT</span>
+                                    <span style="color: rgba(255,255,255,0.4); margin-left: 12px; font-size: 12px;">
+                                        {time_str} • ${sig['price']:.2f}
+                                    </span>
+                                </div>
+                                <div style="color: #FF453A; font-weight: 600;">
+                                    {sig['confidence']*100:.1f}%
+                                </div>
+                            </div>
+                        </div>
+                        """, unsafe_allow_html=True)
+            else:
+                st.markdown("""
+                <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.4);">
+                    No signals to display
+                </div>
+                """, unsafe_allow_html=True)
+    
+    with col_right:
+        # Current Positions
         st.markdown('<div class="section-header">📊 Current Positions</div>', unsafe_allow_html=True)
         
         if status and 'positions' in status:
-            positions_data = []
-            
             for symbol in ASSETS:
                 if symbol in status['positions']:
                     pos = status['positions'][symbol]
                     
-                    # Determine position status icon
                     if pos['is_open']:
-                        status_icon = '🟢'
-                        position_text = 'LONG'
-                    else:
-                        status_icon = '⚪'
-                        position_text = 'FLAT'
-                    
-                    row_data = {
-                        'Symbol': symbol,
-                        'Status': status_icon,
-                        'Position': position_text,
-                        'Entry': format_currency(pos['entry_price']) if pos['entry_price'] > 0 else '-',
-                    }
-                    
-                    if pos['is_open'] and symbol in status.get('latest_prices', {}):
-                        current = status['latest_prices'][symbol]
+                        current = status.get('latest_prices', {}).get(symbol, 0)
                         entry = pos['entry_price']
-                        if entry > 0:
-                            pnl_pct = ((current - entry) / entry * 100)
-                            pnl_dollar = (current - entry) * 100
+                        if entry > 0 and current > 0:
+                            pnl = ((current - entry) / entry * 100)
+                            pnl_color = "#34C759" if pnl > 0 else "#FF453A"
                             
-                            row_data['Current'] = format_currency(current)
-                            row_data['P&L %'] = f"{pnl_pct:+.2f}%"
-                            row_data['P&L $'] = format_currency(pnl_dollar)
-                        else:
-                            row_data['Current'] = format_currency(current)
-                            row_data['P&L %'] = '-'
-                            row_data['P&L $'] = '-'
-                    else:
-                        row_data['Current'] = '-'
-                        row_data['P&L %'] = '-'
-                        row_data['P&L $'] = '-'
-                    
-                    row_data['Confidence'] = f"{pos.get('last_confidence', 0):.1%}" if pos.get('last_confidence', 0) > 0 else '-'
-                    
-                    positions_data.append(row_data)
-            
-            if positions_data:
-                df_positions = pd.DataFrame(positions_data)
-                
-                # Style the dataframe
-                def style_pnl(val):
-                    if isinstance(val, str):
-                        if '+' in val and '%' in val:
-                            return 'color: #34C759; font-weight: 600;'
-                        elif '-' in val and '%' in val and val != '-':
-                            return 'color: #FF453A; font-weight: 600;'
-                    return 'color: rgba(255,255,255,0.9);'
-                
-                styled_df = df_positions.style.applymap(style_pnl, subset=['P&L %', 'P&L $'])
-                styled_df = styled_df.set_properties(**{
-                    'background-color': 'transparent',
-                    'color': 'rgba(255,255,255,0.9)',
-                    'font-family': '-apple-system, BlinkMacSystemFont, Inter, sans-serif',
-                    'font-size': '14px'
-                })
-                
-                st.dataframe(
-                    styled_df,
-                    use_container_width=True,
-                    hide_index=True,
-                    height=250
-                )
+                            st.markdown(f"""
+                            <div class="signal-card" style="border-left: 3px solid {pnl_color};">
+                                <div style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px;">
+                                    {symbol} - LONG
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 13px;">
+                                    <div>
+                                        <div style="color: rgba(255,255,255,0.5);">Entry</div>
+                                        <div style="color: #fff; font-weight: 500;">${entry:.2f}</div>
+                                    </div>
+                                    <div>
+                                        <div style="color: rgba(255,255,255,0.5);">Current</div>
+                                        <div style="color: #fff; font-weight: 500;">${current:.2f}</div>
+                                    </div>
+                                    <div>
+                                        <div style="color: rgba(255,255,255,0.5);">P&L</div>
+                                        <div style="color: {pnl_color}; font-weight: 600;">{pnl:+.2f}%</div>
+                                    </div>
+                                    <div>
+                                        <div style="color: rgba(255,255,255,0.5);">Confidence</div>
+                                        <div style="color: #fff; font-weight: 500;">{pos.get('last_confidence', 0)*100:.1f}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            """, unsafe_allow_html=True)
         
-        # Price Charts
+        # Price Action
         st.markdown('<div class="section-header">💹 Price Action</div>', unsafe_allow_html=True)
         
         if status and 'latest_prices' in status:
@@ -593,347 +719,62 @@ def main():
                     hist_data = load_historical_data(symbol)
                     
                     if hist_data is not None and not hist_data.empty:
-                        # Create iOS-style chart
+                        # Create mini chart
                         fig = go.Figure()
                         
-                        # Candlestick with iOS colors
-                        fig.add_trace(go.Candlestick(
+                        fig.add_trace(go.Scatter(
                             x=pd.to_datetime(hist_data['timestamp']),
-                            open=hist_data['open'],
-                            high=hist_data['high'],
-                            low=hist_data['low'],
-                            close=hist_data['close'],
+                            y=hist_data['close'],
+                            mode='lines',
                             name=symbol,
-                            increasing=dict(line=dict(color='#34C759', width=1), fillcolor='#34C759'),
-                            decreasing=dict(line=dict(color='#FF453A', width=1), fillcolor='#FF453A')
+                            line=dict(color='#34C759', width=2)
                         ))
                         
-                        # Volume bars with transparency
-                        fig.add_trace(go.Bar(
-                            x=pd.to_datetime(hist_data['timestamp']),
-                            y=hist_data['volume'],
-                            name='Volume',
-                            yaxis='y2',
-                            marker=dict(color='rgba(52, 199, 89, 0.2)')
-                        ))
-                        
-                        # Add trade signals
-                        symbol_signals = [s for s in signals if s['symbol'] == symbol and s.get('is_new_trade')]
+                        # Add signal markers
+                        symbol_signals = [s for s in all_signals if s['symbol'] == symbol and s.get('is_new_position')]
                         if symbol_signals:
-                            long_signals = [s for s in symbol_signals if s['action'] == 'LONG']
-                            exit_signals = [s for s in symbol_signals if s['action'] == 'EXIT']
+                            long_sigs = [s for s in symbol_signals if s['action'] == 'LONG']
+                            exit_sigs = [s for s in symbol_signals if s['action'] == 'EXIT']
                             
-                            if long_signals:
+                            if long_sigs:
                                 fig.add_trace(go.Scatter(
-                                    x=[datetime.fromisoformat(s['timestamp']) for s in long_signals],
-                                    y=[s['price'] for s in long_signals],
+                                    x=[datetime.fromisoformat(s['timestamp']) for s in long_sigs],
+                                    y=[s['price'] for s in long_sigs],
                                     mode='markers',
-                                    name='BUY',
-                                    marker=dict(
-                                        symbol='circle',
-                                        size=12,
-                                        color='#34C759',
-                                        line=dict(width=2, color='rgba(52, 199, 89, 0.3)')
-                                    )
+                                    marker=dict(size=8, color='#34C759', symbol='circle'),
+                                    name='Long'
                                 ))
                             
-                            if exit_signals:
+                            if exit_sigs:
                                 fig.add_trace(go.Scatter(
-                                    x=[datetime.fromisoformat(s['timestamp']) for s in exit_signals],
-                                    y=[s['price'] for s in exit_signals],
+                                    x=[datetime.fromisoformat(s['timestamp']) for s in exit_sigs],
+                                    y=[s['price'] for s in exit_sigs],
                                     mode='markers',
-                                    name='SELL',
-                                    marker=dict(
-                                        symbol='circle',
-                                        size=12,
-                                        color='#FF453A',
-                                        line=dict(width=2, color='rgba(255, 69, 58, 0.3)')
-                                    )
+                                    marker=dict(size=8, color='#FF453A', symbol='circle'),
+                                    name='Exit'
                                 ))
                         
-                        # iOS-style layout
                         fig.update_layout(
-                            template='plotly_dark',
-                            height=400,
+                            height=200,
                             showlegend=False,
-                            xaxis=dict(
-                                rangeslider=dict(visible=False),
-                                gridcolor='rgba(255,255,255,0.05)',
-                                showgrid=True,
-                                zeroline=False
-                            ),
-                            yaxis=dict(
-                                title='',
-                                side='right',
-                                gridcolor='rgba(255,255,255,0.05)',
-                                showgrid=True,
-                                zeroline=False
-                            ),
-                            yaxis2=dict(
-                                title='',
-                                overlaying='y',
-                                side='left',
-                                showgrid=False,
-                                zeroline=False
-                            ),
                             paper_bgcolor='rgba(0,0,0,0)',
                             plot_bgcolor='rgba(255,255,255,0.02)',
-                            font=dict(
-                                color='rgba(255,255,255,0.8)',
-                                family='-apple-system, BlinkMacSystemFont, Inter, sans-serif',
-                                size=12
-                            ),
+                            xaxis=dict(gridcolor='rgba(255,255,255,0.05)', showgrid=False),
+                            yaxis=dict(gridcolor='rgba(255,255,255,0.05)', showgrid=True),
                             margin=dict(l=0, r=0, t=0, b=0),
-                            hoverlabel=dict(
-                                bgcolor='rgba(0,0,0,0.8)',
-                                font=dict(size=13, family='-apple-system, BlinkMacSystemFont, Inter')
-                            )
+                            font=dict(color='rgba(255,255,255,0.8)', size=10)
                         )
                         
                         st.plotly_chart(fig, use_container_width=True)
                     else:
                         if symbol in status.get('latest_prices', {}):
-                            current = status['latest_prices'][symbol]
-                            st.markdown(f"""
-                            <div class="metric-card">
-                                <div class="metric-label">{symbol} Price</div>
-                                <div class="metric-value">{format_currency(current)}</div>
-                            </div>
-                            """, unsafe_allow_html=True)
+                            st.metric(label="Current Price", value=format_currency(status['latest_prices'][symbol]))
     
-    with col_right:
-        # Live Signal Feed
-        st.markdown('<div class="section-header">📈 Live Signal Feed</div>', unsafe_allow_html=True)
-        
-        signal_container = st.container(height=600)
-        
-        with signal_container:
-            if signals:
-                # Show recent signals (including HOLD but no duplicates)
-                display_signals = sorted(
-                    [s for s in signals if not s.get('is_duplicate', False)],
-                    key=lambda x: x['timestamp'],
-                    reverse=True
-                )[:20]
-                
-                for sig in display_signals:
-                    sig_time = datetime.fromisoformat(sig['timestamp'])
-                    time_str = sig_time.strftime('%H:%M:%S')
-                    
-                    if sig['action'] == 'LONG':
-                        st.markdown(f"""
-                        <div class="signal-card signal-long">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <div>
-                                    <div style="color: #34C759; font-weight: 600; font-size: 15px;">
-                                        🟢 LONG - {sig['symbol']}
-                                    </div>
-                                    <div style="color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px;">
-                                        {time_str} • ${sig['price']:.2f}
-                                    </div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div style="color: rgba(255,255,255,0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;">
-                                        Confidence
-                                    </div>
-                                    <div style="color: #34C759; font-size: 22px; font-weight: 700; letter-spacing: -0.5px;">
-                                        {sig['confidence']*100:.1f}%
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        """, unsafe_allow_html=True)
-                    elif sig['action'] == 'EXIT':
-                        st.markdown(f"""
-                        <div class="signal-card signal-exit">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <div>
-                                    <div style="color: #FF453A; font-weight: 600; font-size: 15px;">
-                                        🔴 EXIT - {sig['symbol']}
-                                    </div>
-                                    <div style="color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px;">
-                                        {time_str} • ${sig['price']:.2f}
-                                    </div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div style="color: rgba(255,255,255,0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;">
-                                        Confidence
-                                    </div>
-                                    <div style="color: #FF453A; font-size: 22px; font-weight: 700; letter-spacing: -0.5px;">
-                                        {sig['confidence']*100:.1f}%
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        """, unsafe_allow_html=True)
-                    else:  # HOLD
-                        st.markdown(f"""
-                        <div class="signal-card signal-hold">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <div>
-                                    <div style="color: rgba(255,255,255,0.6); font-weight: 500; font-size: 15px;">
-                                        ⚪ HOLD - {sig['symbol']}
-                                    </div>
-                                    <div style="color: rgba(255,255,255,0.4); font-size: 13px; margin-top: 4px;">
-                                        {time_str} • ${sig['price']:.2f}
-                                    </div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div style="color: rgba(255,255,255,0.4); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;">
-                                        Confidence
-                                    </div>
-                                    <div style="color: rgba(255,255,255,0.5); font-size: 22px; font-weight: 700; letter-spacing: -0.5px;">
-                                        {sig['confidence']*100:.1f}%
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        """, unsafe_allow_html=True)
-            else:
-                st.markdown("""
-                <div style="text-align: center; padding: 40px;">
-                    <div style="color: rgba(255,255,255,0.4); font-size: 16px;">
-                        Waiting for trading signals...
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
-    
-    # Performance Section - Clean iOS style
-    st.markdown('<div class="section-header">📊 Performance Analytics</div>', unsafe_allow_html=True)
-    
-    col1, col2, col3, col4 = st.columns(4)
-    
-    with col1:
-        # Unique trades pie
-        if unique_longs > 0 or unique_exits > 0:
-            fig = go.Figure(data=[go.Pie(
-                labels=['Long', 'Exit'],
-                values=[unique_longs, unique_exits],
-                hole=0.7,
-                marker=dict(colors=['#34C759', '#FF453A']),
-                textinfo='value',
-                textfont=dict(size=14, color='white', family='-apple-system, BlinkMacSystemFont, Inter')
-            )])
-            
-            fig.update_layout(
-                showlegend=False,
-                height=180,
-                paper_bgcolor='rgba(0,0,0,0)',
-                plot_bgcolor='rgba(0,0,0,0)',
-                margin=dict(l=0, r=0, t=30, b=0),
-                title=dict(
-                    text='Unique Trades',
-                    font=dict(size=14, color='rgba(255,255,255,0.8)', family='-apple-system, BlinkMacSystemFont, Inter'),
-                    y=0.95
-                )
-            )
-            
-            st.plotly_chart(fig, use_container_width=True)
-    
-    with col2:
-        # Activity heatmap
-        if signals:
-            hours = [datetime.fromisoformat(s['timestamp']).hour for s in signals if s.get('is_new_trade')]
-            if hours:
-                hour_counts = pd.Series(hours).value_counts().sort_index()
-                
-                fig = go.Figure(data=[go.Bar(
-                    x=hour_counts.index,
-                    y=hour_counts.values,
-                    marker=dict(
-                        color=hour_counts.values,
-                        colorscale=[[0, 'rgba(52, 199, 89, 0.2)'], [1, '#34C759']],
-                        showscale=False
-                    )
-                )])
-                
-                fig.update_layout(
-                    title=dict(
-                        text='Hourly Activity',
-                        font=dict(size=14, color='rgba(255,255,255,0.8)', family='-apple-system, BlinkMacSystemFont, Inter'),
-                        y=0.95
-                    ),
-                    xaxis=dict(
-                        gridcolor='rgba(255,255,255,0.05)',
-                        color='rgba(255,255,255,0.5)'
-                    ),
-                    yaxis=dict(
-                        gridcolor='rgba(255,255,255,0.05)',
-                        color='rgba(255,255,255,0.5)'
-                    ),
-                    height=180,
-                    paper_bgcolor='rgba(0,0,0,0)',
-                    plot_bgcolor='rgba(255,255,255,0.02)',
-                    font=dict(color='rgba(255,255,255,0.5)', size=11),
-                    margin=dict(l=0, r=0, t=30, b=30),
-                    showlegend=False
-                )
-                
-                st.plotly_chart(fig, use_container_width=True)
-    
-    with col3:
-        # Win Rate gauge
-        if unique_exits > 0:
-            # Simplified win rate (would need actual P&L calculation)
-            win_rate = 65  # Placeholder
-            
-            fig = go.Figure(go.Indicator(
-                mode="gauge+number",
-                value=win_rate,
-                title={'text': "Win Rate", 'font': {'size': 14, 'color': 'rgba(255,255,255,0.8)'}},
-                number={'suffix': "%", 'font': {'size': 24, 'color': '#34C759'}},
-                domain={'x': [0, 1], 'y': [0, 1]},
-                gauge={
-                    'axis': {'range': [None, 100], 'tickcolor': 'rgba(255,255,255,0.3)'},
-                    'bar': {'color': "#34C759"},
-                    'steps': [
-                        {'range': [0, 100], 'color': "rgba(255,255,255,0.05)"}
-                    ],
-                    'threshold': {
-                        'line': {'color': "rgba(255,255,255,0.3)", 'width': 2},
-                        'thickness': 0.75,
-                        'value': 50
-                    }
-                }
-            ))
-            
-            fig.update_layout(
-                height=180,
-                paper_bgcolor='rgba(0,0,0,0)',
-                font=dict(family='-apple-system, BlinkMacSystemFont, Inter'),
-                margin=dict(l=20, r=20, t=30, b=0)
-            )
-            
-            st.plotly_chart(fig, use_container_width=True)
-    
-    with col4:
-        # Average confidence
-        if signals:
-            recent_signals = signals[-10:] if len(signals) > 10 else signals
-            avg_confidence = np.mean([s['confidence'] for s in recent_signals]) * 100
-            
-            fig = go.Figure(go.Indicator(
-                mode="number",
-                value=avg_confidence,
-                title={'text': "Avg Confidence", 'font': {'size': 14, 'color': 'rgba(255,255,255,0.8)'}},
-                number={'suffix': "%", 'font': {'size': 32, 'color': '#34C759' if avg_confidence > 50 else '#FF453A'}},
-                domain={'x': [0, 1], 'y': [0, 1]}
-            ))
-            
-            fig.update_layout(
-                height=180,
-                paper_bgcolor='rgba(0,0,0,0)',
-                font=dict(family='-apple-system, BlinkMacSystemFont, Inter'),
-                margin=dict(l=0, r=0, t=30, b=0)
-            )
-            
-            st.plotly_chart(fig, use_container_width=True)
-    
-    # Footer - Minimal iOS style
+    # Footer
     st.markdown("---")
     st.markdown(f"""
     <div style="text-align: center; color: rgba(255,255,255,0.3); font-size: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;">
-        Last Update: {datetime.now().strftime('%H:%M:%S')} • Auto-refresh: 5 seconds • Polygon + Alpaca APIs
+        Last Update: {datetime.now().strftime('%H:%M:%S')} • Auto-refresh: 5 seconds • Data: Polygon + Alpaca APIs
     </div>
     """, unsafe_allow_html=True)
     
