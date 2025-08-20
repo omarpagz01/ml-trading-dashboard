@@ -504,5 +504,49 @@
       "volume_ratio": 0.12163311419560249
     },
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-20T17:26:49.314543",
+    "symbol": "PLTR",
+    "action": "HOLD",
+    "confidence": 0.6087947575346518,
+    "price": 154.5124,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5166233766233767,
+      "gb_long": 0.32027420133008294,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5395401120185852
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 29.350534486861235,
+      "macd": -7.339392701659449,
+      "bb_position": 0.23578665579679353,
+      "volume_ratio": 0.3229311731044417
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-20T17:26:51.358863",
+    "symbol": "AAPL",
+    "action": "LONG",
+    "confidence": 0.7159059976824876,
+    "price": 226.74,
+    "signal_strength": "BUY",
+    "ml_scores": {
+      "rf_long": 0.4594378795798834,
+      "gb_long": 0.8387169190196518,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5271175503730774
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 28.3860923715621,
+      "macd": -0.7149850273958975,
+      "bb_position": 0.052540627000958025,
+      "volume_ratio": 0.14575200686129622
+    },
+    "is_realtime": true
   }
 ]
