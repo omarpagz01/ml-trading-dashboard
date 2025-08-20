@@ -218,21 +218,7 @@ st.markdown("""
         transform: translateX(2px);
     }
     
-    .signal-long {
-        background: linear-gradient(90deg, rgba(52, 199, 89, 0.1), transparent);
-        border-left: 2px solid var(--primary-green);
-    }
-    
-    .signal-exit {
-        background: linear-gradient(90deg, rgba(255, 69, 58, 0.1), transparent);
-        border-left: 2px solid var(--primary-red);
-    }
-    
-    .signal-hold {
-        border-left: 2px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    /* Live Signal - using same format as historical */
+    /* Live Signal */
     .live-signal {
         display: flex;
         justify-content: space-between;
@@ -243,7 +229,6 @@ st.markdown("""
         margin-bottom: 10px;
         border: 1px solid var(--border-color);
         transition: all 0.15s ease;
-        font-size: 14px;
     }
     
     .live-signal:hover {
@@ -263,18 +248,6 @@ st.markdown("""
     
     .live-signal-hold {
         border-left: 3px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .live-signal-info {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
-    
-    .live-signal-main {
-        display: flex;
-        align-items: center;
-        gap: 12px;
     }
     
     /* Historical Signal */
@@ -560,7 +533,7 @@ def load_signals():
     signal_file = Path("signals") / f"signals_{datetime.now().strftime('%Y%m%d')}.json"
     if signal_file.exists():
         try:
-            with open(signal_file, 'r') as f:
+            with open(signals_file, 'r') as f:
                 content = f.read()
                 if content.strip():
                     return json.loads(content)
@@ -756,7 +729,7 @@ def main():
         col_left, col_right = st.columns([3, 2])
         
         with col_left:
-            # Latest Signals Per Asset - USING SAME FORMAT AS HISTORICAL
+            # Latest Signals Per Asset - SIMPLIFIED VERSION
             st.markdown('<div class="section-header">🎯 Latest Signal Per Asset</div>', unsafe_allow_html=True)
             
             for symbol in ASSETS:
@@ -779,35 +752,34 @@ def main():
                         color = "rgba(255,255,255,0.6)"
                         icon = "⚪"
                     
-                    # Check for consecutive signals
-                    consecutive_html = ""
+                    # Consecutive indicator
+                    consecutive_text = ""
                     if sig.get('consecutive_count', 1) > 1 and 'first_signal_time' in sig:
                         first_time = convert_to_et(sig['first_signal_time']).strftime('%H:%M')
-                        consecutive_html = f"""
-                        <div class="consecutive-indicator">
-                            📍 Opened at {first_time} • Updated at {time_str} • {sig['consecutive_count']} signals
-                        </div>
-                        """
+                        consecutive_text = f"📍 Opened {first_time} • Updated {time_str} • {sig['consecutive_count']} signals"
                     
-                    # Use the same format as historical signals (which works!)
-                    st.markdown(f"""
-                    <div class="live-signal {card_class}">
-                        <div class="live-signal-info">
-                            <div class="live-signal-main">
-                                <span style="color: {color}; font-weight: 600; font-size: 16px;">
-                                    {icon} {symbol} - {sig['action']}
-                                </span>
-                                <span style="color: var(--text-secondary); font-size: 13px;">
-                                    ${sig['price']:.2f} • {time_str}
-                                </span>
+                    # Create clean HTML without nested divs
+                    html_content = f"""<div class="live-signal {card_class}">
+                        <div>
+                            <div style="color: {color}; font-weight: 600; font-size: 16px;">
+                                {icon} {symbol} - {sig['action']}
                             </div>
-                            {consecutive_html}
+                            <div style="color: var(--text-secondary); font-size: 12px; margin-top: 4px;">
+                                ${sig['price']:.2f} • {time_str}
+                            </div>"""
+                    
+                    if consecutive_text:
+                        html_content += f"""
+                            <div class="consecutive-indicator">{consecutive_text}</div>"""
+                    
+                    html_content += f"""
                         </div>
                         <div style="color: {color}; font-weight: 700; font-size: 20px;">
                             {sig['confidence']*100:.1f}%
                         </div>
-                    </div>
-                    """, unsafe_allow_html=True)
+                    </div>"""
+                    
+                    st.markdown(html_content, unsafe_allow_html=True)
                 else:
                     st.markdown(f"""
                     <div class="live-signal" style="opacity: 0.3;">
