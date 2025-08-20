@@ -1,6 +1,6 @@
 """
-Signals Dashboard - Professional iOS-Inspired Design
-Clean, aligned, and polished interface
+Elite Signals Dashboard - Professional Trading Interface
+With P&L Tracking and Performance Analytics
 """
 
 import streamlit as st
@@ -14,7 +14,7 @@ import time
 import numpy as np
 from collections import defaultdict, OrderedDict
 
-# Page configuration - MUST BE FIRST
+# Page configuration
 st.set_page_config(
     page_title="Signals Dashboard",
     page_icon="📊",
@@ -22,340 +22,310 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Professional CSS with proper alignment
+# Elite Professional CSS
 st.markdown("""
 <style>
-    /* Import premium font */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    /* Premium Typography */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     
-    /* Reset and base styles */
+    /* Root Variables */
+    :root {
+        --primary-green: #34C759;
+        --primary-red: #FF453A;
+        --primary-orange: #FF9500;
+        --bg-primary: #000000;
+        --bg-secondary: rgba(255,255,255,0.03);
+        --bg-hover: rgba(255,255,255,0.05);
+        --border-color: rgba(255,255,255,0.08);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255,255,255,0.6);
+        --text-tertiary: rgba(255,255,255,0.4);
+    }
+    
+    /* Reset */
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
     
-    /* Main App Background */
+    /* Base */
     .stApp {
-        background: #000000;
-        font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Segoe UI', sans-serif;
+        background: var(--bg-primary);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     
-    /* Hide Streamlit defaults */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+    /* Hide Streamlit */
+    #MainMenu, footer, header {visibility: hidden;}
     .block-container {
-        padding-top: 2rem !important;
-        padding-bottom: 0rem !important;
+        padding: 2rem 2rem 0 2rem !important;
+        max-width: 100% !important;
     }
     
     /* Main Title */
     .main-title {
-        font-size: 36px;
+        font-size: 32px;
         font-weight: 700;
-        color: #ffffff;
+        color: var(--text-primary);
         text-align: center;
         margin: 0 0 2rem 0;
-        letter-spacing: -1px;
-        font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+        letter-spacing: -0.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
     }
     
-    /* Metric Cards - Uniform height and alignment */
-    .metric-card {
-        background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+    /* Connection Status */
+    .connection-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 12px;
+        background: rgba(52, 199, 89, 0.1);
+        border: 1px solid rgba(52, 199, 89, 0.3);
         border-radius: 20px;
-        padding: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        height: 110px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+    
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--primary-green);
+        box-shadow: 0 0 8px var(--primary-green);
+    }
+    
+    .status-dot.disconnected {
+        background: var(--primary-red);
+        box-shadow: 0 0 8px var(--primary-red);
+    }
+    
+    /* Metric Cards */
+    .metric-card {
+        background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 20px;
+        border: 1px solid var(--border-color);
+        height: 100px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.2s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .metric-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
     }
     
     .metric-card:hover {
         transform: translateY(-2px);
-        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.04) 100%);
-        border-color: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255,255,255,0.12);
     }
     
     .metric-label {
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 11px;
+        color: var(--text-tertiary);
+        font-size: 10px;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.8px;
-        margin: 0;
-        line-height: 1;
+        letter-spacing: 1px;
     }
     
     .metric-value {
-        color: #ffffff;
-        font-size: 32px;
+        color: var(--text-primary);
+        font-size: 28px;
         font-weight: 600;
         line-height: 1;
-        margin: 8px 0;
-        letter-spacing: -1px;
+        letter-spacing: -0.5px;
     }
     
     .metric-delta {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 500;
-        color: rgba(255, 255, 255, 0.6);
-        line-height: 1;
+        color: var(--text-secondary);
     }
     
     .metric-delta-positive {
-        color: #34C759;
+        color: var(--primary-green);
     }
     
     .metric-delta-negative {
-        color: #FF453A;
+        color: var(--primary-red);
     }
     
-    /* Status Badge - Consistent sizing */
+    /* Status Badge */
     .status-badge {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        padding: 6px 14px;
-        border-radius: 100px;
-        font-size: 12px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 11px;
         font-weight: 600;
-        letter-spacing: 0.2px;
-        margin-top: 8px;
-        white-space: nowrap;
+        letter-spacing: 0.3px;
     }
     
     .status-open {
         background: linear-gradient(135deg, #34C759, #30D158);
-        color: #000000;
+        color: #000;
     }
     
     .status-closed {
         background: linear-gradient(135deg, #FF453A, #FF6961);
-        color: #ffffff;
+        color: #fff;
     }
     
     .status-after-hours {
         background: linear-gradient(135deg, #FF9500, #FFAB00);
-        color: #000000;
+        color: #000;
     }
     
     /* Section Headers */
     .section-header {
-        color: #ffffff;
-        font-size: 20px;
-        font-weight: 600;
-        margin: 24px 0 16px 0;
-        padding-bottom: 12px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        letter-spacing: -0.5px;
-    }
-    
-    /* Signal Cards - Consistent styling */
-    .signal-card {
-        background: rgba(255,255,255,0.04);
-        backdrop-filter: blur(10px);
-        border-radius: 16px;
-        padding: 16px 20px;
-        margin-bottom: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        transition: all 0.2s ease;
-    }
-    
-    .signal-card:hover {
-        background: rgba(255,255,255,0.06);
-        transform: translateX(2px);
-    }
-    
-    .signal-long {
-        background: linear-gradient(90deg, rgba(52, 199, 89, 0.15), rgba(52, 199, 89, 0.05));
-        border-left: 3px solid #34C759;
-    }
-    
-    .signal-exit {
-        background: linear-gradient(90deg, rgba(255, 69, 58, 0.15), rgba(255, 69, 58, 0.05));
-        border-left: 3px solid #FF453A;
-    }
-    
-    .signal-hold {
-        border-left: 3px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    /* Latest signal specific */
-    .latest-signal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 8px;
-    }
-    
-    .latest-signal-symbol {
+        color: var(--text-primary);
         font-size: 18px;
         font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        margin: 24px 0 16px 0;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border-color);
+        letter-spacing: -0.3px;
     }
     
-    .latest-signal-details {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 13px;
-    }
-    
-    .confidence-display {
-        text-align: right;
-    }
-    
-    .confidence-label {
-        color: rgba(255, 255, 255, 0.4);
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 2px;
-    }
-    
-    .confidence-value {
-        font-size: 22px;
-        font-weight: 700;
-        letter-spacing: -0.5px;
-    }
-    
-    /* Consecutive indicator */
-    .consecutive-indicator {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 10px;
-        padding: 4px 10px;
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.6);
-        margin-top: 8px;
-    }
-    
-    /* Position card styling */
-    .position-card {
-        background: rgba(255,255,255,0.04);
-        border-radius: 16px;
-        padding: 16px;
-        margin-bottom: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    
-    .position-header {
-        font-size: 16px;
-        font-weight: 600;
-        color: #ffffff;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .position-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-    }
-    
-    .position-metric {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-    }
-    
-    .position-metric-label {
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-    }
-    
-    .position-metric-value {
-        color: #ffffff;
-        font-size: 14px;
-        font-weight: 500;
-    }
-    
-    /* Filter styling */
-    .filter-container {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 16px;
-        flex-wrap: wrap;
-    }
-    
-    .filter-pill {
-        padding: 6px 14px;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 12px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-    
-    .filter-pill:hover {
-        background: rgba(255, 255, 255, 0.12);
-        color: #ffffff;
-    }
-    
-    .filter-pill.active {
-        background: #34C759;
-        border-color: #34C759;
-        color: #000000;
-    }
-    
-    /* Historical signal styling */
-    .historical-signal {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 16px;
-        background: rgba(255,255,255,0.03);
+    /* Signal Cards */
+    .signal-card {
+        background: var(--bg-secondary);
         border-radius: 12px;
-        margin-bottom: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 14px 16px;
+        margin-bottom: 10px;
+        border: 1px solid var(--border-color);
         transition: all 0.15s ease;
     }
     
-    .historical-signal:hover {
-        background: rgba(255,255,255,0.05);
+    .signal-card:hover {
+        background: var(--bg-hover);
+        transform: translateX(2px);
     }
     
-    .historical-signal-info {
-        display: flex;
-        align-items: center;
-        gap: 12px;
+    .signal-card.new-signal {
+        animation: slideIn 0.3s ease;
     }
     
-    .historical-signal-symbol {
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    .signal-long {
+        background: linear-gradient(90deg, rgba(52, 199, 89, 0.1), transparent);
+        border-left: 2px solid var(--primary-green);
+    }
+    
+    .signal-exit {
+        background: linear-gradient(90deg, rgba(255, 69, 58, 0.1), transparent);
+        border-left: 2px solid var(--primary-red);
+    }
+    
+    /* Performance Card */
+    .performance-card {
+        background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+        border-radius: 16px;
+        padding: 20px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 16px;
+    }
+    
+    .performance-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-top: 16px;
+    }
+    
+    .performance-metric {
+        text-align: center;
+    }
+    
+    .performance-metric-value {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+    }
+    
+    .performance-metric-label {
+        font-size: 10px;
+        color: var(--text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    /* Trade History Table */
+    .trade-row {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 1fr;
+        padding: 10px;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 13px;
+        transition: all 0.15s ease;
+    }
+    
+    .trade-row:hover {
+        background: var(--bg-hover);
+    }
+    
+    .trade-header {
         font-weight: 600;
-        font-size: 14px;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        font-size: 10px;
+        letter-spacing: 0.5px;
     }
     
-    .historical-signal-time {
-        color: rgba(255, 255, 255, 0.5);
+    /* Filter Tabs */
+    .filter-tab {
+        display: inline-block;
+        padding: 8px 16px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        margin-right: 8px;
+        cursor: pointer;
+        transition: all 0.15s ease;
         font-size: 12px;
+        font-weight: 500;
     }
     
-    .historical-signal-confidence {
-        font-weight: 600;
-        font-size: 14px;
+    .filter-tab:hover {
+        background: var(--bg-hover);
     }
     
-    /* Scrollbar styling */
+    .filter-tab.active {
+        background: var(--primary-green);
+        border-color: var(--primary-green);
+        color: #000;
+    }
+    
+    /* Scrollbar */
     ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
+        width: 4px;
+        height: 4px;
     }
     
     ::-webkit-scrollbar-track {
@@ -363,52 +333,23 @@ st.markdown("""
     }
     
     ::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 3px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 2px;
     }
     
-    ::-webkit-scrollbar-thumb:hover {
-        background: rgba(255, 255, 255, 0.2);
+    /* Remove all pulsing animations except for new signals */
+    .loading-dot, .metric-card, .signal-card {
+        animation: none !important;
     }
     
-    /* Loading animation */
-    @keyframes pulse {
-        0%, 100% { opacity: 0.4; }
-        50% { opacity: 1; }
+    /* Only animate new signals */
+    .signal-card.highlight {
+        animation: highlight 2s ease;
     }
     
-    .loading-dot {
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        background: #34C759;
-        border-radius: 50%;
-        animation: pulse 1.5s infinite;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .metric-card {
-            height: auto;
-            min-height: 100px;
-        }
-        
-        .metric-value {
-            font-size: 24px;
-        }
-    }
-    
-    /* Remove Streamlit default margins */
-    .element-container {
-        margin: 0 !important;
-    }
-    
-    .stMetric {
-        background: transparent !important;
-    }
-    
-    [data-testid="metric-container"] {
-        background: transparent !important;
+    @keyframes highlight {
+        0% { background: rgba(52, 199, 89, 0.3); }
+        100% { background: var(--bg-secondary); }
     }
 </style>
 """, unsafe_allow_html=True)
@@ -416,27 +357,81 @@ st.markdown("""
 # Initialize session state
 if 'last_update' not in st.session_state:
     st.session_state.last_update = datetime.now()
-if 'selected_filter' not in st.session_state:
-    st.session_state.selected_filter = 'ALL'
+if 'trades_history' not in st.session_state:
+    st.session_state.trades_history = []
+if 'last_signal_count' not in st.session_state:
+    st.session_state.last_signal_count = 0
 
-# Define your assets
+# Define assets
 ASSETS = ['TSLA', 'HOOD', 'COIN', 'PLTR', 'AAPL']
 
-# Helper functions
-def process_signals_for_display(signals):
-    """Process signals to identify unique trades and consecutive signals"""
+# Helper Functions
+def load_trades_history():
+    """Load historical trades from file"""
+    trades_file = Path("data/trades_history.json")
+    if trades_file.exists():
+        try:
+            with open(trades_file, 'r') as f:
+                return json.load(f)
+        except:
+            return []
+    return []
+
+def save_trade(trade_data):
+    """Save a completed trade"""
+    trades_file = Path("data/trades_history.json")
+    trades_file.parent.mkdir(exist_ok=True)
+    
+    trades = load_trades_history()
+    trades.append(trade_data)
+    
+    with open(trades_file, 'w') as f:
+        json.dump(trades, f, indent=2)
+
+def calculate_performance_metrics(trades, symbol_filter=None):
+    """Calculate performance metrics from trades"""
+    if symbol_filter and symbol_filter != "ALL":
+        trades = [t for t in trades if t.get('symbol') == symbol_filter]
+    
+    if not trades:
+        return {
+            'total_pnl': 0,
+            'win_rate': 0,
+            'profit_factor': 0,
+            'total_trades': 0,
+            'winning_trades': 0,
+            'losing_trades': 0,
+            'avg_win': 0,
+            'avg_loss': 0
+        }
+    
+    wins = [t for t in trades if t.get('pnl_percent', 0) > 0]
+    losses = [t for t in trades if t.get('pnl_percent', 0) < 0]
+    
+    total_wins = sum(t.get('pnl_percent', 0) for t in wins)
+    total_losses = abs(sum(t.get('pnl_percent', 0) for t in losses))
+    
+    return {
+        'total_pnl': sum(t.get('pnl_percent', 0) for t in trades),
+        'win_rate': (len(wins) / len(trades) * 100) if trades else 0,
+        'profit_factor': (total_wins / total_losses) if total_losses > 0 else total_wins,
+        'total_trades': len(trades),
+        'winning_trades': len(wins),
+        'losing_trades': len(losses),
+        'avg_win': (total_wins / len(wins)) if wins else 0,
+        'avg_loss': (total_losses / len(losses)) if losses else 0
+    }
+
+def process_signals_for_display(signals, status):
+    """Process signals and track trades"""
     if not signals:
         return [], {}, 0, 0, None
     
-    # Sort signals by timestamp
     sorted_signals = sorted(signals, key=lambda x: x['timestamp'])
-    
-    # Get last signal time
     last_signal_time = datetime.fromisoformat(sorted_signals[-1]['timestamp']) if sorted_signals else None
     
-    # Track latest signal per symbol
+    # Track positions and trades
     latest_signals = {}
-    signal_history = defaultdict(list)
     position_states = {}
     unique_long_count = 0
     unique_exit_count = 0
@@ -446,44 +441,44 @@ def process_signals_for_display(signals):
         action = sig['action']
         timestamp = sig['timestamp']
         
-        # Initialize position if needed
         if symbol not in position_states:
-            position_states[symbol] = {'position': 'FLAT', 'first_entry_time': None}
+            position_states[symbol] = {'position': 'FLAT', 'entry_price': 0, 'entry_time': None}
         
-        # Track signal history
-        signal_history[symbol].append(sig)
-        
-        # Process based on action
-        if action == 'LONG':
-            if position_states[symbol]['position'] != 'LONG':
-                # New long position
-                position_states[symbol]['position'] = 'LONG'
-                position_states[symbol]['first_entry_time'] = timestamp
-                unique_long_count += 1
-                sig['is_new_position'] = True
-                sig['consecutive_count'] = 1
-            else:
-                # Consecutive long signal
-                sig['is_new_position'] = False
-                if symbol in latest_signals and latest_signals[symbol]['action'] == 'LONG':
-                    sig['consecutive_count'] = latest_signals[symbol].get('consecutive_count', 1) + 1
-                    sig['first_signal_time'] = position_states[symbol]['first_entry_time']
-                else:
-                    sig['consecutive_count'] = 1
-        
-        elif action == 'EXIT':
-            if position_states[symbol]['position'] == 'LONG':
-                position_states[symbol]['position'] = 'FLAT'
-                position_states[symbol]['first_entry_time'] = None
-                unique_exit_count += 1
-                sig['is_new_position'] = True
-            else:
-                sig['is_new_position'] = False
-        
-        else:  # HOLD
+        if action == 'LONG' and position_states[symbol]['position'] != 'LONG':
+            position_states[symbol] = {
+                'position': 'LONG',
+                'entry_price': sig['price'],
+                'entry_time': timestamp
+            }
+            unique_long_count += 1
+            sig['is_new_position'] = True
+        elif action == 'EXIT' and position_states[symbol]['position'] == 'LONG':
+            # Calculate and save trade
+            entry_price = position_states[symbol]['entry_price']
+            exit_price = sig['price']
+            pnl_percent = ((exit_price - entry_price) / entry_price * 100) if entry_price > 0 else 0
+            
+            trade_data = {
+                'symbol': symbol,
+                'entry_time': position_states[symbol]['entry_time'],
+                'exit_time': timestamp,
+                'entry_price': entry_price,
+                'exit_price': exit_price,
+                'pnl_percent': pnl_percent,
+                'pnl_dollar': (exit_price - entry_price) * 100  # Assuming 100 shares
+            }
+            
+            # Check if trade already exists
+            existing_trades = load_trades_history()
+            if not any(t['exit_time'] == timestamp and t['symbol'] == symbol for t in existing_trades):
+                save_trade(trade_data)
+            
+            position_states[symbol] = {'position': 'FLAT', 'entry_price': 0, 'entry_time': None}
+            unique_exit_count += 1
+            sig['is_new_position'] = True
+        else:
             sig['is_new_position'] = False
         
-        # Update latest signal for symbol
         latest_signals[symbol] = sig
     
     return sorted_signals, latest_signals, unique_long_count, unique_exit_count, last_signal_time
@@ -498,8 +493,8 @@ def load_signals():
                 content = f.read()
                 if content.strip():
                     return json.loads(content)
-        except Exception as e:
-            st.error(f"Error loading signals: {e}")
+        except:
+            pass
     return []
 
 @st.cache_data(ttl=2)
@@ -510,63 +505,71 @@ def load_status():
         try:
             with open(status_file, 'r') as f:
                 return json.load(f)
-        except Exception as e:
-            st.error(f"Error loading status: {e}")
+        except:
+            pass
     return {}
 
 def get_market_status():
-    """Check if market is open with styled output"""
-    now = datetime.now(timezone(timedelta(hours=-4)))  # ET
+    """Check market status"""
+    now = datetime.now(timezone(timedelta(hours=-4)))
     weekday = now.weekday()
     current_time = now.time()
     
-    if weekday >= 5:  # Weekend
-        return "WEEKEND", "status-closed", "🔴"
+    if weekday >= 5:
+        return "WEEKEND", "status-closed"
     elif current_time < pd.Timestamp("09:30").time():
-        return "PRE-MARKET", "status-closed", "🟡"
+        return "PRE-MARKET", "status-closed"
     elif current_time >= pd.Timestamp("16:00").time():
-        return "AFTER-HOURS", "status-after-hours", "🟠"
+        return "AFTER-HOURS", "status-after-hours"
     elif pd.Timestamp("09:30").time() <= current_time < pd.Timestamp("16:00").time():
-        return "MARKET OPEN", "status-open", "🟢"
+        return "MARKET OPEN", "status-open"
     else:
-        return "CLOSED", "status-closed", "🔴"
-
-def format_currency(value):
-    """Format currency values"""
-    if value == 0 or value is None:
-        return "-"
-    return f"${value:,.2f}"
+        return "CLOSED", "status-closed"
 
 # Main Dashboard
 def main():
-    # Title
-    st.markdown('<h1 class="main-title">SIGNALS DASHBOARD</h1>', unsafe_allow_html=True)
-    
     # Load data
     raw_signals = load_signals()
     status = load_status()
+    trades_history = load_trades_history()
     
-    # Process signals
-    all_signals, latest_signals, unique_longs, unique_exits, last_signal_time = process_signals_for_display(raw_signals)
+    # Check connection status
+    is_connected = bool(status and 'timestamp' in status)
+    if is_connected:
+        last_update = datetime.fromisoformat(status['timestamp'])
+        time_diff = (datetime.now() - last_update).total_seconds()
+        is_connected = time_diff < 120  # Consider disconnected if no update for 2 minutes
+    
+    # Title with connection status
+    st.markdown(f"""
+    <h1 class="main-title">
+        SIGNALS DASHBOARD
+        <div class="connection-status">
+            <div class="status-dot {'connected' if is_connected else 'disconnected'}"></div>
+            {'LIVE' if is_connected else 'OFFLINE'}
+        </div>
+    </h1>
+    """, unsafe_allow_html=True)
     
     if not status:
         st.markdown("""
-        <div style="text-align: center; padding: 80px 20px;">
-            <div style="font-size: 48px; margin-bottom: 20px;">⏳</div>
-            <div style="color: rgba(255,255,255,0.7); font-size: 18px; font-weight: 500;">
+        <div style="text-align: center; padding: 80px;">
+            <div style="font-size: 20px; color: var(--text-secondary);">
                 Waiting for trading system data...
             </div>
-            <div class="loading-dot" style="margin-top: 20px;"></div>
         </div>
         """, unsafe_allow_html=True)
         time.sleep(5)
         st.rerun()
         return
     
-    # Get market status
-    market_status, status_class, status_icon = get_market_status()
+    # Process signals
+    all_signals, latest_signals, unique_longs, unique_exits, last_signal_time = process_signals_for_display(raw_signals, status)
     
-    # Top Metrics Row - Properly aligned
+    # Get market status
+    market_status, status_class = get_market_status()
+    
+    # Top Metrics
     col1, col2, col3, col4, col5, col6 = st.columns(6)
     
     with col1:
@@ -578,17 +581,11 @@ def main():
         """, unsafe_allow_html=True)
     
     with col2:
-        # Use last signal time instead of status timestamp
-        if last_signal_time:
-            display_time = last_signal_time.strftime('%H:%M:%S')
-        else:
-            display_time = "--:--:--"
-        
+        display_time = last_signal_time.strftime('%H:%M:%S') if last_signal_time else "--:--:--"
         st.markdown(f"""
         <div class="metric-card">
             <div class="metric-label">Last Signal</div>
-            <div class="metric-value" style="font-size: 24px;">{display_time}</div>
-            <div class="loading-dot"></div>
+            <div class="metric-value" style="font-size: 22px;">{display_time}</div>
         </div>
         """, unsafe_allow_html=True)
     
@@ -612,7 +609,7 @@ def main():
         """, unsafe_allow_html=True)
     
     with col5:
-        # Calculate total P&L
+        # Total P&L
         total_pnl = 0
         if status and 'positions' in status:
             for symbol, pos in status['positions'].items():
@@ -624,45 +621,78 @@ def main():
                         total_pnl += pnl
         
         pnl_color = "#34C759" if total_pnl > 0 else "#FF453A" if total_pnl < 0 else "rgba(255,255,255,0.5)"
-        pnl_text = f"{total_pnl:+.2f}%" if total_pnl != 0 else "-"
         st.markdown(f"""
         <div class="metric-card">
-            <div class="metric-label">Total Open P&L</div>
-            <div class="metric-value" style="font-size: 26px; color: {pnl_color};">{pnl_text}</div>
+            <div class="metric-label">Open P&L</div>
+            <div class="metric-value" style="color: {pnl_color};">
+                {total_pnl:+.2f}%
+            </div>
         </div>
         """, unsafe_allow_html=True)
     
     with col6:
         st.markdown(f"""
         <div class="metric-card">
-            <div class="metric-label">Trades Today</div>
+            <div class="metric-label">Closed Today</div>
             <div class="metric-value">{unique_exits}</div>
-            <div class="metric-delta">exits</div>
+            <div class="metric-delta">trades</div>
         </div>
         """, unsafe_allow_html=True)
     
-    # Main Content Area
+    # Performance Overview Section
+    st.markdown('<div class="section-header">📈 Portfolio Performance</div>', unsafe_allow_html=True)
+    
+    # Performance filter
+    perf_col1, perf_col2 = st.columns([1, 5])
+    with perf_col1:
+        perf_filter = st.selectbox("Filter", ["ALL"] + ASSETS, key="perf_filter")
+    
+    # Calculate metrics
+    metrics = calculate_performance_metrics(trades_history, perf_filter)
+    
+    # Display performance card
+    st.markdown(f"""
+    <div class="performance-card">
+        <div class="performance-grid">
+            <div class="performance-metric">
+                <div class="performance-metric-value" style="color: {'#34C759' if metrics['total_pnl'] > 0 else '#FF453A'};">
+                    {metrics['total_pnl']:+.2f}%
+                </div>
+                <div class="performance-metric-label">Total P&L</div>
+            </div>
+            <div class="performance-metric">
+                <div class="performance-metric-value">
+                    {metrics['win_rate']:.1f}%
+                </div>
+                <div class="performance-metric-label">Win Rate</div>
+            </div>
+            <div class="performance-metric">
+                <div class="performance-metric-value">
+                    {metrics['profit_factor']:.2f}
+                </div>
+                <div class="performance-metric-label">Profit Factor</div>
+            </div>
+            <div class="performance-metric">
+                <div class="performance-metric-value">
+                    {metrics['total_trades']}
+                </div>
+                <div class="performance-metric-label">Total Trades</div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Main content
     col_left, col_right = st.columns([3, 2])
     
     with col_left:
-        # Latest Signals Section
+        # Latest Signals
         st.markdown('<div class="section-header">🎯 Latest Signal Per Asset</div>', unsafe_allow_html=True)
         
         for symbol in ASSETS:
             if symbol in latest_signals:
                 sig = latest_signals[symbol]
                 sig_time = datetime.fromisoformat(sig['timestamp'])
-                time_str = sig_time.strftime('%H:%M:%S')
-                
-                # Check for consecutive signals
-                consecutive_html = ""
-                if sig.get('consecutive_count', 1) > 1 and 'first_signal_time' in sig:
-                    first_time = datetime.fromisoformat(sig['first_signal_time']).strftime('%H:%M')
-                    consecutive_html = f"""
-                    <div class="consecutive-indicator">
-                        📍 Opened at {first_time} • Updated at {time_str} • {sig['consecutive_count']} signals
-                    </div>
-                    """
                 
                 if sig['action'] == 'LONG':
                     card_class = "signal-long"
@@ -673,108 +703,85 @@ def main():
                     color = "#FF453A"
                     icon = "🔴"
                 else:
-                    card_class = "signal-hold"
+                    card_class = ""
                     color = "rgba(255,255,255,0.6)"
                     icon = "⚪"
                 
                 st.markdown(f"""
                 <div class="signal-card {card_class}">
-                    <div class="latest-signal-header">
-                        <div class="latest-signal-symbol">
-                            {icon} {symbol} - {sig['action']}
-                        </div>
-                        <div class="confidence-display">
-                            <div class="confidence-label">Confidence</div>
-                            <div class="confidence-value" style="color: {color};">
-                                {sig['confidence']*100:.1f}%
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span style="font-size: 16px; font-weight: 600; color: {color};">
+                                {icon} {symbol} - {sig['action']}
+                            </span>
+                            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">
+                                ${sig['price']:.2f} • {sig_time.strftime('%H:%M:%S')}
                             </div>
                         </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 20px; font-weight: 700; color: {color};">
+                                {sig['confidence']*100:.1f}%
+                            </div>
+                            <div style="font-size: 10px; color: var(--text-tertiary);">CONFIDENCE</div>
+                        </div>
                     </div>
-                    <div class="latest-signal-details">
-                        <div>${sig['price']:.2f} • {time_str}</div>
-                    </div>
-                    {consecutive_html}
                 </div>
                 """, unsafe_allow_html=True)
-            else:
+        
+        # Trade History
+        st.markdown('<div class="section-header">📊 Trade History</div>', unsafe_allow_html=True)
+        
+        if trades_history:
+            # Sort by exit time
+            recent_trades = sorted(trades_history, key=lambda x: x['exit_time'], reverse=True)[:20]
+            
+            # Header
+            st.markdown("""
+            <div class="trade-row trade-header">
+                <div>Symbol</div>
+                <div>Time</div>
+                <div>Entry</div>
+                <div>Exit</div>
+                <div>P&L %</div>
+                <div>P&L $</div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Trades
+            for trade in recent_trades:
+                exit_time = datetime.fromisoformat(trade['exit_time']).strftime('%m/%d %H:%M')
+                pnl_color = "#34C759" if trade['pnl_percent'] > 0 else "#FF453A"
+                
                 st.markdown(f"""
-                <div class="signal-card" style="opacity: 0.3;">
-                    <div style="font-size: 14px; color: rgba(255,255,255,0.4);">
-                        {symbol} - No signals today
+                <div class="trade-row">
+                    <div style="font-weight: 600;">{trade['symbol']}</div>
+                    <div style="color: var(--text-secondary);">{exit_time}</div>
+                    <div>${trade['entry_price']:.2f}</div>
+                    <div>${trade['exit_price']:.2f}</div>
+                    <div style="color: {pnl_color}; font-weight: 600;">
+                        {trade['pnl_percent']:+.2f}%
+                    </div>
+                    <div style="color: {pnl_color};">
+                        ${trade['pnl_dollar']:+.2f}
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
-        
-        # Historical Signals Section
-        st.markdown('<div class="section-header">📜 Historical Signals</div>', unsafe_allow_html=True)
-        
-        # Filter selector
-        selected_asset = st.selectbox(
-            "Filter by Asset",
-            ["ALL"] + ASSETS,
-            key="asset_filter",
-            label_visibility="collapsed"
-        )
-        
-        # Display filtered historical signals
-        historical_container = st.container(height=350)
-        with historical_container:
-            # Filter signals
-            if selected_asset == "ALL":
-                filtered_signals = [s for s in all_signals if s.get('is_new_position', True)]
-            else:
-                filtered_signals = [s for s in all_signals if s['symbol'] == selected_asset and s.get('is_new_position', True)]
-            
-            # Sort by time descending
-            filtered_signals = sorted(filtered_signals, key=lambda x: x['timestamp'], reverse=True)
-            
-            if filtered_signals:
-                for sig in filtered_signals[:50]:
-                    sig_time = datetime.fromisoformat(sig['timestamp'])
-                    time_str = sig_time.strftime('%H:%M:%S')
-                    
-                    if sig['action'] == 'LONG':
-                        action_color = "#34C759"
-                        icon = "🟢"
-                    elif sig['action'] == 'EXIT':
-                        action_color = "#FF453A"
-                        icon = "🔴"
-                    else:
-                        action_color = "rgba(255,255,255,0.5)"
-                        icon = "⚪"
-                    
-                    st.markdown(f"""
-                    <div class="historical-signal">
-                        <div class="historical-signal-info">
-                            <span style="color: {action_color}; font-weight: 600;">
-                                {icon} {sig['symbol']} - {sig['action']}
-                            </span>
-                            <span class="historical-signal-time">
-                                {time_str} • ${sig['price']:.2f}
-                            </span>
-                        </div>
-                        <div class="historical-signal-confidence" style="color: {action_color};">
-                            {sig['confidence']*100:.1f}%
-                        </div>
-                    </div>
-                    """, unsafe_allow_html=True)
-            else:
-                st.markdown("""
-                <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.3);">
-                    No signals to display
-                </div>
-                """, unsafe_allow_html=True)
+        else:
+            st.markdown("""
+            <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
+                No completed trades yet
+            </div>
+            """, unsafe_allow_html=True)
     
     with col_right:
         # Current Positions
-        st.markdown('<div class="section-header">📊 Current Positions</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-header">💼 Current Positions</div>', unsafe_allow_html=True)
         
         if status and 'positions' in status:
             has_positions = False
             for symbol in ASSETS:
                 if symbol in status['positions']:
                     pos = status['positions'][symbol]
-                    
                     if pos['is_open']:
                         has_positions = True
                         current = status.get('latest_prices', {}).get(symbol, 0)
@@ -784,30 +791,26 @@ def main():
                             pnl_color = "#34C759" if pnl > 0 else "#FF453A"
                             
                             st.markdown(f"""
-                            <div class="position-card" style="border-left: 3px solid {pnl_color};">
-                                <div class="position-header">
-                                    🟢 {symbol} - LONG
+                            <div class="signal-card" style="border-left: 2px solid {pnl_color};">
+                                <div style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">
+                                    {symbol} - LONG
                                 </div>
-                                <div class="position-grid">
-                                    <div class="position-metric">
-                                        <div class="position-metric-label">Entry</div>
-                                        <div class="position-metric-value">${entry:.2f}</div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px;">
+                                    <div>
+                                        <span style="color: var(--text-tertiary);">Entry:</span>
+                                        <span style="color: var(--text-primary);"> ${entry:.2f}</span>
                                     </div>
-                                    <div class="position-metric">
-                                        <div class="position-metric-label">Current</div>
-                                        <div class="position-metric-value">${current:.2f}</div>
+                                    <div>
+                                        <span style="color: var(--text-tertiary);">Current:</span>
+                                        <span style="color: var(--text-primary);"> ${current:.2f}</span>
                                     </div>
-                                    <div class="position-metric">
-                                        <div class="position-metric-label">P&L</div>
-                                        <div class="position-metric-value" style="color: {pnl_color}; font-weight: 600;">
-                                            {pnl:+.2f}%
-                                        </div>
+                                    <div>
+                                        <span style="color: var(--text-tertiary);">P&L:</span>
+                                        <span style="color: {pnl_color}; font-weight: 600;"> {pnl:+.2f}%</span>
                                     </div>
-                                    <div class="position-metric">
-                                        <div class="position-metric-label">Confidence</div>
-                                        <div class="position-metric-value">
-                                            {pos.get('last_confidence', 0)*100:.1f}%
-                                        </div>
+                                    <div>
+                                        <span style="color: var(--text-tertiary);">Conf:</span>
+                                        <span style="color: var(--text-primary);"> {pos.get('last_confidence', 0)*100:.1f}%</span>
                                     </div>
                                 </div>
                             </div>
@@ -815,7 +818,7 @@ def main():
             
             if not has_positions:
                 st.markdown("""
-                <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.3);">
+                <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
                     No open positions
                 </div>
                 """, unsafe_allow_html=True)
@@ -823,45 +826,20 @@ def main():
         # Price Action
         st.markdown('<div class="section-header">💹 Price Action</div>', unsafe_allow_html=True)
         
-        if status and 'latest_prices' in status:
-            for symbol in ASSETS:
+        price_tabs = st.tabs(ASSETS)
+        for tab, symbol in zip(price_tabs, ASSETS):
+            with tab:
                 if symbol in status.get('latest_prices', {}):
                     price = status['latest_prices'][symbol]
-                    
-                    # Check if we have a position
-                    has_position = False
-                    pnl = 0
-                    if symbol in status.get('positions', {}):
-                        pos = status['positions'][symbol]
-                        if pos['is_open'] and pos['entry_price'] > 0:
-                            has_position = True
-                            pnl = ((price - pos['entry_price']) / pos['entry_price'] * 100)
-                    
-                    color = "#34C759" if pnl > 0 else "#FF453A" if pnl < 0 else "rgba(255,255,255,0.7)"
-                    
-                    st.markdown(f"""
-                    <div style="display: flex; justify-content: space-between; align-items: center; 
-                         padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <div style="font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.9);">
-                            {symbol}
-                        </div>
-                        <div style="text-align: right;">
-                            <div style="font-size: 16px; font-weight: 600; color: #ffffff;">
-                                ${price:.2f}
-                            </div>
-                            {f'<div style="font-size: 12px; color: {color};">{pnl:+.2f}%</div>' if has_position else ''}
-                        </div>
-                    </div>
-                    """, unsafe_allow_html=True)
+                    st.metric(label="", value=f"${price:.2f}")
     
     # Footer
-    st.markdown("---")
     st.markdown(f"""
-    <div style="text-align: center; color: rgba(255,255,255,0.3); font-size: 12px; 
-         font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; padding: 20px 0;">
+    <div style="text-align: center; color: var(--text-tertiary); font-size: 11px; 
+         padding: 24px 0; border-top: 1px solid var(--border-color); margin-top: 40px;">
         Last Signal: {last_signal_time.strftime('%H:%M:%S') if last_signal_time else 'N/A'} • 
         Auto-refresh: 5 seconds • 
-        Data: Polygon + Alpaca APIs
+        {'🟢 Connected' if is_connected else '🔴 Disconnected'}
     </div>
     """, unsafe_allow_html=True)
     
