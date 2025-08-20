@@ -712,7 +712,7 @@ def main():
        """, unsafe_allow_html=True)
    
    # Performance Overview
-   st.markdown('<div class="section-header">�� Portfolio Performance</div>', unsafe_allow_html=True)
+   st.markdown('<div class="section-header">📈 Portfolio Performance</div>', unsafe_allow_html=True)
    
    perf_col1, perf_col2 = st.columns([1, 5])
    with perf_col1:
