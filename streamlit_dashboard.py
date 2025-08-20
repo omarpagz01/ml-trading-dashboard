@@ -218,14 +218,28 @@ st.markdown("""
         transform: translateX(2px);
     }
     
-    /* Live Signal */
+    .signal-long {
+        background: linear-gradient(90deg, rgba(52, 199, 89, 0.1), transparent);
+        border-left: 2px solid var(--primary-green);
+    }
+    
+    .signal-exit {
+        background: linear-gradient(90deg, rgba(255, 69, 58, 0.1), transparent);
+        border-left: 2px solid var(--primary-red);
+    }
+    
+    .signal-hold {
+        border-left: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Live Signal Style - matching historical */
     .live-signal {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 12px 16px;
         background: var(--bg-secondary);
-        border-radius: 12px;
+        border-radius: 10px;
         margin-bottom: 10px;
         border: 1px solid var(--border-color);
         transition: all 0.15s ease;
@@ -248,6 +262,18 @@ st.markdown("""
     
     .live-signal-hold {
         border-left: 3px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .live-signal-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .live-signal-main {
+        display: flex;
+        align-items: center;
+        gap: 12px;
     }
     
     /* Historical Signal */
@@ -273,6 +299,17 @@ st.markdown("""
         display: flex;
         align-items: center;
         gap: 12px;
+    }
+    
+    /* Consecutive indicator */
+    .consecutive-indicator {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 4px 10px;
+        font-size: 10px;
+        color: var(--text-secondary);
+        margin-top: 4px;
     }
     
     /* Performance Card */
@@ -346,24 +383,6 @@ st.markdown("""
         background: rgba(255,255,255,0.1);
         border-radius: 2px;
     }
-    
-    /* Consecutive indicator */
-    .consecutive-indicator {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 8px;
-        padding: 4px 10px;
-        font-size: 10px;
-        color: var(--text-secondary);
-        margin-top: 4px;
-    }
-    
-    /* Empty state */
-    .empty-state {
-        text-align: center;
-        padding: 40px;
-        color: var(--text-tertiary);
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -372,8 +391,6 @@ if 'last_update' not in st.session_state:
     st.session_state.last_update = datetime.now()
 if 'trades_history' not in st.session_state:
     st.session_state.trades_history = []
-if 'last_signal_count' not in st.session_state:
-    st.session_state.last_signal_count = 0
 
 # Define assets
 ASSETS = ['TSLA', 'HOOD', 'COIN', 'PLTR', 'AAPL']
@@ -533,7 +550,7 @@ def load_signals():
     signal_file = Path("signals") / f"signals_{datetime.now().strftime('%Y%m%d')}.json"
     if signal_file.exists():
         try:
-            with open(signals_file, 'r') as f:
+            with open(signal_file, 'r') as f:
                 content = f.read()
                 if content.strip():
                     return json.loads(content)
@@ -729,7 +746,7 @@ def main():
         col_left, col_right = st.columns([3, 2])
         
         with col_left:
-            # Latest Signals Per Asset - SIMPLIFIED VERSION
+            # Latest Signals Per Asset - Using Historical Format
             st.markdown('<div class="section-header">🎯 Latest Signal Per Asset</div>', unsafe_allow_html=True)
             
             for symbol in ASSETS:
@@ -741,45 +758,47 @@ def main():
                     # Determine signal properties
                     if sig['action'] == 'LONG':
                         card_class = "live-signal-long"
-                        color = "#34C759"
+                        action_color = "#34C759"
                         icon = "🟢"
                     elif sig['action'] == 'EXIT':
                         card_class = "live-signal-exit"
-                        color = "#FF453A"
+                        action_color = "#FF453A"
                         icon = "🔴"
                     else:
                         card_class = "live-signal-hold"
-                        color = "rgba(255,255,255,0.6)"
+                        action_color = "rgba(255,255,255,0.6)"
                         icon = "⚪"
                     
-                    # Consecutive indicator
-                    consecutive_text = ""
+                    # Build HTML using simpler format
+                    st.markdown(f"""
+                    <div class="live-signal {card_class}">
+                        <div class="live-signal-info">
+                            <div class="live-signal-main">
+                                <span style="color: {action_color}; font-weight: 600; font-size: 15px;">
+                                    {icon} {symbol} - {sig['action']}
+                                </span>
+                                <span style="color: var(--text-secondary); font-size: 13px;">
+                                    ${sig['price']:.2f} • {time_str}
+                                </span>
+                            </div>
+                    """, unsafe_allow_html=True)
+                    
+                    # Add consecutive indicator if needed
                     if sig.get('consecutive_count', 1) > 1 and 'first_signal_time' in sig:
                         first_time = convert_to_et(sig['first_signal_time']).strftime('%H:%M')
-                        consecutive_text = f"📍 Opened {first_time} • Updated {time_str} • {sig['consecutive_count']} signals"
-                    
-                    # Create clean HTML without nested divs
-                    html_content = f"""<div class="live-signal {card_class}">
-                        <div>
-                            <div style="color: {color}; font-weight: 600; font-size: 16px;">
-                                {icon} {symbol} - {sig['action']}
+                        st.markdown(f"""
+                            <div class="consecutive-indicator">
+                                📍 Opened at {first_time} • Updated at {time_str} • {sig['consecutive_count']} signals
                             </div>
-                            <div style="color: var(--text-secondary); font-size: 12px; margin-top: 4px;">
-                                ${sig['price']:.2f} • {time_str}
-                            </div>"""
+                        """, unsafe_allow_html=True)
                     
-                    if consecutive_text:
-                        html_content += f"""
-                            <div class="consecutive-indicator">{consecutive_text}</div>"""
-                    
-                    html_content += f"""
+                    st.markdown(f"""
                         </div>
-                        <div style="color: {color}; font-weight: 700; font-size: 20px;">
+                        <div style="color: {action_color}; font-weight: 700; font-size: 20px;">
                             {sig['confidence']*100:.1f}%
                         </div>
-                    </div>"""
-                    
-                    st.markdown(html_content, unsafe_allow_html=True)
+                    </div>
+                    """, unsafe_allow_html=True)
                 else:
                     st.markdown(f"""
                     <div class="live-signal" style="opacity: 0.3;">
@@ -834,7 +853,7 @@ def main():
                 
                 if not has_positions:
                     st.markdown("""
-                    <div class="empty-state">
+                    <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
                         No open positions
                     </div>
                     """, unsafe_allow_html=True)
@@ -886,7 +905,7 @@ def main():
                 """, unsafe_allow_html=True)
         else:
             st.markdown("""
-            <div class="empty-state">
+            <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
                 No historical signals
             </div>
             """, unsafe_allow_html=True)
@@ -930,7 +949,7 @@ def main():
                 """, unsafe_allow_html=True)
         else:
             st.markdown("""
-            <div class="empty-state">
+            <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
                 No completed trades yet
             </div>
             """, unsafe_allow_html=True)
