@@ -1,6 +1,6 @@
 """
 Elite Signals Dashboard - Professional Trading Interface
-With P&L Tracking and Performance Analytics
+Complete with Historical Signals, P&L Tracking, and Performance Analytics
 """
 
 import streamlit as st
@@ -242,6 +242,35 @@ st.markdown("""
         border-left: 2px solid var(--primary-red);
     }
     
+    .signal-hold {
+        border-left: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Historical Signal */
+    .historical-signal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 14px;
+        background: var(--bg-secondary);
+        border-radius: 8px;
+        margin-bottom: 6px;
+        border: 1px solid var(--border-color);
+        transition: all 0.15s ease;
+        font-size: 13px;
+    }
+    
+    .historical-signal:hover {
+        background: var(--bg-hover);
+        transform: translateX(2px);
+    }
+    
+    .historical-signal-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
     /* Performance Card */
     .performance-card {
         background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
@@ -279,10 +308,10 @@ st.markdown("""
     /* Trade History Table */
     .trade-row {
         display: grid;
-        grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 1fr;
-        padding: 10px;
+        grid-template-columns: 0.8fr 1.2fr 1fr 1fr 1fr 1fr;
+        padding: 10px 14px;
         border-bottom: 1px solid var(--border-color);
-        font-size: 13px;
+        font-size: 12px;
         transition: all 0.15s ease;
     }
     
@@ -296,29 +325,58 @@ st.markdown("""
         text-transform: uppercase;
         font-size: 10px;
         letter-spacing: 0.5px;
+        background: var(--bg-secondary);
     }
     
-    /* Filter Tabs */
-    .filter-tab {
+    /* Filter Pills */
+    .filter-pill {
         display: inline-block;
-        padding: 8px 16px;
+        padding: 6px 14px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        margin-right: 6px;
+        margin-bottom: 6px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text-secondary);
+    }
+    
+    .filter-pill:hover {
+        background: var(--bg-hover);
+        color: var(--text-primary);
+    }
+    
+    .filter-pill.active {
+        background: var(--primary-green);
+        border-color: var(--primary-green);
+        color: #000;
+    }
+    
+    /* Tabs */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+        background: transparent;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
         background: var(--bg-secondary);
         border: 1px solid var(--border-color);
         border-radius: 8px;
-        margin-right: 8px;
-        cursor: pointer;
-        transition: all 0.15s ease;
+        color: var(--text-secondary);
         font-size: 12px;
         font-weight: 500;
     }
     
-    .filter-tab:hover {
+    .stTabs [data-baseweb="tab"]:hover {
         background: var(--bg-hover);
+        color: var(--text-primary);
     }
     
-    .filter-tab.active {
+    .stTabs [data-baseweb="tab"][aria-selected="true"] {
         background: var(--primary-green);
-        border-color: var(--primary-green);
         color: #000;
     }
     
@@ -350,6 +408,17 @@ st.markdown("""
     @keyframes highlight {
         0% { background: rgba(52, 199, 89, 0.3); }
         100% { background: var(--bg-secondary); }
+    }
+    
+    /* Consecutive indicator */
+    .consecutive-indicator {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 4px 10px;
+        font-size: 10px;
+        color: var(--text-secondary);
+        margin-top: 6px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -423,7 +492,7 @@ def calculate_performance_metrics(trades, symbol_filter=None):
     }
 
 def process_signals_for_display(signals, status):
-    """Process signals and track trades"""
+    """Process signals and track trades with consecutive signal detection"""
     if not signals:
         return [], {}, 0, 0, None
     
@@ -442,16 +511,34 @@ def process_signals_for_display(signals, status):
         timestamp = sig['timestamp']
         
         if symbol not in position_states:
-            position_states[symbol] = {'position': 'FLAT', 'entry_price': 0, 'entry_time': None}
-        
-        if action == 'LONG' and position_states[symbol]['position'] != 'LONG':
             position_states[symbol] = {
-                'position': 'LONG',
-                'entry_price': sig['price'],
-                'entry_time': timestamp
+                'position': 'FLAT', 
+                'entry_price': 0, 
+                'entry_time': None,
+                'first_entry_time': None,
+                'consecutive_count': 0
             }
-            unique_long_count += 1
-            sig['is_new_position'] = True
+        
+        if action == 'LONG':
+            if position_states[symbol]['position'] != 'LONG':
+                # New position
+                position_states[symbol] = {
+                    'position': 'LONG',
+                    'entry_price': sig['price'],
+                    'entry_time': timestamp,
+                    'first_entry_time': timestamp,
+                    'consecutive_count': 1
+                }
+                unique_long_count += 1
+                sig['is_new_position'] = True
+                sig['consecutive_count'] = 1
+            else:
+                # Consecutive signal
+                position_states[symbol]['consecutive_count'] += 1
+                sig['is_new_position'] = False
+                sig['consecutive_count'] = position_states[symbol]['consecutive_count']
+                sig['first_signal_time'] = position_states[symbol]['first_entry_time']
+                
         elif action == 'EXIT' and position_states[symbol]['position'] == 'LONG':
             # Calculate and save trade
             entry_price = position_states[symbol]['entry_price']
@@ -465,7 +552,7 @@ def process_signals_for_display(signals, status):
                 'entry_price': entry_price,
                 'exit_price': exit_price,
                 'pnl_percent': pnl_percent,
-                'pnl_dollar': (exit_price - entry_price) * 100  # Assuming 100 shares
+                'pnl_dollar': (exit_price - entry_price) * 100
             }
             
             # Check if trade already exists
@@ -538,7 +625,7 @@ def main():
     if is_connected:
         last_update = datetime.fromisoformat(status['timestamp'])
         time_diff = (datetime.now() - last_update).total_seconds()
-        is_connected = time_diff < 120  # Consider disconnected if no update for 2 minutes
+        is_connected = time_diff < 120
     
     # Title with connection status
     st.markdown(f"""
@@ -609,7 +696,6 @@ def main():
         """, unsafe_allow_html=True)
     
     with col5:
-        # Total P&L
         total_pnl = 0
         if status and 'positions' in status:
             for symbol, pos in status['positions'].items():
@@ -639,18 +725,15 @@ def main():
         </div>
         """, unsafe_allow_html=True)
     
-    # Performance Overview Section
+    # Performance Overview
     st.markdown('<div class="section-header">📈 Portfolio Performance</div>', unsafe_allow_html=True)
     
-    # Performance filter
     perf_col1, perf_col2 = st.columns([1, 5])
     with perf_col1:
         perf_filter = st.selectbox("Filter", ["ALL"] + ASSETS, key="perf_filter")
     
-    # Calculate metrics
     metrics = calculate_performance_metrics(trades_history, perf_filter)
     
-    # Display performance card
     st.markdown(f"""
     <div class="performance-card">
         <div class="performance-grid">
@@ -682,64 +765,189 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # Main content
-    col_left, col_right = st.columns([3, 2])
+    # Main content with tabs
+    tab1, tab2, tab3 = st.tabs(["📡 Live Signals", "📜 Historical Signals", "💰 Trade History"])
     
-    with col_left:
-        # Latest Signals
-        st.markdown('<div class="section-header">🎯 Latest Signal Per Asset</div>', unsafe_allow_html=True)
+    with tab1:
+        col_left, col_right = st.columns([3, 2])
         
-        for symbol in ASSETS:
-            if symbol in latest_signals:
-                sig = latest_signals[symbol]
+        with col_left:
+            # Latest Signals Per Asset
+            st.markdown('<div class="section-header">🎯 Latest Signal Per Asset</div>', unsafe_allow_html=True)
+            
+            for symbol in ASSETS:
+                if symbol in latest_signals:
+                    sig = latest_signals[symbol]
+                    sig_time = datetime.fromisoformat(sig['timestamp'])
+                    time_str = sig_time.strftime('%H:%M:%S')
+                    
+                    # Check for consecutive signals
+                    consecutive_html = ""
+                    if sig.get('consecutive_count', 1) > 1 and 'first_signal_time' in sig:
+                        first_time = datetime.fromisoformat(sig['first_signal_time']).strftime('%H:%M')
+                        consecutive_html = f"""
+                        <div class="consecutive-indicator">
+                            📍 Opened at {first_time} • Updated at {time_str} • {sig['consecutive_count']} signals
+                        </div>
+                        """
+                    
+                    if sig['action'] == 'LONG':
+                        card_class = "signal-long"
+                        color = "#34C759"
+                        icon = "🟢"
+                    elif sig['action'] == 'EXIT':
+                        card_class = "signal-exit"
+                        color = "#FF453A"
+                        icon = "🔴"
+                    else:
+                        card_class = "signal-hold"
+                        color = "rgba(255,255,255,0.6)"
+                        icon = "⚪"
+                    
+                    st.markdown(f"""
+                    <div class="signal-card {card_class}">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span style="font-size: 16px; font-weight: 600; color: {color};">
+                                    {icon} {symbol} - {sig['action']}
+                                </span>
+                                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">
+                                    ${sig['price']:.2f} • {time_str}
+                                </div>
+                                {consecutive_html}
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 20px; font-weight: 700; color: {color};">
+                                    {sig['confidence']*100:.1f}%
+                                </div>
+                                <div style="font-size: 10px; color: var(--text-tertiary);">CONFIDENCE</div>
+                            </div>
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.markdown(f"""
+                    <div class="signal-card" style="opacity: 0.3;">
+                        <div style="font-size: 14px; color: var(--text-tertiary);">
+                            {symbol} - No signals today
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+        
+        with col_right:
+            # Current Positions
+            st.markdown('<div class="section-header">💼 Current Positions</div>', unsafe_allow_html=True)
+            
+            if status and 'positions' in status:
+                has_positions = False
+                for symbol in ASSETS:
+                    if symbol in status['positions']:
+                        pos = status['positions'][symbol]
+                        if pos['is_open']:
+                            has_positions = True
+                            current = status.get('latest_prices', {}).get(symbol, 0)
+                            entry = pos['entry_price']
+                            if entry > 0 and current > 0:
+                                pnl = ((current - entry) / entry * 100)
+                                pnl_color = "#34C759" if pnl > 0 else "#FF453A"
+                                
+                                st.markdown(f"""
+                                <div class="signal-card" style="border-left: 2px solid {pnl_color};">
+                                    <div style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">
+                                        {symbol} - LONG
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px;">
+                                        <div>
+                                            <span style="color: var(--text-tertiary);">Entry:</span>
+                                            <span style="color: var(--text-primary);"> ${entry:.2f}</span>
+                                        </div>
+                                        <div>
+                                            <span style="color: var(--text-tertiary);">Current:</span>
+                                            <span style="color: var(--text-primary);"> ${current:.2f}</span>
+                                        </div>
+                                        <div>
+                                            <span style="color: var(--text-tertiary);">P&L:</span>
+                                            <span style="color: {pnl_color}; font-weight: 600;"> {pnl:+.2f}%</span>
+                                        </div>
+                                        <div>
+                                            <span style="color: var(--text-tertiary);">Conf:</span>
+                                            <span style="color: var(--text-primary);"> {pos.get('last_confidence', 0)*100:.1f}%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                """, unsafe_allow_html=True)
+                
+                if not has_positions:
+                    st.markdown("""
+                    <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
+                        No open positions
+                    </div>
+                    """, unsafe_allow_html=True)
+    
+    with tab2:
+        # Historical Signals
+        st.markdown('<div class="section-header">📜 Historical Signals</div>', unsafe_allow_html=True)
+        
+        # Filter
+        hist_filter = st.selectbox("Filter by Asset", ["ALL"] + ASSETS, key="hist_filter")
+        
+        # Display historical signals
+        if hist_filter == "ALL":
+            filtered_signals = [s for s in all_signals if s.get('is_new_position', True)]
+        else:
+            filtered_signals = [s for s in all_signals if s['symbol'] == hist_filter and s.get('is_new_position', True)]
+        
+        filtered_signals = sorted(filtered_signals, key=lambda x: x['timestamp'], reverse=True)
+        
+        if filtered_signals:
+            for sig in filtered_signals[:100]:  # Show last 100
                 sig_time = datetime.fromisoformat(sig['timestamp'])
+                time_str = sig_time.strftime('%m/%d %H:%M:%S')
                 
                 if sig['action'] == 'LONG':
-                    card_class = "signal-long"
-                    color = "#34C759"
+                    action_color = "#34C759"
                     icon = "🟢"
                 elif sig['action'] == 'EXIT':
-                    card_class = "signal-exit"
-                    color = "#FF453A"
+                    action_color = "#FF453A"
                     icon = "🔴"
                 else:
-                    card_class = ""
-                    color = "rgba(255,255,255,0.6)"
+                    action_color = "rgba(255,255,255,0.5)"
                     icon = "⚪"
                 
                 st.markdown(f"""
-                <div class="signal-card {card_class}">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <span style="font-size: 16px; font-weight: 600; color: {color};">
-                                {icon} {symbol} - {sig['action']}
-                            </span>
-                            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">
-                                ${sig['price']:.2f} • {sig_time.strftime('%H:%M:%S')}
-                            </div>
-                        </div>
-                        <div style="text-align: right;">
-                            <div style="font-size: 20px; font-weight: 700; color: {color};">
-                                {sig['confidence']*100:.1f}%
-                            </div>
-                            <div style="font-size: 10px; color: var(--text-tertiary);">CONFIDENCE</div>
-                        </div>
+                <div class="historical-signal">
+                    <div class="historical-signal-info">
+                        <span style="color: {action_color}; font-weight: 600;">
+                            {icon} {sig['symbol']} - {sig['action']}
+                        </span>
+                        <span style="color: var(--text-secondary);">
+                            {time_str} • ${sig['price']:.2f}
+                        </span>
+                    </div>
+                    <div style="color: {action_color}; font-weight: 600;">
+                        {sig['confidence']*100:.1f}%
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
-        
+        else:
+            st.markdown("""
+            <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
+                No historical signals
+            </div>
+            """, unsafe_allow_html=True)
+    
+    with tab3:
         # Trade History
-        st.markdown('<div class="section-header">📊 Trade History</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-header">💰 Completed Trades</div>', unsafe_allow_html=True)
         
         if trades_history:
-            # Sort by exit time
-            recent_trades = sorted(trades_history, key=lambda x: x['exit_time'], reverse=True)[:20]
+            recent_trades = sorted(trades_history, key=lambda x: x['exit_time'], reverse=True)[:50]
             
             # Header
             st.markdown("""
             <div class="trade-row trade-header">
                 <div>Symbol</div>
-                <div>Time</div>
+                <div>Exit Time</div>
                 <div>Entry</div>
                 <div>Exit</div>
                 <div>P&L %</div>
@@ -747,7 +955,6 @@ def main():
             </div>
             """, unsafe_allow_html=True)
             
-            # Trades
             for trade in recent_trades:
                 exit_time = datetime.fromisoformat(trade['exit_time']).strftime('%m/%d %H:%M')
                 pnl_color = "#34C759" if trade['pnl_percent'] > 0 else "#FF453A"
@@ -772,66 +979,6 @@ def main():
                 No completed trades yet
             </div>
             """, unsafe_allow_html=True)
-    
-    with col_right:
-        # Current Positions
-        st.markdown('<div class="section-header">💼 Current Positions</div>', unsafe_allow_html=True)
-        
-        if status and 'positions' in status:
-            has_positions = False
-            for symbol in ASSETS:
-                if symbol in status['positions']:
-                    pos = status['positions'][symbol]
-                    if pos['is_open']:
-                        has_positions = True
-                        current = status.get('latest_prices', {}).get(symbol, 0)
-                        entry = pos['entry_price']
-                        if entry > 0 and current > 0:
-                            pnl = ((current - entry) / entry * 100)
-                            pnl_color = "#34C759" if pnl > 0 else "#FF453A"
-                            
-                            st.markdown(f"""
-                            <div class="signal-card" style="border-left: 2px solid {pnl_color};">
-                                <div style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">
-                                    {symbol} - LONG
-                                </div>
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px;">
-                                    <div>
-                                        <span style="color: var(--text-tertiary);">Entry:</span>
-                                        <span style="color: var(--text-primary);"> ${entry:.2f}</span>
-                                    </div>
-                                    <div>
-                                        <span style="color: var(--text-tertiary);">Current:</span>
-                                        <span style="color: var(--text-primary);"> ${current:.2f}</span>
-                                    </div>
-                                    <div>
-                                        <span style="color: var(--text-tertiary);">P&L:</span>
-                                        <span style="color: {pnl_color}; font-weight: 600;"> {pnl:+.2f}%</span>
-                                    </div>
-                                    <div>
-                                        <span style="color: var(--text-tertiary);">Conf:</span>
-                                        <span style="color: var(--text-primary);"> {pos.get('last_confidence', 0)*100:.1f}%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            """, unsafe_allow_html=True)
-            
-            if not has_positions:
-                st.markdown("""
-                <div style="text-align: center; padding: 40px; color: var(--text-tertiary);">
-                    No open positions
-                </div>
-                """, unsafe_allow_html=True)
-        
-        # Price Action
-        st.markdown('<div class="section-header">💹 Price Action</div>', unsafe_allow_html=True)
-        
-        price_tabs = st.tabs(ASSETS)
-        for tab, symbol in zip(price_tabs, ASSETS):
-            with tab:
-                if symbol in status.get('latest_prices', {}):
-                    price = status['latest_prices'][symbol]
-                    st.metric(label="", value=f"${price:.2f}")
     
     # Footer
     st.markdown(f"""
