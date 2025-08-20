@@ -8,7 +8,8 @@ import json
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
+import pytz
 from pathlib import Path
 import time
 import numpy as np
@@ -21,234 +22,53 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Custom CSS for iOS-inspired dark theme
+# Custom CSS for dark theme - iOS inspired
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    
-    /* Global styles */
+    /* Dark theme styling */
     .stApp {
-        background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: #0e1117;
     }
-    
-    /* Hide Streamlit branding */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    
-    /* Main title styling */
+    .metric-card {
+        background-color: #1e1e1e;
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #333;
+        margin: 10px 0;
+    }
     h1 {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-        font-weight: 700 !important;
-        font-size: 32px !important;
-        background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #00ff00 !important;
         text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+        font-weight: 600;
         letter-spacing: -0.5px;
-        margin-bottom: 30px !important;
-        padding: 20px 0;
     }
-    
-    /* Subheader styling */
-    h2 {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-        font-weight: 600 !important;
-        font-size: 18px !important;
-        color: #ffffff !important;
-        letter-spacing: -0.3px;
-        margin-top: 20px !important;
-        margin-bottom: 15px !important;
+    .stMetric {
+        background-color: #1a1a1a;
+        padding: 10px;
+        border-radius: 5px;
     }
-    
-    h3 {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-        font-weight: 500 !important;
-        color: #e0e0e0 !important;
-    }
-    
-    /* Metric containers */
-    [data-testid="metric-container"] {
-        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-        border: 1px solid rgba(255,255,255,0.1);
-        padding: 16px;
-        border-radius: 16px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    
-    [data-testid="metric-container"] label {
-        font-size: 12px !important;
-        font-weight: 500 !important;
-        color: rgba(255,255,255,0.6) !important;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    
-    [data-testid="metric-container"] [data-testid="metric-value"] {
-        font-size: 24px !important;
-        font-weight: 600 !important;
-        color: #ffffff !important;
-    }
-    
-    /* Dataframe styling */
-    [data-testid="stDataFrame"] {
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 16px;
-        overflow: hidden;
-    }
-    
-    .dataframe {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    }
-    
-    /* Expander styling */
-    .streamlit-expanderHeader {
-        background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 12px !important;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-        font-weight: 500 !important;
-        color: #ffffff !important;
-        backdrop-filter: blur(10px);
-        transition: all 0.3s ease;
-    }
-    
-    .streamlit-expanderHeader:hover {
-        background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    
-    [data-testid="stExpander"] {
-        border: none !important;
+    /* Custom signal containers */
+    .signal-container-long {
+        background: linear-gradient(135deg, #1e3a1e 0%, #0e1117 100%);
+        border-left: 4px solid #00ff00;
+        padding: 12px;
+        border-radius: 8px;
         margin-bottom: 8px;
     }
-    
-    /* Tab styling */
-    .stTabs [data-baseweb="tab-list"] {
-        background: rgba(255,255,255,0.05);
-        border-radius: 12px;
-        padding: 4px;
-        gap: 4px;
-        border: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .stTabs [data-baseweb="tab"] {
+    .signal-container-exit {
+        background: linear-gradient(135deg, #3a1e1e 0%, #0e1117 100%);
+        border-left: 4px solid #ff0000;
+        padding: 12px;
         border-radius: 8px;
-        color: rgba(255,255,255,0.6);
-        font-weight: 500;
-        background: transparent;
-        border: none;
-        transition: all 0.3s ease;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        margin-bottom: 8px;
     }
-    
-    .stTabs [data-baseweb="tab"]:hover {
-        background: rgba(255,255,255,0.08);
-        color: rgba(255,255,255,0.9);
-    }
-    
-    .stTabs [aria-selected="true"] {
-        background: rgba(255,255,255,0.15) !important;
-        color: #ffffff !important;
-        font-weight: 600;
-    }
-    
-    /* Button styling */
-    .stButton button {
-        background: linear-gradient(135deg, #4a9eff 0%, #0066ff 100%);
-        color: white;
-        border: none;
-        border-radius: 12px;
-        padding: 10px 20px;
-        font-weight: 600;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0,102,255,0.3);
-    }
-    
-    .stButton button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,102,255,0.4);
-    }
-    
-    /* Divider styling */
-    hr {
-        margin: 30px 0;
-        border: none;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    }
-    
-    /* Info box styling */
-    .stAlert {
-        background: linear-gradient(135deg, rgba(74,158,255,0.1) 0%, rgba(74,158,255,0.05) 100%);
-        border: 1px solid rgba(74,158,255,0.3);
-        border-radius: 12px;
-        color: #ffffff;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    }
-    
-    /* Custom card styling */
-    .metric-card {
-        background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 16px;
-        padding: 20px;
-        backdrop-filter: blur(20px);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
-        transition: all 0.3s ease;
-    }
-    
-    .metric-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
-    }
-    
-    /* Status indicators */
-    .status-pill {
-        display: inline-block;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    
-    .status-active {
-        background: linear-gradient(135deg, rgba(76,217,100,0.2) 0%, rgba(76,217,100,0.1) 100%);
-        border: 1px solid rgba(76,217,100,0.5);
-        color: #4cd964;
-    }
-    
-    .status-inactive {
-        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-        border: 1px solid rgba(255,255,255,0.2);
-        color: rgba(255,255,255,0.6);
-    }
-    
-    /* Glassmorphism effect for containers */
-    .glass-container {
-        background: rgba(255,255,255,0.05);
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        border: 1px solid rgba(255,255,255,0.1);
-        padding: 24px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    }
-    
-    /* Caption styling */
-    .caption {
-        font-size: 11px;
-        color: rgba(255,255,255,0.4);
-        text-align: center;
-        margin-top: 40px;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-        letter-spacing: 0.3px;
+    .signal-container-hold {
+        background: linear-gradient(135deg, #2a2a2a 0%, #0e1117 100%);
+        border-left: 4px solid #888888;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 8px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -257,11 +77,14 @@ st.markdown("""
 if 'last_update' not in st.session_state:
     st.session_state.last_update = datetime.now()
 
-# Define your assets
+# Define your assets (same as main file)
 ASSETS = ['TSLA', 'HOOD', 'COIN', 'PLTR', 'AAPL']
 
+# Set timezone
+ET = pytz.timezone('America/New_York')
+
 # Helper functions
-@st.cache_data(ttl=2)
+@st.cache_data(ttl=2)  # Cache for 2 seconds
 def load_signals():
     """Load today's signals"""
     signal_file = Path("signals") / f"signals_{datetime.now().strftime('%Y%m%d')}.json"
@@ -302,24 +125,67 @@ def load_historical_data(symbol):
 
 def get_market_status():
     """Check if market is open"""
-    now = datetime.now(timezone(timedelta(hours=-4)))  # ET
+    now = datetime.now(ET)
     weekday = now.weekday()
     current_time = now.time()
     
     if weekday >= 5:  # Weekend
-        return "Weekend", "#ff453a", "⚫"
+        return "🔴 WEEKEND", "#ff4444"
     elif current_time < pd.Timestamp("09:30").time():
-        return "Pre-Market", "#ff9f0a", "��"
+        return "🟡 PRE-MARKET", "#ffaa00"
     elif current_time >= pd.Timestamp("16:00").time():
-        return "After-Hours", "#ff9f0a", "🟠"
+        return "🟠 AFTER-HOURS", "#ff8800"
     elif pd.Timestamp("09:30").time() <= current_time < pd.Timestamp("16:00").time():
-        return "Market Open", "#30d158", "🟢"
+        return "🟢 MARKET OPEN", "#00ff00"
     else:
-        return "Market Closed", "#ff453a", "🔴"
+        return "🔴 MARKET CLOSED", "#ff4444"
+
+def format_number(value, decimals=2):
+    """Format numbers for display"""
+    if value is None or value == 0:
+        return "-"
+    return f"{value:,.{decimals}f}"
+
+def create_signal_component(sig):
+    """Create a signal component using columns instead of HTML"""
+    sig_time = datetime.fromisoformat(sig['timestamp'])
+    # Convert to ET timezone
+    if sig_time.tzinfo is None:
+        sig_time = pytz.utc.localize(sig_time)
+    sig_time_et = sig_time.astimezone(ET)
+    time_str = sig_time_et.strftime('%H:%M:%S')
+    
+    # Determine styling based on action
+    if sig['action'] == 'LONG':
+        emoji = "🟢"
+        header_text = f"LONG - {sig['symbol']}"
+        container_class = "signal-container-long"
+    elif sig['action'] == 'EXIT':
+        emoji = "🔴"
+        header_text = f"EXIT - {sig['symbol']}"
+        container_class = "signal-container-exit"
+    else:
+        emoji = "⚪"
+        header_text = f"HOLD - {sig['symbol']}"
+        container_class = "signal-container-hold"
+    
+    # Create the signal box using columns
+    with st.container():
+        col1, col2, col3 = st.columns([1, 2, 2])
+        with col1:
+            st.markdown(f"### {emoji}")
+        with col2:
+            st.markdown(f"**{header_text}**")
+            st.caption(f"Time: {time_str}")
+        with col3:
+            st.markdown(f"**${sig['price']:.2f}**")
+            st.caption(f"Conf: {sig['confidence']:.3f}")
+    
+    return None
 
 # Main Dashboard
 def main():
-    # Header
+    # Header without icon
     st.markdown("<h1>Signals Dashboard</h1>", unsafe_allow_html=True)
     
     # Load data
@@ -333,44 +199,48 @@ def main():
         st.rerun()
         return
     
-    # Top metrics with glassmorphism effect
-    st.markdown('<div class="glass-container">', unsafe_allow_html=True)
-    
+    # Top metrics row
     col1, col2, col3, col4, col5, col6 = st.columns(6)
     
-    market_status, status_color, status_emoji = get_market_status()
+    market_status, status_color = get_market_status()
     
     with col1:
-        st.metric(
-            label="Market Status",
-            value=market_status,
-            delta=None
-        )
+        st.markdown(f"""
+        <div style='text-align: center'>
+            <p style='margin: 0; color: #888'>Market Status</p>
+            <h3 style='margin: 0; color: {status_color}'>{market_status}</h3>
+        </div>
+        """, unsafe_allow_html=True)
     
     with col2:
-        last_update = datetime.fromisoformat(status['timestamp']) if 'timestamp' in status else datetime.now()
+        # Fix timezone for last update
+        if 'timestamp' in status:
+            last_update = datetime.fromisoformat(status['timestamp'])
+            if last_update.tzinfo is None:
+                last_update = pytz.utc.localize(last_update)
+            last_update_et = last_update.astimezone(ET)
+        else:
+            last_update_et = datetime.now(ET)
+        
         st.metric(
-            label="Last Update",
-            value=last_update.strftime('%H:%M:%S')
+            "Last Update",
+            last_update_et.strftime('%H:%M:%S'),
+            delta=None
         )
     
     with col3:
         total_signals = len(signals)
         long_signals = len([s for s in signals if s['action'] == 'LONG'])
         st.metric(
-            label="Today's Signals",
-            value=total_signals,
-            delta=f"{long_signals} long" if long_signals > 0 else None
+            "Signals Today",
+            total_signals,
+            delta=f"{long_signals} longs" if long_signals > 0 else None
         )
     
     with col4:
         if status and 'positions' in status:
             active = sum(1 for p in status['positions'].values() if p['is_open'])
-            st.metric(
-                label="Active Positions",
-                value=active,
-                delta=f"/{len(ASSETS)} total"
-            )
+            st.metric("Active Positions", active)
         else:
             st.metric("Active Positions", 0)
     
@@ -386,43 +256,43 @@ def main():
                         pnl = ((current - entry) / entry * 100)
                         total_pnl += pnl
         
+        color = "normal" if total_pnl >= 0 else "inverse"
         st.metric(
-            label="Open P&L",
-            value=f"{total_pnl:+.2f}%",
-            delta="Live" if total_pnl != 0 else None
+            "Total Open P&L",
+            f"{total_pnl:+.2f}%",
+            delta=None,
+            delta_color=color
         )
     
     with col6:
+        # Win rate calculation
         if signals:
             exits = [s for s in signals if s['action'] == 'EXIT']
-            st.metric(
-                label="Closed Trades",
-                value=len(exits),
-                delta="Today"
-            )
+            st.metric("Trades Today", len(exits))
+        else:
+            st.metric("Trades Today", 0)
     
-    st.markdown('</div>', unsafe_allow_html=True)
     st.markdown("---")
     
-    # Main content area with better spacing
-    col_left, col_right = st.columns([3, 2], gap="large")
+    # Main content area
+    main_col1, main_col2 = st.columns([3, 2])
     
-    with col_left:
-        # Positions Section
-        st.markdown("## Positions Overview")
+    with main_col1:
+        # Positions Table
+        st.subheader("📊 Current Positions")
         
         if status and 'positions' in status:
             positions_data = []
             
-            for symbol in ASSETS:
+            for symbol in ASSETS:  # Use consistent ordering
                 if symbol in status['positions']:
                     pos = status['positions'][symbol]
                     
                     row_data = {
                         'Symbol': symbol,
-                        'Status': '🟢' if pos['is_open'] else '⚫',
+                        'Status': '🟢' if pos['is_open'] else '⚪',
                         'Position': 'LONG' if pos['is_open'] else 'FLAT',
-                        'Entry': f"${pos['entry_price']:.2f}" if pos['entry_price'] > 0 else '—',
+                        'Entry': f"${pos['entry_price']:.2f}" if pos['entry_price'] > 0 else '-',
                     }
                     
                     if pos['is_open'] and symbol in status.get('latest_prices', {}):
@@ -430,49 +300,62 @@ def main():
                         entry = pos['entry_price']
                         if entry > 0:
                             pnl_pct = ((current - entry) / entry * 100)
+                            pnl_dollar = (current - entry) * 100  # Assuming 100 shares
+                            
                             row_data['Current'] = f"${current:.2f}"
-                            row_data['P&L'] = f"{pnl_pct:+.2f}%"
+                            row_data['P&L %'] = pnl_pct
+                            row_data['P&L $'] = pnl_dollar
                         else:
                             row_data['Current'] = f"${current:.2f}"
-                            row_data['P&L'] = '—'
+                            row_data['P&L %'] = 0
+                            row_data['P&L $'] = 0
                     else:
-                        row_data['Current'] = '—'
-                        row_data['P&L'] = '—'
+                        row_data['Current'] = '-'
+                        row_data['P&L %'] = 0
+                        row_data['P&L $'] = 0
                     
-                    row_data['Signal'] = pos.get('last_signal', '—')
-                    row_data['Confidence'] = f"{pos.get('last_confidence', 0):.2f}" if pos.get('last_confidence', 0) > 0 else '—'
+                    row_data['Signal'] = pos.get('last_signal', '-')
+                    row_data['Confidence'] = pos.get('last_confidence', 0)
                     
                     positions_data.append(row_data)
             
             if positions_data:
                 df_positions = pd.DataFrame(positions_data)
                 
+                # Format P&L columns
+                df_display = df_positions.copy()
+                df_display['P&L %'] = df_display['P&L %'].apply(lambda x: f"{x:+.2f}%" if x != 0 else "-")
+                df_display['P&L $'] = df_display['P&L $'].apply(lambda x: f"${x:+.2f}" if x != 0 else "-")
+                df_display['Confidence'] = df_display['Confidence'].apply(lambda x: f"{x:.3f}" if x > 0 else "-")
+                
                 st.dataframe(
-                    df_positions,
+                    df_display,
                     use_container_width=True,
                     hide_index=True,
                     column_config={
                         "Status": st.column_config.TextColumn(width="small"),
                         "Symbol": st.column_config.TextColumn(width="small"),
-                        "Position": st.column_config.TextColumn(width="medium"),
-                        "P&L": st.column_config.TextColumn(width="small"),
+                        "Position": st.column_config.TextColumn(width="small"),
                     }
                 )
         
-        # Price Charts with modern styling
-        st.markdown("## Price Action")
+        # Price Charts
+        st.subheader("💹 Price Action")
         
         if status and 'latest_prices' in status:
-            tabs = st.tabs([f" {symbol} " for symbol in ASSETS])
+            # Create tabs for each symbol
+            tabs = st.tabs(ASSETS)
             
             for tab, symbol in zip(tabs, ASSETS):
                 with tab:
+                    # Load historical data
                     hist_data = load_historical_data(symbol)
                     
                     if hist_data is not None and not hist_data.empty:
+                        # Create candlestick chart
                         fig = go.Figure()
                         
-                        # Candlestick with iOS colors
+                        # Add candlestick
                         fig.add_trace(go.Candlestick(
                             x=pd.to_datetime(hist_data['timestamp']),
                             open=hist_data['open'],
@@ -480,18 +363,17 @@ def main():
                             low=hist_data['low'],
                             close=hist_data['close'],
                             name=symbol,
-                            increasing_line_color='#30d158',
-                            decreasing_line_color='#ff453a',
-                            increasing_fillcolor='#30d158',
-                            decreasing_fillcolor='#ff453a'
+                            increasing_line_color='#00ff00',
+                            decreasing_line_color='#ff4444'
                         ))
                         
-                        # Add signals
+                        # Add signals as markers
                         symbol_signals = [s for s in signals if s['symbol'] == symbol]
                         if symbol_signals:
                             long_signals = [s for s in symbol_signals if s['action'] == 'LONG']
                             exit_signals = [s for s in symbol_signals if s['action'] == 'EXIT']
                             
+                            # Add long signals
                             if long_signals:
                                 fig.add_trace(go.Scatter(
                                     x=[datetime.fromisoformat(s['timestamp']) for s in long_signals],
@@ -500,12 +382,12 @@ def main():
                                     name='LONG',
                                     marker=dict(
                                         symbol='triangle-up',
-                                        size=12,
-                                        color='#30d158',
-                                        line=dict(color='white', width=1)
+                                        size=15,
+                                        color='#00ff00',
                                     )
                                 ))
                             
+                            # Add exit signals
                             if exit_signals:
                                 fig.add_trace(go.Scatter(
                                     x=[datetime.fromisoformat(s['timestamp']) for s in exit_signals],
@@ -514,90 +396,102 @@ def main():
                                     name='EXIT',
                                     marker=dict(
                                         symbol='triangle-down',
-                                        size=12,
-                                        color='#ff453a',
-                                        line=dict(color='white', width=1)
+                                        size=15,
+                                        color='#ff4444',
                                     )
                                 ))
                         
-                        # Update layout with dark theme
+                        # Update layout
                         fig.update_layout(
-                            title=None,
+                            title=f"{symbol} - Hourly",
                             yaxis_title="Price ($)",
-                            xaxis_title=None,
+                            xaxis_title="Time",
                             template="plotly_dark",
-                            height=350,
-                            showlegend=False,
-                            hovermode='x unified',
-                            plot_bgcolor='rgba(0,0,0,0)',
-                            paper_bgcolor='rgba(0,0,0,0)',
-                            xaxis=dict(
-                                gridcolor='rgba(255,255,255,0.05)',
-                                showgrid=True
-                            ),
-                            yaxis=dict(
-                                gridcolor='rgba(255,255,255,0.05)',
-                                showgrid=True
-                            ),
-                            margin=dict(l=0, r=0, t=0, b=40)
+                            height=400,
+                            showlegend=True,
+                            hovermode='x unified'
                         )
                         
                         st.plotly_chart(fig, use_container_width=True)
                     else:
+                        # Simple metric if no historical data
                         if symbol in status.get('latest_prices', {}):
                             current = status['latest_prices'][symbol]
-                            st.metric(f"Current Price", f"${current:.2f}")
+                            
+                            # Get latest candle data if available
+                            candle_key = f'{symbol}_latest_candle'
+                            if candle_key in status:
+                                candle = status[candle_key]
+                                col1, col2, col3, col4 = st.columns(4)
+                                with col1:
+                                    st.metric("Open", f"${candle['open']:.2f}")
+                                with col2:
+                                    st.metric("High", f"${candle['high']:.2f}")
+                                with col3:
+                                    st.metric("Low", f"${candle['low']:.2f}")
+                                with col4:
+                                    st.metric("Close", f"${current:.2f}")
+                            else:
+                                st.metric(f"Current Price", f"${current:.2f}")
     
-    with col_right:
-        # Signal Feed with modern cards
-        st.markdown("## Live Signals")
+    with main_col2:
+        # Recent Signals Feed - Using workaround for HTML issue
+        st.subheader("📈 Live Signal Feed")
         
-        signal_container = st.container()
+        signal_container = st.container(height=500)
         
         with signal_container:
             if signals:
-                recent_signals = sorted(signals, key=lambda x: x['timestamp'], reverse=True)[:10]
+                # Show last 20 signals, most recent first
+                recent_signals = sorted(signals, key=lambda x: x['timestamp'], reverse=True)[:20]
                 
                 for sig in recent_signals:
                     sig_time = datetime.fromisoformat(sig['timestamp'])
-                    time_str = sig_time.strftime('%H:%M:%S')
+                    # Convert to ET timezone
+                    if sig_time.tzinfo is None:
+                        sig_time = pytz.utc.localize(sig_time)
+                    sig_time_et = sig_time.astimezone(ET)
+                    time_str = sig_time_et.strftime('%H:%M:%S')
                     
-                    # iOS-style signal indicators
+                    # Create styled container based on signal type
                     if sig['action'] == 'LONG':
-                        emoji = "🟢"
-                        action_style = "color: #30d158; font-weight: 600;"
+                        with st.container():
+                            cols = st.columns([1, 3])
+                            with cols[0]:
+                                st.success("🟢")
+                            with cols[1]:
+                                st.markdown(f"**LONG - {sig['symbol']}**")
+                                st.caption(f"Time: {time_str} | Price: ${sig['price']:.2f} | Conf: {sig['confidence']:.3f}")
                     elif sig['action'] == 'EXIT':
-                        emoji = "🔴"
-                        action_style = "color: #ff453a; font-weight: 600;"
+                        with st.container():
+                            cols = st.columns([1, 3])
+                            with cols[0]:
+                                st.error("🔴")
+                            with cols[1]:
+                                st.markdown(f"**EXIT - {sig['symbol']}**")
+                                st.caption(f"Time: {time_str} | Price: ${sig['price']:.2f} | Conf: {sig['confidence']:.3f}")
                     else:
-                        emoji = "⚫"
-                        action_style = "color: rgba(255,255,255,0.6); font-weight: 500;"
+                        with st.container():
+                            cols = st.columns([1, 3])
+                            with cols[0]:
+                                st.info("⚪")
+                            with cols[1]:
+                                st.markdown(f"**HOLD - {sig['symbol']}**")
+                                st.caption(f"Time: {time_str} | Price: ${sig['price']:.2f} | Conf: {sig['confidence']:.3f}")
                     
-                    # Create expandable signal cards
-                    with st.expander(f"{emoji} {sig['symbol']} • {sig['action']} • ${sig['price']:.2f}", expanded=False):
-                        col1, col2 = st.columns(2)
-                        with col1:
-                            st.markdown(f"**Time**  \n{time_str}")
-                            st.markdown(f"**Price**  \n${sig['price']:.2f}")
-                        with col2:
-                            st.markdown(f"**Confidence**  \n{sig['confidence']:.3f}")
-                            if 'ml_scores' in sig and sig['ml_scores']:
-                                scores_text = "**ML Scores**  \n"
-                                for model, score in list(sig['ml_scores'].items())[:3]:
-                                    if isinstance(score, (int, float)):
-                                        model_name = model.replace('_', ' ').title()
-                                        scores_text += f"{model_name}: {score:.2f}  \n"
-                                st.markdown(scores_text)
+                    # Add separator
+                    st.markdown("---")
             else:
-                st.info("Waiting for signals...")
+                st.info("No signals generated today. Waiting for market activity...")
     
-    # Analytics Section
+    # Performance Analytics Section
     st.markdown("---")
-    st.markdown("## Analytics")
+    st.subheader("📊 Performance Analytics")
     
     col1, col2, col3 = st.columns(3)
     
     with col1:
+        # Signal Distribution Pie Chart
         if signals:
             signal_types = {'LONG': 0, 'EXIT': 0, 'HOLD': 0}
             for sig in signals:
@@ -608,59 +502,50 @@ def main():
                 fig = go.Figure(data=[go.Pie(
                     labels=list(signal_types.keys()),
                     values=list(signal_types.values()),
-                    marker=dict(colors=['#30d158', '#ff453a', '#8e8e93']),
-                    hole=0.6,
-                    textinfo='label+percent',
-                    textfont=dict(color='white', size=12)
+                    marker=dict(colors=['#00ff00', '#ff4444', '#888888']),
+                    hole=0.3
                 )])
                 
                 fig.update_layout(
                     title="Signal Distribution",
-                    title_font_size=14,
-                    title_font_color='rgba(255,255,255,0.8)',
                     template="plotly_dark",
-                    height=250,
-                    showlegend=False,
-                    plot_bgcolor='rgba(0,0,0,0)',
-                    paper_bgcolor='rgba(0,0,0,0)',
-                    margin=dict(l=0, r=0, t=40, b=0)
+                    height=300,
+                    showlegend=True
                 )
                 
                 st.plotly_chart(fig, use_container_width=True)
     
     with col2:
+        # Hourly Activity
         if signals:
-            hours = [datetime.fromisoformat(s['timestamp']).hour for s in signals]
+            hours = []
+            for s in signals:
+                sig_time = datetime.fromisoformat(s['timestamp'])
+                if sig_time.tzinfo is None:
+                    sig_time = pytz.utc.localize(sig_time)
+                sig_time_et = sig_time.astimezone(ET)
+                hours.append(sig_time_et.hour)
+            
             hour_counts = pd.Series(hours).value_counts().sort_index()
             
             fig = go.Figure(data=[go.Bar(
                 x=hour_counts.index,
                 y=hour_counts.values,
-                marker=dict(
-                    color=hour_counts.values,
-                    colorscale=[[0, '#0066ff'], [1, '#30d158']],
-                    line=dict(color='rgba(255,255,255,0.1)', width=1)
-                )
+                marker_color='#00ffff'
             )])
             
             fig.update_layout(
-                title="Hourly Activity",
-                title_font_size=14,
-                title_font_color='rgba(255,255,255,0.8)',
-                xaxis_title="Hour (ET)",
-                yaxis_title="Signals",
+                title="Signals by Hour (ET)",
+                xaxis_title="Hour",
+                yaxis_title="Count",
                 template="plotly_dark",
-                height=250,
-                plot_bgcolor='rgba(0,0,0,0)',
-                paper_bgcolor='rgba(0,0,0,0)',
-                xaxis=dict(gridcolor='rgba(255,255,255,0.05)'),
-                yaxis=dict(gridcolor='rgba(255,255,255,0.05)'),
-                margin=dict(l=0, r=0, t=40, b=40)
+                height=300
             )
             
             st.plotly_chart(fig, use_container_width=True)
     
     with col3:
+        # Symbol Activity
         if signals:
             symbol_counts = {}
             for sig in signals:
@@ -671,38 +556,75 @@ def main():
                 fig = go.Figure(data=[go.Bar(
                     x=list(symbol_counts.keys()),
                     y=list(symbol_counts.values()),
-                    marker=dict(
-                        color=list(symbol_counts.values()),
-                        colorscale=[[0, '#ff453a'], [0.5, '#ff9f0a'], [1, '#30d158']],
-                        line=dict(color='rgba(255,255,255,0.1)', width=1)
-                    )
+                    marker_color='#ff00ff'
                 )])
                 
                 fig.update_layout(
-                    title="Symbol Activity",
-                    title_font_size=14,
-                    title_font_color='rgba(255,255,255,0.8)',
+                    title="Signals by Symbol",
                     xaxis_title="Symbol",
                     yaxis_title="Count",
                     template="plotly_dark",
-                    height=250,
-                    plot_bgcolor='rgba(0,0,0,0)',
-                    paper_bgcolor='rgba(0,0,0,0)',
-                    xaxis=dict(gridcolor='rgba(255,255,255,0.05)'),
-                    yaxis=dict(gridcolor='rgba(255,255,255,0.05)'),
-                    margin=dict(l=0, r=0, t=40, b=40)
+                    height=300
                 )
                 
                 st.plotly_chart(fig, use_container_width=True)
     
+    # ML Model Confidence Section
+    if signals and len(signals) > 0:
+        latest_signals = sorted(signals, key=lambda x: x['timestamp'], reverse=True)[:5]
+        
+        st.markdown("---")
+        st.subheader("🧠 Latest ML Model Confidence Scores")
+        
+        score_cols = st.columns(len(ASSETS))
+        
+        for idx, symbol in enumerate(ASSETS):
+            with score_cols[idx]:
+                # Find latest signal for this symbol
+                symbol_signal = next((s for s in latest_signals if s['symbol'] == symbol), None)
+                
+                if symbol_signal and 'ml_scores' in symbol_signal:
+                    scores = symbol_signal['ml_scores']
+                    
+                    # Create a small bar chart for scores
+                    score_data = []
+                    for model, score in scores.items():
+                        if isinstance(score, (int, float)):
+                            score_data.append({'Model': model.replace('_', ' ').upper(), 'Score': score})
+                    
+                    if score_data:
+                        df_scores = pd.DataFrame(score_data)
+                        
+                        fig = go.Figure(data=[go.Bar(
+                            x=df_scores['Model'],
+                            y=df_scores['Score'],
+                            marker_color=['#00ff00' if s > 0.5 else '#ff4444' for s in df_scores['Score']],
+                            text=[f"{s:.2f}" for s in df_scores['Score']],
+                            textposition='auto',
+                        )])
+                        
+                        fig.update_layout(
+                            title=f"{symbol}",
+                            yaxis_range=[0, 1],
+                            template="plotly_dark",
+                            height=200,
+                            showlegend=False,
+                            margin=dict(l=0, r=0, t=30, b=0)
+                        )
+                        
+                        st.plotly_chart(fig, use_container_width=True)
+                else:
+                    st.info(f"{symbol}\nNo recent signal")
+    
     # Footer
     st.markdown("---")
-    st.markdown("""
-        <div class="caption">
-            ML Trading System • Real-time monitoring • Auto-refresh: 5s<br>
-            Data: Polygon + Alpaca APIs
-        </div>
-    """, unsafe_allow_html=True)
+    current_time_et = datetime.now(ET)
+    st.caption(f"""
+    ML Trading System Dashboard | 
+    Last Update: {current_time_et.strftime('%Y-%m-%d %H:%M:%S ET')} | 
+    Auto-refresh: Every 5 seconds | 
+    Data: Polygon + Alpaca APIs
+    """)
     
     # Auto-refresh
     time.sleep(5)
