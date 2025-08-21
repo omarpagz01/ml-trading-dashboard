@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-21T17:14:15.380091+00:00",
+  "timestamp": "2025-08-21T17:15:17.397662+00:00",
   "market_open": true,
   "positions": {
     "TSLA": {
@@ -9,7 +9,7 @@
       "entry_time": "2025-08-20T14:15:18.654570",
       "size": 0.0,
       "last_signal": "HOLD",
-      "last_confidence": 0.5291635702808251
+      "last_confidence": 0.5359648407657494
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -18,7 +18,7 @@
       "entry_time": null,
       "size": 0.0,
       "last_signal": "HOLD",
-      "last_confidence": 0.35365872397383663
+      "last_confidence": 0.41171602301166577
     },
     "COIN": {
       "symbol": "COIN",
@@ -27,7 +27,7 @@
       "entry_time": "2025-08-19T16:56:26.391163",
       "size": 0.0,
       "last_signal": "HOLD",
-      "last_confidence": 0.5118433720605446
+      "last_confidence": 0.4962170595242984
     },
     "PLTR": {
       "symbol": "PLTR",
@@ -36,7 +36,7 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "size": 0.0,
       "last_signal": "HOLD",
-      "last_confidence": 0.5400112638098767
+      "last_confidence": 0.5344603496235298
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -45,64 +45,64 @@
       "entry_time": "2025-08-20T17:30:22.955922",
       "size": 0.0,
       "last_signal": "HOLD",
-      "last_confidence": 0.45303665005715554
+      "last_confidence": 0.5028334178996186
     }
   },
   "latest_prices": {
-    "TSLA": 320.8494,
-    "HOOD": 106.479,
-    "COIN": 302.1878,
-    "PLTR": 155.3301,
-    "AAPL": 225.16
+    "TSLA": 319.87,
+    "HOOD": 105.37,
+    "COIN": 299.68,
+    "PLTR": 155.42,
+    "AAPL": 224.587
   },
   "candles_processed": {
-    "TSLA": 3,
-    "HOOD": 3,
-    "COIN": 3,
-    "PLTR": 3,
-    "AAPL": 3
+    "TSLA": 4,
+    "HOOD": 4,
+    "COIN": 4,
+    "PLTR": 4,
+    "AAPL": 4
   },
   "last_candle_time": {
-    "TSLA": "2025-08-21T12:00:00-04:00",
-    "HOOD": "2025-08-21T12:00:00-04:00",
-    "COIN": "2025-08-21T12:00:00-04:00",
-    "PLTR": "2025-08-21T12:00:00-04:00",
-    "AAPL": "2025-08-21T12:00:00-04:00"
+    "TSLA": "2025-08-21T13:00:00-04:00",
+    "HOOD": "2025-08-21T13:00:00-04:00",
+    "COIN": "2025-08-21T13:00:00-04:00",
+    "PLTR": "2025-08-21T13:00:00-04:00",
+    "AAPL": "2025-08-21T13:00:00-04:00"
   },
   "session_type": "MARKET",
   "TSLA_latest_candle": {
-    "open": 321.3,
-    "high": 321.34,
-    "low": 320.8494,
-    "close": 320.8494,
-    "volume": 94570
+    "open": 319.65,
+    "high": 319.9099,
+    "low": 319.4,
+    "close": 319.87,
+    "volume": 139992
   },
   "HOOD_latest_candle": {
-    "open": 106.61,
-    "high": 106.635,
-    "low": 106.44,
-    "close": 106.479,
-    "volume": 70649
+    "open": 105.29,
+    "high": 105.4397,
+    "low": 105.2,
+    "close": 105.37,
+    "volume": 76726
   },
   "COIN_latest_candle": {
-    "open": 302.13,
-    "high": 302.2826,
-    "low": 301.75,
-    "close": 302.1878,
-    "volume": 9639
+    "open": 299.59,
+    "high": 299.92,
+    "low": 299.47,
+    "close": 299.68,
+    "volume": 11192
   },
   "PLTR_latest_candle": {
-    "open": 155.72,
-    "high": 155.77,
-    "low": 155.31,
-    "close": 155.3301,
-    "volume": 194214
+    "open": 155.3932,
+    "high": 155.49,
+    "low": 155.2801,
+    "close": 155.42,
+    "volume": 117400
   },
   "AAPL_latest_candle": {
-    "open": 225.26,
-    "high": 225.275,
-    "low": 225.15,
-    "close": 225.16,
-    "volume": 47880
+    "open": 224.62,
+    "high": 224.64,
+    "low": 224.53,
+    "close": 224.587,
+    "volume": 41250
   }
 }
