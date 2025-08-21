@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-21T15:15:12.433421+00:00",
+  "timestamp": "2025-08-21T15:15:14.165400+00:00",
   "market_open": true,
   "positions": {
     "TSLA": {
@@ -36,7 +36,7 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "size": 0.0,
       "last_signal": "HOLD",
-      "last_confidence": 0.49204758135630455
+      "last_confidence": 0.5428368894083073
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -52,21 +52,21 @@
     "TSLA": 323.2634,
     "HOOD": 107.855,
     "COIN": 303.1,
-    "PLTR": 155.315,
+    "PLTR": 156.325,
     "AAPL": 225.505
   },
   "candles_processed": {
     "TSLA": 2,
     "HOOD": 2,
     "COIN": 2,
-    "PLTR": 1,
+    "PLTR": 2,
     "AAPL": 1
   },
   "last_candle_time": {
     "TSLA": "2025-08-21T11:00:00-04:00",
     "HOOD": "2025-08-21T11:00:00-04:00",
     "COIN": "2025-08-21T11:00:00-04:00",
-    "PLTR": "2025-08-21T10:00:00-04:00",
+    "PLTR": "2025-08-21T11:00:00-04:00",
     "AAPL": "2025-08-21T10:00:00-04:00"
   },
   "session_type": "MARKET",
@@ -92,11 +92,11 @@
     "volume": 25190
   },
   "PLTR_latest_candle": {
-    "open": 154.92,
-    "high": 155.37,
-    "low": 154.3,
-    "close": 155.315,
-    "volume": 554487
+    "open": 156.31,
+    "high": 156.42,
+    "low": 156.14,
+    "close": 156.325,
+    "volume": 180013
   },
   "AAPL_latest_candle": {
     "open": 225.2,
