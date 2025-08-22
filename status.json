@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-22T15:18:08.006653+00:00",
+  "timestamp": "2025-08-22T15:19:07.834431+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -11,8 +11,8 @@
       "last_signal": "LONG",
       "last_confidence": 0.7059685217038387,
       "realtime_pnl_pct": 4.44,
-      "realtime_pnl_dollar": 1431.5,
-      "current_price": 336.515
+      "realtime_pnl_dollar": 1429.0,
+      "current_price": 336.49
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -29,9 +29,9 @@
       "entry_time": "2025-08-19T16:56:26.391163",
       "last_signal": "LONG",
       "last_confidence": 0.7954287314093913,
-      "realtime_pnl_pct": 4.99,
-      "realtime_pnl_dollar": 1526.12,
-      "current_price": 321.0
+      "realtime_pnl_pct": 5.12,
+      "realtime_pnl_dollar": 1565.12,
+      "current_price": 321.39
     },
     "PLTR": {
       "symbol": "PLTR",
@@ -40,9 +40,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "LONG",
       "last_confidence": 0.7167065272624631,
-      "realtime_pnl_pct": -0.54,
-      "realtime_pnl_dollar": -88.5,
-      "current_price": 162.96
+      "realtime_pnl_pct": -0.66,
+      "realtime_pnl_dollar": -108.5,
+      "current_price": 162.76
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -51,18 +51,18 @@
       "entry_time": "2025-08-20T17:30:22.955922",
       "last_signal": "LONG",
       "last_confidence": 0.7159015645870325,
-      "realtime_pnl_pct": 0.74,
-      "realtime_pnl_dollar": 168.0,
-      "current_price": 228.38
+      "realtime_pnl_pct": 0.75,
+      "realtime_pnl_dollar": 169.0,
+      "current_price": 228.39
     }
   },
   "latest_prices": {},
   "realtime_prices": {
-    "TSLA": 336.515,
-    "HOOD": 111.13,
-    "COIN": 321.0,
-    "PLTR": 162.96,
-    "AAPL": 228.38
+    "TSLA": 336.49,
+    "HOOD": 110.78,
+    "COIN": 321.39,
+    "PLTR": 162.76,
+    "AAPL": 228.39
   },
-  "last_price_update": "2025-08-22T15:17:51.892477+00:00"
+  "last_price_update": "2025-08-22T15:18:52.253786+00:00"
 }
