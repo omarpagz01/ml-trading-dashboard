@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-22T14:59:07.984834+00:00",
+  "timestamp": "2025-08-22T15:00:09.091134+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -10,9 +10,9 @@
       "entry_time": "2025-08-20T14:15:18.654570",
       "last_signal": "LONG",
       "last_confidence": 0.7059685217038387,
-      "realtime_pnl_pct": 4.31,
-      "realtime_pnl_dollar": 1389.0,
-      "current_price": 336.09
+      "realtime_pnl_pct": 4.46,
+      "realtime_pnl_dollar": 1437.0,
+      "current_price": 336.57
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -29,9 +29,9 @@
       "entry_time": "2025-08-19T16:56:26.391163",
       "last_signal": "LONG",
       "last_confidence": 0.7954287314093913,
-      "realtime_pnl_pct": 4.69,
-      "realtime_pnl_dollar": 1434.12,
-      "current_price": 320.08
+      "realtime_pnl_pct": 4.8,
+      "realtime_pnl_dollar": 1467.12,
+      "current_price": 320.41
     },
     "PLTR": {
       "symbol": "PLTR",
@@ -40,9 +40,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "LONG",
       "last_confidence": 0.7167065272624631,
-      "realtime_pnl_pct": -1.36,
-      "realtime_pnl_dollar": -222.5,
-      "current_price": 161.62
+      "realtime_pnl_pct": -1.57,
+      "realtime_pnl_dollar": -257.5,
+      "current_price": 161.27
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -52,17 +52,17 @@
       "last_signal": "LONG",
       "last_confidence": 0.7159015645870325,
       "realtime_pnl_pct": 0.72,
-      "realtime_pnl_dollar": 163.0,
-      "current_price": 228.33
+      "realtime_pnl_dollar": 162.5,
+      "current_price": 228.325
     }
   },
   "latest_prices": {},
   "realtime_prices": {
-    "TSLA": 336.09,
-    "HOOD": 111.24,
-    "COIN": 320.08,
-    "PLTR": 161.62,
-    "AAPL": 228.33
+    "TSLA": 336.57,
+    "HOOD": 111.25,
+    "COIN": 320.41,
+    "PLTR": 161.27,
+    "AAPL": 228.325
   },
-  "last_price_update": "2025-08-22T14:58:44.862100+00:00"
+  "last_price_update": "2025-08-22T14:59:45.220504+00:00"
 }
