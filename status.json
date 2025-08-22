@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-22T14:40:05.886508+00:00",
+  "timestamp": "2025-08-22T14:41:05.387362+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -9,9 +9,9 @@
       "entry_time": "2025-08-20T14:15:18.654570",
       "last_signal": "LONG",
       "last_confidence": 0.7059685217038387,
-      "realtime_pnl_pct": 4.53,
-      "realtime_pnl_dollar": 1461.0,
-      "current_price": 336.81
+      "realtime_pnl_pct": 4.6,
+      "realtime_pnl_dollar": 1481.0,
+      "current_price": 337.01
     },
     "HOOD": {
       "is_open": false,
@@ -26,9 +26,9 @@
       "entry_time": "2025-08-19T16:56:26.391163",
       "last_signal": "LONG",
       "last_confidence": 0.7954287314093913,
-      "realtime_pnl_pct": 3.56,
-      "realtime_pnl_dollar": 1089.12,
-      "current_price": 316.63
+      "realtime_pnl_pct": 3.95,
+      "realtime_pnl_dollar": 1207.12,
+      "current_price": 317.81
     },
     "PLTR": {
       "is_open": true,
@@ -36,9 +36,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "LONG",
       "last_confidence": 0.7167065272624631,
-      "realtime_pnl_pct": -3.1,
-      "realtime_pnl_dollar": -507.5,
-      "current_price": 158.77
+      "realtime_pnl_pct": -2.8,
+      "realtime_pnl_dollar": -459.5,
+      "current_price": 159.25
     },
     "AAPL": {
       "is_open": true,
@@ -47,17 +47,17 @@
       "last_signal": "LONG",
       "last_confidence": 0.7159015645870325,
       "realtime_pnl_pct": 0.61,
-      "realtime_pnl_dollar": 137.5,
-      "current_price": 228.075
+      "realtime_pnl_dollar": 138.5,
+      "current_price": 228.085
     }
   },
   "latest_candle_prices": {},
   "realtime_prices": {
-    "TSLA": 336.81,
-    "HOOD": 108.93,
-    "COIN": 316.63,
-    "PLTR": 158.77,
-    "AAPL": 228.075
+    "TSLA": 337.01,
+    "HOOD": 109.42,
+    "COIN": 317.81,
+    "PLTR": 159.25,
+    "AAPL": 228.085
   },
-  "last_price_update": "2025-08-22T14:40:05.714362+00:00"
+  "last_price_update": "2025-08-22T14:41:04.502987+00:00"
 }
