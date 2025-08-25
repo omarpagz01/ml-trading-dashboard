@@ -240,5 +240,93 @@
       "volume_ratio": 0.004742860201584726
     },
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-25T15:36:34.457242",
+    "symbol": "HOOD",
+    "action": "HOLD",
+    "confidence": 0.4434910335406692,
+    "price": 109.62,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.3129856965174129,
+      "gb_long": 0.12979379687094023,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.507487952709198
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 61.785196255109675,
+      "macd": 0.09515607609438348,
+      "bb_position": 0.7560318277755488,
+      "volume_ratio": 0.0070512084838535655
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-25T15:36:35.602071",
+    "symbol": "COIN",
+    "action": "HOLD",
+    "confidence": 0.6175283792705244,
+    "price": 313.1,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.6098333333333333,
+      "gb_long": 0.2307351160251719,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5320146679878235
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 60.63741235457713,
+      "macd": 1.730176509285343,
+      "bb_position": 0.6401579644509113,
+      "volume_ratio": 0.008997403683844973
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-25T15:36:36.831812",
+    "symbol": "PLTR",
+    "action": "HOLD",
+    "confidence": 0.5413690772256767,
+    "price": 156.3,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5113636363636364,
+      "gb_long": 0.031113830971597662,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5730667114257812
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 50.93320676783363,
+      "macd": -2.2195924049850078,
+      "bb_position": 0.5137844054831021,
+      "volume_ratio": 0.004108028393412157
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-25T15:36:37.980219",
+    "symbol": "AAPL",
+    "action": "HOLD",
+    "confidence": 0.5245667339745809,
+    "price": 228.535,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.406674146797569,
+      "gb_long": 0.15025453244509673,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5233357548713684
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 64.0941434044882,
+      "macd": -0.14683133575942975,
+      "bb_position": 0.8502785527725626,
+      "volume_ratio": 0.017078869056417603
+    },
+    "is_realtime": true
   }
 ]
