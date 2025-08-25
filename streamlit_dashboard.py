@@ -23,138 +23,6 @@ st.set_page_config(
    initial_sidebar_state="collapsed"
 )
 
-# Initialize session state for tracking signals
-if 'previous_signals' not in st.session_state:
-    st.session_state.previous_signals = set()
-if 'sound_played' not in st.session_state:
-    st.session_state.sound_played = False
-
-# Helper function to play notification sound
-def play_notification_sound(signal_type='LONG'):
-    """Play a notification sound using JavaScript with minimal ping style"""
-    if signal_type == 'LONG':
-        # LONG Signal - Higher pitch (C6 with C5 octave)
-        sound_script = """
-        <script>
-        var audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        var now = audioContext.currentTime;
-        
-        // Primary tone - C6
-        var osc = audioContext.createOscillator();
-        var gain = audioContext.createGain();
-        var filter = audioContext.createBiquadFilter();
-        
-        osc.connect(filter);
-        filter.connect(gain);
-        gain.connect(audioContext.destination);
-        
-        filter.type = 'lowpass';
-        filter.frequency.value = 4000;
-        filter.Q.value = 0.1;
-        
-        osc.frequency.value = 1046.50; // C6
-        osc.type = 'sine';
-        
-        gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(0.3, now + 0.008);
-        gain.gain.exponentialRampToValueAtTime(0.12, now + 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
-        
-        osc.start(now);
-        osc.stop(now + 0.25);
-        
-        // Subtle octave below - C5
-        var octave = audioContext.createOscillator();
-        var octaveGain = audioContext.createGain();
-        octave.connect(octaveGain);
-        octaveGain.connect(audioContext.destination);
-        octave.frequency.value = 523.25; // C5
-        octave.type = 'sine';
-        octaveGain.gain.setValueAtTime(0, now);
-        octaveGain.gain.linearRampToValueAtTime(0.09, now + 0.01);
-        octaveGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
-        octave.start(now);
-        octave.stop(now + 0.2);
-        </script>
-        """
-    else:  # EXIT signal
-        # EXIT Signal - Lower pitch (F5 with F4 octave)
-        sound_script = """
-        <script>
-        var audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        var now = audioContext.currentTime;
-        
-        // Primary tone - F5
-        var osc = audioContext.createOscillator();
-        var gain = audioContext.createGain();
-        var filter = audioContext.createBiquadFilter();
-        
-        osc.connect(filter);
-        filter.connect(gain);
-        gain.connect(audioContext.destination);
-        
-        filter.type = 'lowpass';
-        filter.frequency.value = 3500;
-        filter.Q.value = 0.1;
-        
-        osc.frequency.value = 698.46; // F5
-        osc.type = 'sine';
-        
-        gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(0.3, now + 0.008);
-        gain.gain.exponentialRampToValueAtTime(0.12, now + 0.06);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-        
-        osc.start(now);
-        osc.stop(now + 0.3);
-        
-        // Subtle octave below - F4
-        var octave = audioContext.createOscillator();
-        var octaveGain = audioContext.createGain();
-        octave.connect(octaveGain);
-        octaveGain.connect(audioContext.destination);
-        octave.frequency.value = 349.23; // F4
-        octave.type = 'sine';
-        octaveGain.gain.setValueAtTime(0, now);
-        octaveGain.gain.linearRampToValueAtTime(0.09, now + 0.01);
-        octaveGain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
-        octave.start(now);
-        octave.stop(now + 0.25);
-        </script>
-        """
-    
-    st.components.v1.html(sound_script, height=0)
-
-def check_for_new_signals(signals):
-    """Check if there are new non-HOLD signals and play sound if needed"""
-    if not signals:
-        return
-    
-    # Create a set of current signal identifiers (excluding HOLD signals)
-    current_signals = set()
-    latest_signal_type = None
-    
-    for sig in signals:
-        if sig['action'] != 'HOLD':
-            # Create unique identifier for each signal
-            sig_id = f"{sig['symbol']}_{sig['action']}_{sig['timestamp']}"
-            current_signals.add(sig_id)
-            
-            # Track the type of the newest signal
-            if sig_id not in st.session_state.previous_signals:
-                latest_signal_type = sig['action']
-    
-    # Check if there are new signals
-    new_signals = current_signals - st.session_state.previous_signals
-    
-    if new_signals and st.session_state.previous_signals:  # Don't play on first load
-        # Play sound based on the latest signal type
-        if latest_signal_type:
-            play_notification_sound(signal_type=latest_signal_type)
-    
-    # Update the stored signals
-    st.session_state.previous_signals = current_signals
-
 # Elite Professional CSS
 st.markdown("""
 <style>
@@ -828,76 +696,34 @@ def get_market_status():
 
 # Main Dashboard
 def main():
-   # Use placeholder to prevent flickering
-   placeholder = st.empty()
+   # Create a container for the entire dashboard to prevent flicker
+   main_container = st.container()
    
-   with placeholder.container():
+   with main_container:
        # Load data
        raw_signals = load_signals()
        status = load_status()
        trades_history = load_trades_history()
-       realtime_prices = load_realtime_prices()
+       realtime_prices = load_realtime_prices()  # NEW: Load real-time prices
        
-       # Check for new signals and play sound if needed
-       check_for_new_signals(raw_signals)
-       
-       # Get market status
-       market_status, status_class = get_market_status()
-       
-       # COMPREHENSIVE CONNECTION CHECK - MULTIPLE SOURCES
-       is_connected = False
-       connection_source = ""
-       
-       # Check status.json timestamp
-       if status and 'timestamp' in status:
+       # Check connection status
+       is_connected = bool(status and 'timestamp' in status)
+       if is_connected:
            try:
                last_update = datetime.fromisoformat(status['timestamp'].replace('Z', '+00:00'))
+               
+               # Ensure timezone aware
                if last_update.tzinfo is None:
                    last_update = last_update.replace(tzinfo=pytz.UTC)
+               
+               # Use pytz.UTC for current time
                now_utc = datetime.now(pytz.UTC)
+               
                time_diff = (now_utc - last_update).total_seconds()
-               if time_diff < 120:
-                   is_connected = True
-                   connection_source = "status"
-           except:
-               pass
-       
-       # Also check if we have recent signals (within last 5 minutes)
-       if not is_connected and raw_signals:
-           try:
-               latest_signal = max(raw_signals, key=lambda x: x['timestamp'])
-               signal_time = datetime.fromisoformat(latest_signal['timestamp'])
-               if signal_time.tzinfo is None:
-                   signal_time = signal_time.replace(tzinfo=pytz.UTC)
-               signal_age = (datetime.now(pytz.UTC) - signal_time).total_seconds()
-               if signal_age < 300:  # 5 minutes
-                   is_connected = True
-                   connection_source = "signals"
-           except:
-               pass
-       
-       # Also check real-time prices
-       if not is_connected and 'last_update' in realtime_prices:
-           try:
-               price_time = datetime.fromisoformat(realtime_prices['last_update'])
-               if price_time.tzinfo is None:
-                   price_time = price_time.replace(tzinfo=pytz.UTC)
-               price_age = (datetime.now(pytz.UTC) - price_time).total_seconds()
-               if price_age < 150:  # 2.5 minutes for price updates
-                   is_connected = True
-                   connection_source = "prices"
-           except:
-               pass
-       
-       # During market hours, if we have recent data, consider it connected
-       if not is_connected and market_status == "MARKET OPEN":
-           # Check if any position has been updated recently
-           if 'positions' in status:
-               for pos in status['positions'].values():
-                   if 'realtime_pnl_pct' in pos:  # This indicates real-time price tracking
-                       is_connected = True
-                       connection_source = "positions"
-                       break
+               is_connected = time_diff < 120
+               
+           except Exception as e:
+               is_connected = False
        
        # Title with connection status
        st.markdown(f"""
@@ -924,6 +750,9 @@ def main():
        
        # Process signals
        all_signals, latest_signals, unique_longs, unique_exits, last_signal_time = process_signals_for_display(raw_signals, status)
+       
+       # Get market status
+       market_status, status_class = get_market_status()
        
        # Top Metrics Row
        col1, col2, col3, col4, col5, col6 = st.columns(6)
@@ -1209,7 +1038,7 @@ def main():
        
        with tab2:
            # Historical Signals
-           st.markdown('<div class="section-header">📜 Historical Signals</div>', unsafe_allow_html=True)
+           st.markdown('<div class="section-header">�� Historical Signals</div>', unsafe_allow_html=True)
            
            # Filter
            hist_filter = st.selectbox("Filter by Asset", ["ALL"] + ASSETS, key="hist_filter")
@@ -1316,16 +1145,12 @@ def main():
            except:
                pass
        
-       # Add connection source to footer for debugging
-       connection_info = f"({'via ' + connection_source if connection_source else ''})" if is_connected else ""
-       
        st.markdown(f"""
        <div style="text-align: center; color: var(--text-tertiary); font-size: 11px; 
             padding: 24px 0; border-top: 1px solid var(--border-color); margin-top: 40px;">
            Last Signal: {last_signal_time.strftime('%H:%M:%S') if last_signal_time else 'N/A'} • 
            Auto-refresh: 5 seconds{price_status} • 
-           {'🟢 Connected' if is_connected else '🔴 Disconnected'} {connection_info} • 
-           🔔 Sound notifications enabled
+           {'🟢 Connected' if is_connected else '🔴 Disconnected'}
        </div>
        """, unsafe_allow_html=True)
    
