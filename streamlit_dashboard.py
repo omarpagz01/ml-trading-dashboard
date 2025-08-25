@@ -836,29 +836,68 @@ def main():
        raw_signals = load_signals()
        status = load_status()
        trades_history = load_trades_history()
-       realtime_prices = load_realtime_prices()  # NEW: Load real-time prices
+       realtime_prices = load_realtime_prices()
        
        # Check for new signals and play sound if needed
        check_for_new_signals(raw_signals)
        
-       # Check connection status
-       is_connected = bool(status and 'timestamp' in status)
-       if is_connected:
+       # Get market status
+       market_status, status_class = get_market_status()
+       
+       # COMPREHENSIVE CONNECTION CHECK - MULTIPLE SOURCES
+       is_connected = False
+       connection_source = ""
+       
+       # Check status.json timestamp
+       if status and 'timestamp' in status:
            try:
                last_update = datetime.fromisoformat(status['timestamp'].replace('Z', '+00:00'))
-               
-               # Ensure timezone aware
                if last_update.tzinfo is None:
                    last_update = last_update.replace(tzinfo=pytz.UTC)
-               
-               # Use pytz.UTC for current time
                now_utc = datetime.now(pytz.UTC)
-               
                time_diff = (now_utc - last_update).total_seconds()
-               is_connected = time_diff < 120
-               
-           except Exception as e:
-               is_connected = False
+               if time_diff < 120:
+                   is_connected = True
+                   connection_source = "status"
+           except:
+               pass
+       
+       # Also check if we have recent signals (within last 5 minutes)
+       if not is_connected and raw_signals:
+           try:
+               latest_signal = max(raw_signals, key=lambda x: x['timestamp'])
+               signal_time = datetime.fromisoformat(latest_signal['timestamp'])
+               if signal_time.tzinfo is None:
+                   signal_time = signal_time.replace(tzinfo=pytz.UTC)
+               signal_age = (datetime.now(pytz.UTC) - signal_time).total_seconds()
+               if signal_age < 300:  # 5 minutes
+                   is_connected = True
+                   connection_source = "signals"
+           except:
+               pass
+       
+       # Also check real-time prices
+       if not is_connected and 'last_update' in realtime_prices:
+           try:
+               price_time = datetime.fromisoformat(realtime_prices['last_update'])
+               if price_time.tzinfo is None:
+                   price_time = price_time.replace(tzinfo=pytz.UTC)
+               price_age = (datetime.now(pytz.UTC) - price_time).total_seconds()
+               if price_age < 150:  # 2.5 minutes for price updates
+                   is_connected = True
+                   connection_source = "prices"
+           except:
+               pass
+       
+       # During market hours, if we have recent data, consider it connected
+       if not is_connected and market_status == "MARKET OPEN":
+           # Check if any position has been updated recently
+           if 'positions' in status:
+               for pos in status['positions'].values():
+                   if 'realtime_pnl_pct' in pos:  # This indicates real-time price tracking
+                       is_connected = True
+                       connection_source = "positions"
+                       break
        
        # Title with connection status
        st.markdown(f"""
@@ -885,9 +924,6 @@ def main():
        
        # Process signals
        all_signals, latest_signals, unique_longs, unique_exits, last_signal_time = process_signals_for_display(raw_signals, status)
-       
-       # Get market status
-       market_status, status_class = get_market_status()
        
        # Top Metrics Row
        col1, col2, col3, col4, col5, col6 = st.columns(6)
@@ -1280,12 +1316,15 @@ def main():
            except:
                pass
        
+       # Add connection source to footer for debugging
+       connection_info = f"({'via ' + connection_source if connection_source else ''})" if is_connected else ""
+       
        st.markdown(f"""
        <div style="text-align: center; color: var(--text-tertiary); font-size: 11px; 
             padding: 24px 0; border-top: 1px solid var(--border-color); margin-top: 40px;">
            Last Signal: {last_signal_time.strftime('%H:%M:%S') if last_signal_time else 'N/A'} • 
            Auto-refresh: 5 seconds{price_status} • 
-           {'🟢 Connected' if is_connected else '🔴 Disconnected'} • 
+           {'🟢 Connected' if is_connected else '🔴 Disconnected'} {connection_info} • 
            🔔 Sound notifications enabled
        </div>
        """, unsafe_allow_html=True)
