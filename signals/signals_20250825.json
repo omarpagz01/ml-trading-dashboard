@@ -108,5 +108,115 @@
       "volume_ratio": 0.020830024363419193
     },
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-25T15:30:03.608764",
+    "symbol": "TSLA",
+    "action": "HOLD",
+    "confidence": 0.5529312612929711,
+    "price": 343.28,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.3761803274190598,
+      "gb_long": 0.4556043722733293,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.536835253238678
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 78.49000753260194,
+      "macd": 3.2906009410297656,
+      "bb_position": 0.9155753660923266,
+      "volume_ratio": 0.003880544855333659
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-25T15:30:04.597946",
+    "symbol": "HOOD",
+    "action": "HOLD",
+    "confidence": 0.44004883086924856,
+    "price": 109.65,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.3126010811327975,
+      "gb_long": 0.11582652569803882,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.5084090828895569
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 61.84808126906117,
+      "macd": 0.09754923848754515,
+      "bb_position": 0.7585922858565449,
+      "volume_ratio": 0.004462197332947803
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-25T15:30:05.569922",
+    "symbol": "COIN",
+    "action": "HOLD",
+    "confidence": 0.5654429972463592,
+    "price": 314.43,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5505179252479023,
+      "gb_long": 0.10633256677985285,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5308929085731506
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 62.67828041015877,
+      "macd": 1.836273375382234,
+      "bb_position": 0.6744494191120713,
+      "volume_ratio": 0.007950216325814424
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-25T15:30:06.551683",
+    "symbol": "PLTR",
+    "action": "HOLD",
+    "confidence": 0.5393313004045677,
+    "price": 156.59,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5113636363636364,
+      "gb_long": 0.02550456376360819,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5698894262313843
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 51.829183825103634,
+      "macd": -2.1964585018511116,
+      "bb_position": 0.5314160590979176,
+      "volume_ratio": 0.003336749642859155
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-25T15:30:07.509610",
+    "symbol": "AAPL",
+    "action": "HOLD",
+    "confidence": 0.5245711819711972,
+    "price": 228.56,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.406674146797569,
+      "gb_long": 0.15025453244509673,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5233579874038696
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 64.27003293084522,
+      "macd": -0.14483703376509993,
+      "bb_position": 0.8540139198794227,
+      "volume_ratio": 0.01446400422487547
+    },
+    "is_realtime": true
   }
 ]
