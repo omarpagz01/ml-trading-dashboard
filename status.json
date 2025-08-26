@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-26T18:53:05.553118+00:00",
+  "timestamp": "2025-08-26T18:54:05.053959+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -10,9 +10,9 @@
       "entry_time": "2025-08-20T14:15:18.654570",
       "last_signal": "HOLD",
       "last_confidence": 0.7591024136564289,
-      "realtime_pnl_pct": 8.0,
-      "realtime_pnl_dollar": 2577.0,
-      "current_price": 347.97
+      "realtime_pnl_pct": 8.01,
+      "realtime_pnl_dollar": 2580.0,
+      "current_price": 348.0
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -30,8 +30,8 @@
       "last_signal": "HOLD",
       "last_confidence": 0.5920681486637556,
       "realtime_pnl_pct": 0.15,
-      "realtime_pnl_dollar": 44.62,
-      "current_price": 306.185
+      "realtime_pnl_dollar": 45.12,
+      "current_price": 306.19
     },
     "PLTR": {
       "symbol": "PLTR",
@@ -40,9 +40,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "HOLD",
       "last_confidence": 0.681815792631853,
-      "realtime_pnl_pct": -1.8,
-      "realtime_pnl_dollar": -295.0,
-      "current_price": 160.895
+      "realtime_pnl_pct": -1.81,
+      "realtime_pnl_dollar": -296.5,
+      "current_price": 160.88
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -51,9 +51,9 @@
       "entry_time": "2025-08-20T17:30:22.955922",
       "last_signal": "HOLD",
       "last_confidence": 0.6682405809997904,
-      "realtime_pnl_pct": 0.57,
-      "realtime_pnl_dollar": 130.0,
-      "current_price": 228.0
+      "realtime_pnl_pct": 0.54,
+      "realtime_pnl_dollar": 122.5,
+      "current_price": 227.925
     }
   },
   "latest_prices": {
@@ -64,11 +64,11 @@
     "AAPL": 227.55
   },
   "realtime_prices": {
-    "TSLA": 347.97,
-    "HOOD": 108.39,
-    "COIN": 306.185,
-    "PLTR": 160.895,
-    "AAPL": 228.0
+    "TSLA": 348.0,
+    "HOOD": 108.47,
+    "COIN": 306.19,
+    "PLTR": 160.88,
+    "AAPL": 227.925
   },
-  "last_price_update": "2025-08-26T18:51:19.019937+00:00"
+  "last_price_update": "2025-08-26T18:53:19.203026+00:00"
 }
