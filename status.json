@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-27T18:18:05.923438+00:00",
+  "timestamp": "2025-08-27T18:19:05.424317+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -10,9 +10,9 @@
       "entry_time": "2025-08-20T14:15:18.654570",
       "last_signal": "HOLD",
       "last_confidence": 0.7527831855403879,
-      "realtime_pnl_pct": 9.21,
-      "realtime_pnl_dollar": 2968.0,
-      "current_price": 351.88
+      "realtime_pnl_pct": 9.13,
+      "realtime_pnl_dollar": 2942.0,
+      "current_price": 351.62
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -30,8 +30,8 @@
       "last_signal": "HOLD",
       "last_confidence": 0.5237135584616774,
       "realtime_pnl_pct": 1.83,
-      "realtime_pnl_dollar": 560.12,
-      "current_price": 311.34
+      "realtime_pnl_dollar": 559.12,
+      "current_price": 311.33
     },
     "PLTR": {
       "symbol": "PLTR",
@@ -40,9 +40,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "HOLD",
       "last_confidence": 0.7368558290034276,
-      "realtime_pnl_pct": -3.35,
-      "realtime_pnl_dollar": -549.5,
-      "current_price": 158.35
+      "realtime_pnl_pct": -3.34,
+      "realtime_pnl_dollar": -547.5,
+      "current_price": 158.37
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -51,9 +51,9 @@
       "entry_time": "2025-08-20T17:30:22.955922",
       "last_signal": "HOLD",
       "last_confidence": 0.6801506663301542,
-      "realtime_pnl_pct": 1.59,
-      "realtime_pnl_dollar": 361.0,
-      "current_price": 230.31
+      "realtime_pnl_pct": 1.55,
+      "realtime_pnl_dollar": 351.0,
+      "current_price": 230.21
     }
   },
   "latest_prices": {
@@ -64,11 +64,11 @@
     "AAPL": 228.005
   },
   "realtime_prices": {
-    "TSLA": 351.88,
-    "HOOD": 105.32,
-    "COIN": 311.34,
-    "PLTR": 158.35,
-    "AAPL": 230.31
+    "TSLA": 351.62,
+    "HOOD": 105.34,
+    "COIN": 311.33,
+    "PLTR": 158.37,
+    "AAPL": 230.21
   },
-  "last_price_update": "2025-08-27T18:16:42.748442+00:00"
+  "last_price_update": "2025-08-27T18:18:42.975538+00:00"
 }
