@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-27T18:41:24.471962+00:00",
+  "timestamp": "2025-08-27T18:41:26.851554+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -20,15 +20,15 @@
       "entry_price": 0.0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_confidence": 0.0
+      "last_confidence": 0.656592387847792
     },
     "COIN": {
       "symbol": "COIN",
       "is_open": true,
       "entry_price": 305.7388,
       "entry_time": "2025-08-19T16:56:26.391163",
-      "last_signal": "LONG",
-      "last_confidence": 0.7954287314093913,
+      "last_signal": "HOLD",
+      "last_confidence": 0.5014680706288904,
       "realtime_pnl_pct": 1.69,
       "realtime_pnl_dollar": 517.12,
       "current_price": 310.91
@@ -57,7 +57,9 @@
     }
   },
   "latest_prices": {
-    "TSLA": 348.28
+    "TSLA": 348.28,
+    "HOOD": 108.33,
+    "COIN": 306.09
   },
   "realtime_prices": {
     "TSLA": 351.62,
