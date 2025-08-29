@@ -149,4 +149,74 @@
       "rsi": 29.662921348314697,
       "macd": -1.2995717526741117,
       "bb_position": 0.27606809512070685,
-      "volume_ratio
+      "volume_ratio": 0.015291960411604603
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-29T15:30:05.907622",
+    "symbol": "COIN",
+    "action": "HOLD",
+    "confidence": 0.6024197684618173,
+    "price": 303.955,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5224108913427608,
+      "gb_long": 0.30900606166610417,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5116221904754639
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 41.578664757472616,
+      "macd": -0.9325121862851233,
+      "bb_position": 0.21625111262838204,
+      "volume_ratio": 0.02076255637166256
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-29T15:30:06.897830",
+    "symbol": "PLTR",
+    "action": "HOLD",
+    "confidence": 0.7909563021101109,
+    "price": 156.61,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5770739502043849,
+      "gb_long": 0.9273857184336933,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5856699347496033
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 31.349911190053234,
+      "macd": -0.8199657930842363,
+      "bb_position": 0.2877518706916969,
+      "volume_ratio": 0.008229074912391192
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-29T15:30:07.886269",
+    "symbol": "AAPL",
+    "action": "HOLD",
+    "confidence": 0.5538531962864166,
+    "price": 232.975,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5810664230910072,
+      "gb_long": 0.019864548372455555,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.527569055557251
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 82.72484416740869,
+      "macd": 1.3152077841077983,
+      "bb_position": 0.8101584665245101,
+      "volume_ratio": 0.03539734767734303
+    },
+    "is_realtime": true
+  }
+]
