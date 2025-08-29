@@ -42,5 +42,49 @@
       "volume_ratio": 0.033934723151731835
     },
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-29T14:30:05.654524",
+    "symbol": "COIN",
+    "action": "HOLD",
+    "confidence": 0.6607298591394044,
+    "price": 303.13,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5941314306211543,
+      "gb_long": 0.440587551369505,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5131848454475403
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 45.03287070854633,
+      "macd": -0.5460978415165414,
+      "bb_position": 0.11496290275729333,
+      "volume_ratio": 0.03232742220278931
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-08-29T14:30:06.912549",
+    "symbol": "PLTR",
+    "action": "HOLD",
+    "confidence": 0.7497131790045409,
+    "price": 156.54,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5644072835377183,
+      "gb_long": 0.7680237792601368,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.6008234024047852
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 27.82245576878877,
+      "macd": -0.7760380970635197,
+      "bb_position": 0.26265022515430886,
+      "volume_ratio": 0.023059773236568125
+    },
+    "is_realtime": true
   }
 ]
