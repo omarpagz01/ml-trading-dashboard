@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-02T17:29:05.772085+00:00",
+  "timestamp": "2025-09-02T17:30:04.289619+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -9,7 +9,7 @@
       "entry_price": 322.2,
       "entry_time": "2025-08-20T14:15:18.654570",
       "last_signal": "HOLD",
-      "last_confidence": 0.6528758645666795,
+      "last_confidence": 0.6384258855354448,
       "realtime_pnl_pct": 2.23,
       "realtime_pnl_dollar": 718.0,
       "current_price": 329.38
@@ -20,7 +20,7 @@
       "entry_price": 0.0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_confidence": 0.5372390541892925
+      "last_confidence": 0.4485009501430315
     },
     "COIN": {
       "symbol": "COIN",
@@ -57,8 +57,8 @@
     }
   },
   "latest_prices": {
-    "TSLA": 329.215,
-    "HOOD": 99.1,
+    "TSLA": 329.77,
+    "HOOD": 100.695,
     "COIN": 302.3,
     "PLTR": 155.92,
     "AAPL": 227.86
