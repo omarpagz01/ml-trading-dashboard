@@ -1,6 +1,6 @@
 """
 Elite Signals Dashboard - Professional Trading Interface
-Enhanced with Real-Time Price Updates and Live P&L Tracking
+Complete with Historical Signals, P&L Tracking, and Performance Analytics
 """
 
 import streamlit as st
@@ -103,23 +103,6 @@ st.markdown("""
    .status-dot.disconnected {
        background: var(--primary-red);
        box-shadow: 0 0 8px var(--primary-red);
-   }
-   
-   /* Live Price Indicator - NEW */
-   .live-price-indicator {
-       display: inline-block;
-       width: 6px;
-       height: 6px;
-       border-radius: 50%;
-       background: var(--primary-green);
-       animation: pulse 2s infinite;
-       margin-left: 4px;
-   }
-   
-   @keyframes pulse {
-       0% { opacity: 1; box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7); }
-       70% { opacity: 1; box-shadow: 0 0 0 6px rgba(52, 199, 89, 0); }
-       100% { opacity: 1; box-shadow: 0 0 0 0 rgba(52, 199, 89, 0); }
    }
    
    /* Metric Cards */
@@ -249,7 +232,7 @@ st.markdown("""
        border-left: 2px solid rgba(255, 255, 255, 0.2);
    }
    
-   /* Live Signal Style */
+   /* Live Signal Style - matching historical */
    .live-signal {
        display: flex;
        justify-content: space-between;
@@ -415,15 +398,10 @@ st.markdown("""
    .trade-row {
        transition: transform 0.15s ease, background 0.15s ease !important;
    }
-   
-   /* Re-enable pulse for live indicator */
-   .live-price-indicator {
-       animation: pulse 2s infinite !important;
-   }
 </style>
 """, unsafe_allow_html=True)
 
-# Set page refresh interval
+# Set page refresh interval - using fragment to prevent flicker
 if 'counter' not in st.session_state:
    st.session_state.counter = 0
 
@@ -512,17 +490,6 @@ def load_position_states():
    if position_file.exists():
        try:
            with open(position_file, 'r') as f:
-               return json.load(f)
-       except:
-           pass
-   return {}
-
-def load_realtime_prices():
-   """Load real-time prices (2-minute updates)"""
-   price_file = Path("realtime_prices.json")
-   if price_file.exists():
-       try:
-           with open(price_file, 'r') as f:
                return json.load(f)
        except:
            pass
@@ -704,9 +671,8 @@ def main():
        raw_signals = load_signals()
        status = load_status()
        trades_history = load_trades_history()
-       realtime_prices = load_realtime_prices()  # NEW: Load real-time prices
        
-       # Check connection status
+       # Check connection status - FIXED VERSION
        is_connected = bool(status and 'timestamp' in status)
        if is_connected:
            try:
@@ -794,22 +760,13 @@ def main():
            """, unsafe_allow_html=True)
        
        with col5:
-           # Calculate total P&L using real-time prices if available
            total_pnl = 0
            if status and 'positions' in status:
                for symbol, pos in status['positions'].items():
-                   if pos['is_open']:
-                       # Try real-time price first, then fall back to latest candle price
-                       current = 0
-                       if 'prices' in realtime_prices and symbol in realtime_prices['prices']:
-                           current = realtime_prices['prices'][symbol]
-                       elif 'realtime_prices' in status and symbol in status['realtime_prices']:
-                           current = status['realtime_prices'][symbol]
-                       elif symbol in status.get('latest_prices', {}):
-                           current = status['latest_prices'][symbol]
-                       
+                   if pos['is_open'] and symbol in status.get('latest_prices', {}):
+                       current = status['latest_prices'][symbol]
                        entry = pos['entry_price']
-                       if entry > 0 and current > 0:
+                       if entry > 0:
                            pnl = ((current - entry) / entry * 100)
                            total_pnl += pnl
            
@@ -832,7 +789,7 @@ def main():
            </div>
            """, unsafe_allow_html=True)
        
-       # Performance Overview
+       # Performance Overview - FIXED: Removed emoji
        st.markdown('<div class="section-header">Portfolio Performance</div>', unsafe_allow_html=True)
        
        perf_col1, perf_col2 = st.columns([1, 5])
@@ -879,7 +836,7 @@ def main():
            col_left, col_right = st.columns([3, 2])
            
            with col_left:
-               # Latest Signals Per Asset
+               # Latest Signals Per Asset - Using Historical Format
                st.markdown('<div class="section-header">🎯 Latest Signal Per Asset</div>', unsafe_allow_html=True)
                
                for symbol in ASSETS:
@@ -902,7 +859,7 @@ def main():
                            action_color = "rgba(255,255,255,0.6)"
                            icon = "⚪"
                        
-                       # Build HTML
+                       # Build HTML using simpler format
                        st.markdown(f"""
                        <div class="live-signal {card_class}">
                            <div class="live-signal-info">
@@ -942,7 +899,7 @@ def main():
                        """, unsafe_allow_html=True)
            
            with col_right:
-               # Current Positions with Real-Time Prices
+               # Current Positions
                st.markdown('<div class="section-header">💼 Current Positions</div>', unsafe_allow_html=True)
                
                if status and 'positions' in status:
@@ -952,29 +909,11 @@ def main():
                            pos = status['positions'][symbol]
                            if pos['is_open']:
                                has_positions = True
-                               
-                               # Get current price - prioritize real-time prices
-                               current = 0
-                               price_is_live = False
-                               
-                               if 'prices' in realtime_prices and symbol in realtime_prices['prices']:
-                                   current = realtime_prices['prices'][symbol]
-                                   price_is_live = True
-                               elif 'realtime_prices' in status and symbol in status['realtime_prices']:
-                                   current = status['realtime_prices'][symbol]
-                                   price_is_live = True
-                               elif symbol in status.get('latest_prices', {}):
-                                   current = status['latest_prices'][symbol]
-                               
+                               current = status.get('latest_prices', {}).get(symbol, 0)
                                entry = pos['entry_price']
                                if entry > 0 and current > 0:
                                    pnl = ((current - entry) / entry * 100)
                                    pnl_color = "#34C759" if pnl > 0 else "#FF453A"
-                                   
-                                   # Add live indicator if using real-time price
-                                   price_display = f"${current:.2f}"
-                                   if price_is_live:
-                                       price_display += '<span class="live-price-indicator"></span>'
                                    
                                    st.markdown(f"""
                                    <div class="signal-card" style="border-left: 2px solid {pnl_color};">
@@ -988,7 +927,7 @@ def main():
                                            </div>
                                            <div>
                                                <span style="color: var(--text-tertiary);">Current:</span>
-                                               <span style="color: var(--text-primary);"> {price_display}</span>
+                                               <span style="color: var(--text-primary);"> ${current:.2f}</span>
                                            </div>
                                            <div>
                                                <span style="color: var(--text-tertiary);">P&L:</span>
@@ -1008,37 +947,10 @@ def main():
                            No open positions
                        </div>
                        """, unsafe_allow_html=True)
-               
-               # Add price update status
-               if 'last_update' in realtime_prices:
-                   try:
-                       price_update_time = datetime.fromisoformat(realtime_prices['last_update'])
-                       if price_update_time.tzinfo is None:
-                           price_update_time = price_update_time.replace(tzinfo=pytz.UTC)
-                       
-                       now_utc = datetime.now(pytz.UTC)
-                       seconds_ago = (now_utc - price_update_time).total_seconds()
-                       
-                       if seconds_ago < 150:  # Less than 2.5 minutes
-                           update_text = f"Prices updated {int(seconds_ago)}s ago"
-                           update_color = "#34C759"
-                       else:
-                           update_text = f"Prices updated {int(seconds_ago/60)}m ago"
-                           update_color = "#FF9500"
-                       
-                       st.markdown(f"""
-                       <div style="text-align: center; margin-top: 16px; padding: 8px; 
-                                   background: var(--bg-secondary); border-radius: 8px; 
-                                   font-size: 11px; color: {update_color};">
-                           {update_text}
-                       </div>
-                       """, unsafe_allow_html=True)
-                   except:
-                       pass
        
        with tab2:
            # Historical Signals
-           st.markdown('<div class="section-header">�� Historical Signals</div>', unsafe_allow_html=True)
+           st.markdown('<div class="section-header">📜 Historical Signals</div>', unsafe_allow_html=True)
            
            # Filter
            hist_filter = st.selectbox("Filter by Asset", ["ALL"] + ASSETS, key="hist_filter")
@@ -1132,29 +1044,17 @@ def main():
                </div>
                """, unsafe_allow_html=True)
        
-       # Footer with real-time price indicator
-       price_status = ""
-       if 'last_update' in realtime_prices:
-           try:
-               price_update = datetime.fromisoformat(realtime_prices['last_update'])
-               if price_update.tzinfo is None:
-                   price_update = price_update.replace(tzinfo=pytz.UTC)
-               seconds_ago = (datetime.now(pytz.UTC) - price_update).total_seconds()
-               if seconds_ago < 150:
-                   price_status = " • 🟢 Real-time prices active"
-           except:
-               pass
-       
+       # Footer
        st.markdown(f"""
        <div style="text-align: center; color: var(--text-tertiary); font-size: 11px; 
             padding: 24px 0; border-top: 1px solid var(--border-color); margin-top: 40px;">
            Last Signal: {last_signal_time.strftime('%H:%M:%S') if last_signal_time else 'N/A'} • 
-           Auto-refresh: 5 seconds{price_status} • 
+           Auto-refresh: 5 seconds • 
            {'🟢 Connected' if is_connected else '🔴 Disconnected'}
        </div>
        """, unsafe_allow_html=True)
    
-   # Auto-refresh
+   # Auto-refresh with fragment to reduce flicker
    time.sleep(5)
    st.session_state.counter += 1
    st.rerun()
