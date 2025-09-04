@@ -262,5 +262,27 @@
       "volume_ratio": 0.05243563466612275
     },
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-09-04T16:30:06.986084",
+    "symbol": "COIN",
+    "action": "HOLD",
+    "confidence": 0.5608553263078743,
+    "price": 303.395,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.4904978199156353,
+      "gb_long": 0.1809399387666915,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5197305083274841
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 36.0719640179909,
+      "macd": -1.2403427001335672,
+      "bb_position": 0.3690689971238165,
+      "volume_ratio": 0.05010705870526373
+    },
+    "is_realtime": true
   }
 ]
