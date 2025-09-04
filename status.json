@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-04T18:30:10.527164+00:00",
+  "timestamp": "2025-09-04T18:31:10.028527+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -11,8 +11,8 @@
       "last_signal": "HOLD",
       "last_confidence": 0.5277075934657028,
       "realtime_pnl_pct": 4.17,
-      "realtime_pnl_dollar": 1342.5,
-      "current_price": 335.625
+      "realtime_pnl_dollar": 1344.0,
+      "current_price": 335.64
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -29,9 +29,9 @@
       "entry_time": "2025-08-19T16:56:26.391163",
       "last_signal": "HOLD",
       "last_confidence": 0.4843026506360717,
-      "realtime_pnl_pct": -0.06,
-      "realtime_pnl_dollar": -18.38,
-      "current_price": 305.555
+      "realtime_pnl_pct": -0.07,
+      "realtime_pnl_dollar": -20.88,
+      "current_price": 305.53
     },
     "PLTR": {
       "symbol": "PLTR",
@@ -40,9 +40,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "HOLD",
       "last_confidence": 0.7571345349774962,
-      "realtime_pnl_pct": -5.63,
-      "realtime_pnl_dollar": -922.0,
-      "current_price": 154.625
+      "realtime_pnl_pct": -5.56,
+      "realtime_pnl_dollar": -910.5,
+      "current_price": 154.74
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -51,9 +51,9 @@
       "entry_time": "2025-08-20T17:30:22.955922",
       "last_signal": "HOLD",
       "last_confidence": 0.605387709912703,
-      "realtime_pnl_pct": 5.04,
-      "realtime_pnl_dollar": 1142.0,
-      "current_price": 238.12
+      "realtime_pnl_pct": 5.03,
+      "realtime_pnl_dollar": 1141.0,
+      "current_price": 238.11
     }
   },
   "latest_prices": {
@@ -64,11 +64,11 @@
     "AAPL": 236.94
   },
   "realtime_prices": {
-    "TSLA": 335.625,
-    "HOOD": 103.95,
-    "COIN": 305.555,
-    "PLTR": 154.625,
-    "AAPL": 238.12
+    "TSLA": 335.64,
+    "HOOD": 103.85,
+    "COIN": 305.53,
+    "PLTR": 154.74,
+    "AAPL": 238.11
   },
-  "last_price_update": "2025-09-04T18:28:47.144251+00:00"
+  "last_price_update": "2025-09-04T18:30:47.323581+00:00"
 }
