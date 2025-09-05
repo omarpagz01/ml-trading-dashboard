@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-05T14:30:04.076577+00:00",
+  "timestamp": "2025-09-05T14:30:05.426124+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -16,11 +16,14 @@
     },
     "HOOD": {
       "symbol": "HOOD",
-      "is_open": false,
-      "entry_price": 0.0,
-      "entry_time": null,
-      "last_signal": "HOLD",
-      "last_confidence": 0.0
+      "is_open": true,
+      "entry_price": 97.94,
+      "entry_time": "2025-09-05T14:30:05.424977",
+      "last_signal": "LONG",
+      "last_confidence": 0.743724677926201,
+      "realtime_pnl_pct": 0.0,
+      "realtime_pnl_dollar": 0.0,
+      "current_price": 97.94
     },
     "COIN": {
       "symbol": "COIN",
@@ -57,7 +60,8 @@
     }
   },
   "latest_prices": {
-    "TSLA": 332.98
+    "TSLA": 332.98,
+    "HOOD": 101.63
   },
   "realtime_prices": {
     "TSLA": 347.935,
