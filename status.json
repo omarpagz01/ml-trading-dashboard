@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-05T19:06:05.680841+00:00",
+  "timestamp": "2025-09-05T19:07:05.182063+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -21,9 +21,9 @@
       "entry_time": "2025-09-05T14:30:05.424977",
       "last_signal": "HOLD",
       "last_confidence": 0.5230539394973928,
-      "realtime_pnl_pct": 2.33,
-      "realtime_pnl_dollar": 228.0,
-      "current_price": 100.22
+      "realtime_pnl_pct": 2.61,
+      "realtime_pnl_dollar": 255.5,
+      "current_price": 100.495
     },
     "COIN": {
       "symbol": "COIN",
@@ -32,9 +32,9 @@
       "entry_time": "2025-08-19T16:56:26.391163",
       "last_signal": "HOLD",
       "last_confidence": 0.5888270702092734,
-      "realtime_pnl_pct": -2.28,
-      "realtime_pnl_dollar": -696.88,
-      "current_price": 298.77
+      "realtime_pnl_pct": -2.03,
+      "realtime_pnl_dollar": -619.88,
+      "current_price": 299.54
     },
     "PLTR": {
       "symbol": "PLTR",
@@ -43,9 +43,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "HOLD",
       "last_confidence": 0.41582925888229716,
-      "realtime_pnl_pct": -6.37,
-      "realtime_pnl_dollar": -1043.5,
-      "current_price": 153.41
+      "realtime_pnl_pct": -6.2,
+      "realtime_pnl_dollar": -1016.5,
+      "current_price": 153.68
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -55,8 +55,8 @@
       "last_signal": "HOLD",
       "last_confidence": 0.6152946471360761,
       "realtime_pnl_pct": 5.82,
-      "realtime_pnl_dollar": 1320.5,
-      "current_price": 239.905
+      "realtime_pnl_dollar": 1319.0,
+      "current_price": 239.89
     }
   },
   "latest_prices": {
@@ -68,10 +68,10 @@
   },
   "realtime_prices": {
     "TSLA": 349.26,
-    "HOOD": 100.22,
-    "COIN": 298.77,
-    "PLTR": 153.41,
-    "AAPL": 239.905
+    "HOOD": 100.495,
+    "COIN": 299.54,
+    "PLTR": 153.68,
+    "AAPL": 239.89
   },
-  "last_price_update": "2025-09-05T19:04:08.959740+00:00"
+  "last_price_update": "2025-09-05T19:06:09.148534+00:00"
 }
