@@ -1,0 +1,77 @@
+{
+  "timestamp": "2025-09-05T17:36:05.638437+00:00",
+  "market_open": true,
+  "session_type": "MARKET",
+  "positions": {
+    "TSLA": {
+      "symbol": "TSLA",
+      "is_open": true,
+      "entry_price": 322.2,
+      "entry_time": "2025-08-20T14:15:18.654570",
+      "last_signal": "HOLD",
+      "last_confidence": 0.47567255593237234,
+      "realtime_pnl_pct": 9.32,
+      "realtime_pnl_dollar": 3002.0,
+      "current_price": 352.22
+    },
+    "HOOD": {
+      "symbol": "HOOD",
+      "is_open": true,
+      "entry_price": 97.94,
+      "entry_time": "2025-09-05T14:30:05.424977",
+      "last_signal": "HOLD",
+      "last_confidence": 0.6632665851156678,
+      "realtime_pnl_pct": 1.9,
+      "realtime_pnl_dollar": 186.0,
+      "current_price": 99.8
+    },
+    "COIN": {
+      "symbol": "COIN",
+      "is_open": true,
+      "entry_price": 305.7388,
+      "entry_time": "2025-08-19T16:56:26.391163",
+      "last_signal": "HOLD",
+      "last_confidence": 0.5917716660396743,
+      "realtime_pnl_pct": -2.65,
+      "realtime_pnl_dollar": -810.88,
+      "current_price": 297.63
+    },
+    "PLTR": {
+      "symbol": "PLTR",
+      "is_open": true,
+      "entry_price": 163.845,
+      "entry_time": "2025-08-19T16:13:09.801014",
+      "last_signal": "HOLD",
+      "last_confidence": 0.6942682747062839,
+      "realtime_pnl_pct": -6.31,
+      "realtime_pnl_dollar": -1034.5,
+      "current_price": 153.5
+    },
+    "AAPL": {
+      "symbol": "AAPL",
+      "is_open": true,
+      "entry_price": 226.7,
+      "entry_time": "2025-08-20T17:30:22.955922",
+      "last_signal": "HOLD",
+      "last_confidence": 0.6069063060728556,
+      "realtime_pnl_pct": 5.63,
+      "realtime_pnl_dollar": 1277.0,
+      "current_price": 239.47
+    }
+  },
+  "latest_prices": {
+    "TSLA": 334.86,
+    "HOOD": 104.53,
+    "COIN": 306.6,
+    "PLTR": 154.42,
+    "AAPL": 238.13
+  },
+  "realtime_prices": {
+    "TSLA": 352.22,
+    "HOOD": 99.8,
+    "COIN": 297.63,
+    "PLTR": 153.5,
+    "AAPL": 239.47
+  },
+  "last_price_update": "2025-09-05T17:36:00.670773+00:00"
+}
