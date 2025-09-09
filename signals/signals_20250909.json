@@ -108,5 +108,27 @@
       "volume_ratio": 0.033093259384484555
     },
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-09-09T15:30:03.828794",
+    "symbol": "TSLA",
+    "action": "HOLD",
+    "confidence": 0.7822109405762967,
+    "price": 346.38,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.6635187074829932,
+      "gb_long": 0.9276029160482043,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.5903933048248291
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 66.63332411092428,
+      "macd": 2.263338708671995,
+      "bb_position": 0.6052902965732173,
+      "volume_ratio": 0.0075367161719070725
+    },
+    "is_realtime": true
   }
 ]
