@@ -86,5 +86,27 @@
       "volume_ratio": 0.013540035536474416
     },
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-09-09T14:30:09.203596",
+    "symbol": "AAPL",
+    "action": "HOLD",
+    "confidence": 0.8220658258493455,
+    "price": 236.37,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.6884278849879872,
+      "gb_long": 0.9427894466136781,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5270935297012329
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 40.49661399548539,
+      "macd": 0.8690261770633185,
+      "bb_position": 0.024104149143913668,
+      "volume_ratio": 0.033093259384484555
+    },
+    "is_realtime": true
   }
 ]
