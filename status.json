@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-09T17:31:08.231995+00:00",
+  "timestamp": "2025-09-09T17:32:05.733059+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -10,9 +10,9 @@
       "entry_time": "2025-08-20T14:15:18.654570",
       "last_signal": "HOLD",
       "last_confidence": 0.7985123119291038,
-      "realtime_pnl_pct": 7.74,
-      "realtime_pnl_dollar": 2494.0,
-      "current_price": 347.14
+      "realtime_pnl_pct": 7.62,
+      "realtime_pnl_dollar": 2456.0,
+      "current_price": 346.76
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -21,9 +21,9 @@
       "entry_time": "2025-09-05T14:30:05.424977",
       "last_signal": "HOLD",
       "last_confidence": 0.5153205971213903,
-      "realtime_pnl_pct": 17.56,
-      "realtime_pnl_dollar": 1720.0,
-      "current_price": 115.14
+      "realtime_pnl_pct": 17.37,
+      "realtime_pnl_dollar": 1701.0,
+      "current_price": 114.95
     },
     "COIN": {
       "symbol": "COIN",
@@ -43,9 +43,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "HOLD",
       "last_confidence": 0.5692866061605757,
-      "realtime_pnl_pct": -1.32,
-      "realtime_pnl_dollar": -216.0,
-      "current_price": 161.685
+      "realtime_pnl_pct": -1.3,
+      "realtime_pnl_dollar": -213.0,
+      "current_price": 161.715
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -55,8 +55,8 @@
       "last_signal": "HOLD",
       "last_confidence": 0.7874471895118615,
       "realtime_pnl_pct": 4.87,
-      "realtime_pnl_dollar": 1104.0,
-      "current_price": 237.74
+      "realtime_pnl_dollar": 1105.0,
+      "current_price": 237.75
     }
   },
   "latest_prices": {
@@ -67,11 +67,11 @@
     "AAPL": 237.76
   },
   "realtime_prices": {
-    "TSLA": 347.14,
-    "HOOD": 115.14,
+    "TSLA": 346.76,
+    "HOOD": 114.95,
     "COIN": 314.32,
-    "PLTR": 161.685,
-    "AAPL": 237.74
+    "PLTR": 161.715,
+    "AAPL": 237.75
   },
-  "last_price_update": "2025-09-09T17:29:19.171278+00:00"
+  "last_price_update": "2025-09-09T17:31:19.341264+00:00"
 }
