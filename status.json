@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-10T14:30:04.133778+00:00",
+  "timestamp": "2025-09-10T14:30:05.355890+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -19,8 +19,8 @@
       "is_open": true,
       "entry_price": 97.94,
       "entry_time": "2025-09-05T14:30:05.424977",
-      "last_signal": "LONG",
-      "last_confidence": 0.743724677926201,
+      "last_signal": "HOLD",
+      "last_confidence": 0.459519996472428,
       "realtime_pnl_pct": 24.88,
       "realtime_pnl_dollar": 2437.0,
       "current_price": 122.31
@@ -60,7 +60,8 @@
     }
   },
   "latest_prices": {
-    "TSLA": 345.89
+    "TSLA": 345.89,
+    "HOOD": 114.88
   },
   "realtime_prices": {
     "TSLA": 349.565,
