@@ -1,0 +1,90 @@
+[
+  {
+    "timestamp": "2025-09-15T14:30:03.396213",
+    "symbol": "TSLA",
+    "action": "HOLD",
+    "confidence": 0.7107338289058598,
+    "price": 416.5,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.4944447889500628,
+      "gb_long": 0.7835773927114698,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5089190006256104
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 93.02414601920013,
+      "macd": 14.587043470550327,
+      "bb_position": 1.0513525075417411,
+      "volume_ratio": 0.012564770750675915
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-09-15T14:30:04.619153",
+    "symbol": "HOOD",
+    "action": "HOLD",
+    "confidence": 0.5684260901659814,
+    "price": 113.825,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.613383845124361,
+      "gb_long": 0.1487733014949476,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.5827420949935913
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 37.21821607224062,
+      "macd": 0.7053417153045558,
+      "bb_position": 0.04338101142257782,
+      "volume_ratio": 0.018501858603507455
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-09-15T14:30:06.036207",
+    "symbol": "COIN",
+    "action": "HOLD",
+    "confidence": 0.6161049488827706,
+    "price": 324.34,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.6137854636591479,
+      "gb_long": 0.2212130452539479,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.529883861541748
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 63.70339296181979,
+      "macd": 3.65482985378668,
+      "bb_position": 0.751550008660373,
+      "volume_ratio": 0.013681466334497835
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-09-15T14:30:07.316874",
+    "symbol": "PLTR",
+    "action": "HOLD",
+    "confidence": 0.8206855253243566,
+    "price": 167.96,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.7059256296440823,
+      "gb_long": 0.9756950753865312,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.6484389305114746
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 54.80102724938071,
+      "macd": 2.5594631574015523,
+      "bb_position": 0.6111424600688078,
+      "volume_ratio": 0.013238477437897689
+    },
+    "is_realtime": true
+  }
+]
