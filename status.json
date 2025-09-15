@@ -1,0 +1,77 @@
+{
+  "timestamp": "2025-09-15T18:12:05.329678+00:00",
+  "market_open": true,
+  "session_type": "MARKET",
+  "positions": {
+    "TSLA": {
+      "symbol": "TSLA",
+      "is_open": true,
+      "entry_price": 322.2,
+      "entry_time": "2025-08-20T14:15:18.654570",
+      "last_signal": "HOLD",
+      "last_confidence": 0.6692874266962403,
+      "realtime_pnl_pct": 27.68,
+      "realtime_pnl_dollar": 8919.0,
+      "current_price": 411.39
+    },
+    "HOOD": {
+      "symbol": "HOOD",
+      "is_open": true,
+      "entry_price": 97.94,
+      "entry_time": "2025-09-05T14:30:05.424977",
+      "last_signal": "HOLD",
+      "last_confidence": 0.7108188458031537,
+      "realtime_pnl_pct": 17.28,
+      "realtime_pnl_dollar": 1692.0,
+      "current_price": 114.86
+    },
+    "COIN": {
+      "symbol": "COIN",
+      "is_open": true,
+      "entry_price": 305.7388,
+      "entry_time": "2025-08-19T16:56:26.391163",
+      "last_signal": "HOLD",
+      "last_confidence": 0.5939507492089368,
+      "realtime_pnl_pct": 6.69,
+      "realtime_pnl_dollar": 2045.62,
+      "current_price": 326.195
+    },
+    "PLTR": {
+      "symbol": "PLTR",
+      "is_open": true,
+      "entry_price": 163.845,
+      "entry_time": "2025-08-19T16:13:09.801014",
+      "last_signal": "HOLD",
+      "last_confidence": 0.8115161665903211,
+      "realtime_pnl_pct": 4.06,
+      "realtime_pnl_dollar": 664.5,
+      "current_price": 170.49
+    },
+    "AAPL": {
+      "symbol": "AAPL",
+      "is_open": true,
+      "entry_price": 226.7,
+      "entry_time": "2025-08-20T17:30:22.955922",
+      "last_signal": "HOLD",
+      "last_confidence": 0.5447399499682886,
+      "realtime_pnl_pct": 4.13,
+      "realtime_pnl_dollar": 936.5,
+      "current_price": 236.065
+    }
+  },
+  "latest_prices": {
+    "TSLA": 417.62,
+    "HOOD": 115.01,
+    "COIN": 323.7,
+    "PLTR": 170.27,
+    "AAPL": 235.77
+  },
+  "realtime_prices": {
+    "TSLA": 411.39,
+    "HOOD": 114.86,
+    "COIN": 326.195,
+    "PLTR": 170.49,
+    "AAPL": 236.065
+  },
+  "last_price_update": "2025-09-15T18:11:19.352880+00:00"
+}
