@@ -394,5 +394,27 @@
       "volume_ratio": 0.013872865972665304
     },
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-09-17T17:30:07.229905",
+    "symbol": "PLTR",
+    "action": "HOLD",
+    "confidence": 0.653133101797564,
+    "price": 164.87,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.4719437468797678,
+      "gb_long": 0.5151718907761104,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5957990884780884
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 29.301868239921276,
+      "macd": 0.10750720250038626,
+      "bb_position": 0.06355109178043411,
+      "volume_ratio": 0.01037757568530757
+    },
+    "is_realtime": true
   }
 ]
