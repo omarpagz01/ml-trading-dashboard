@@ -460,5 +460,27 @@
       "volume_ratio": 0.013450492451634329
     },
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-09-17T18:30:05.030073",
+    "symbol": "HOOD",
+    "action": "HOLD",
+    "confidence": 0.4234711713304803,
+    "price": 116.99,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.33129283678421617,
+      "gb_long": 0.04116552293084539,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.48613646626472473
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 59.7965898893209,
+      "macd": 0.4803520536258077,
+      "bb_position": 0.6716671863942352,
+      "volume_ratio": 0.0389235572798773
+    },
+    "is_realtime": true
   }
 ]
