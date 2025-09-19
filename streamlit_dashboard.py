@@ -27,7 +27,7 @@ ASSETS = ['TSLA', 'HOOD', 'COIN', 'PLTR', 'AAPL']
 # Set timezone
 ET = pytz.timezone('US/Eastern')
 
-# GitHub Raw URL base - CRITICAL: This fetches directly from GitHub
+# GitHub Raw URL base - UPDATE WITH YOUR REPO
 GITHUB_RAW_BASE = "https://raw.githubusercontent.com/omarpagz01/ml-trading-dashboard/main"
 
 # Initialize session state for tracking signals
@@ -507,6 +507,31 @@ st.markdown("""
    .live-price-indicator {
        animation: pulse 2s infinite !important;
    }
+   
+   /* Price Display */
+   .price-display {
+       display: flex;
+       align-items: center;
+       gap: 8px;
+       padding: 8px 12px;
+       background: var(--bg-secondary);
+       border-radius: 8px;
+       margin-bottom: 8px;
+   }
+   
+   .price-label {
+       color: var(--text-tertiary);
+       font-size: 11px;
+       font-weight: 600;
+       text-transform: uppercase;
+       min-width: 60px;
+   }
+   
+   .price-value {
+       color: var(--text-primary);
+       font-size: 14px;
+       font-weight: 600;
+   }
 </style>
 """, unsafe_allow_html=True)
 
@@ -770,7 +795,7 @@ def main():
             <div class="metric-card">
                 <div class="metric-label">Signals Today</div>
                 <div class="metric-value">{len(all_signals)}</div>
-                <div class="metric-delta metric-delta-positive">↑ {unique_longs} longs</div>
+                <div class="metric-delta metric-delta-positive">↗ {unique_longs} longs</div>
             </div>
             """, unsafe_allow_html=True)
         
@@ -915,6 +940,34 @@ def main():
                             </div>
                         </div>
                         """, unsafe_allow_html=True)
+                
+                # Add Latest Prices Section
+                st.markdown('<div class="section-header">💵 Latest Prices</div>', unsafe_allow_html=True)
+                
+                for symbol in ASSETS:
+                    price = 0
+                    price_is_live = False
+                    
+                    # Get the most recent price
+                    if 'prices' in realtime_prices and symbol in realtime_prices['prices']:
+                        price = realtime_prices['prices'][symbol]
+                        price_is_live = True
+                    elif 'realtime_prices' in status and symbol in status['realtime_prices']:
+                        price = status['realtime_prices'][symbol]
+                        price_is_live = True
+                    elif symbol in status.get('latest_prices', {}):
+                        price = status['latest_prices'][symbol]
+                    
+                    price_display = f"${price:.2f}" if price > 0 else "N/A"
+                    if price_is_live and price > 0:
+                        price_display += '<span class="live-price-indicator"></span>'
+                    
+                    st.markdown(f"""
+                    <div class="price-display">
+                        <span class="price-label">{symbol}</span>
+                        <span class="price-value">{price_display}</span>
+                    </div>
+                    """, unsafe_allow_html=True)
             
             with col_right:
                 st.markdown('<div class="section-header">💼 Current Positions</div>', unsafe_allow_html=True)
@@ -942,6 +995,7 @@ def main():
                                 entry = pos['entry_price']
                                 if entry > 0 and current > 0:
                                     pnl = ((current - entry) / entry * 100)
+                                    pnl_dollar = (current - entry) * 100  # Assuming 100 shares
                                     pnl_color = "#34C759" if pnl > 0 else "#FF453A"
                                     
                                     price_display = f"${current:.2f}"
@@ -963,8 +1017,12 @@ def main():
                                                 <span style="color: var(--text-primary);"> {price_display}</span>
                                             </div>
                                             <div>
-                                                <span style="color: var(--text-tertiary);">P&L:</span>
+                                                <span style="color: var(--text-tertiary);">P&L %:</span>
                                                 <span style="color: {pnl_color}; font-weight: 600;"> {pnl:+.2f}%</span>
+                                            </div>
+                                            <div>
+                                                <span style="color: var(--text-tertiary);">P&L $:</span>
+                                                <span style="color: {pnl_color}; font-weight: 600;"> ${pnl_dollar:+.2f}</span>
                                             </div>
                                             <div>
                                                 <span style="color: var(--text-tertiary);">Conf:</span>
