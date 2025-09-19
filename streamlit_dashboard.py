@@ -737,7 +737,7 @@ def main():
                     last_update = last_update.replace(tzinfo=pytz.UTC)
                 now_utc = datetime.now(pytz.UTC)
                 time_diff = (now_utc - last_update).total_seconds()
-                is_connected = time_diff < 90  # 90 second threshold
+                is_connected = time_diff < 380  # 90 second threshold
             except:
                 is_connected = False
         
@@ -760,7 +760,7 @@ def main():
                 </div>
             </div>
             """, unsafe_allow_html=True)
-            time.sleep(3)
+            time.sleep(25)
             st.rerun()
             return
         
