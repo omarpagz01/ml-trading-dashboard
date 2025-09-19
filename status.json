@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-19T18:41:05.504922+00:00",
+  "timestamp": "2025-09-19T18:42:05.006000+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -10,9 +10,9 @@
       "entry_time": "2025-08-20T14:15:18.654570",
       "last_signal": "HOLD",
       "last_confidence": 0.6580498748787742,
-      "realtime_pnl_pct": 32.22,
-      "realtime_pnl_dollar": 10382.0,
-      "current_price": 426.02
+      "realtime_pnl_pct": 32.2,
+      "realtime_pnl_dollar": 10376.0,
+      "current_price": 425.96
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -21,9 +21,9 @@
       "entry_time": "2025-09-05T14:30:05.424977",
       "last_signal": "HOLD",
       "last_confidence": 0.6515132539902369,
-      "realtime_pnl_pct": 26.38,
-      "realtime_pnl_dollar": 2583.5,
-      "current_price": 123.775
+      "realtime_pnl_pct": 26.31,
+      "realtime_pnl_dollar": 2577.0,
+      "current_price": 123.71
     },
     "COIN": {
       "symbol": "COIN",
@@ -43,9 +43,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "HOLD",
       "last_confidence": 0.5657948881960233,
-      "realtime_pnl_pct": 11.27,
-      "realtime_pnl_dollar": 1846.5,
-      "current_price": 182.31
+      "realtime_pnl_pct": 11.17,
+      "realtime_pnl_dollar": 1829.5,
+      "current_price": 182.14
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -55,8 +55,8 @@
       "last_signal": "HOLD",
       "last_confidence": 0.7465746807932427,
       "realtime_pnl_pct": 8.47,
-      "realtime_pnl_dollar": 1919.5,
-      "current_price": 245.895
+      "realtime_pnl_dollar": 1920.0,
+      "current_price": 245.9
     }
   },
   "latest_prices": {
@@ -67,11 +67,11 @@
     "AAPL": 237.73
   },
   "realtime_prices": {
-    "TSLA": 426.02,
-    "HOOD": 123.775,
+    "TSLA": 425.96,
+    "HOOD": 123.71,
     "COIN": 341.53,
-    "PLTR": 182.31,
-    "AAPL": 245.895
+    "PLTR": 182.14,
+    "AAPL": 245.9
   },
-  "last_price_update": "2025-09-19T18:39:13.871962+00:00"
+  "last_price_update": "2025-09-19T18:41:14.063576+00:00"
 }
