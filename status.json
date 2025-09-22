@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-22T17:22:05.667230+00:00",
+  "timestamp": "2025-09-22T17:23:05.168506+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -10,9 +10,9 @@
       "entry_time": "2025-08-20T14:15:18.654570",
       "last_signal": "HOLD",
       "last_confidence": 0.5359838066365278,
-      "realtime_pnl_pct": 33.67,
-      "realtime_pnl_dollar": 10848.0,
-      "current_price": 430.68
+      "realtime_pnl_pct": 33.6,
+      "realtime_pnl_dollar": 10824.5,
+      "current_price": 430.445
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -21,9 +21,9 @@
       "entry_time": "2025-09-05T14:30:05.424977",
       "last_signal": "HOLD",
       "last_confidence": 0.6196193258660403,
-      "realtime_pnl_pct": 26.6,
-      "realtime_pnl_dollar": 2605.0,
-      "current_price": 123.99
+      "realtime_pnl_pct": 26.75,
+      "realtime_pnl_dollar": 2620.0,
+      "current_price": 124.14
     },
     "COIN": {
       "symbol": "COIN",
@@ -43,9 +43,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "HOLD",
       "last_confidence": 0.6919508010754498,
-      "realtime_pnl_pct": 9.66,
-      "realtime_pnl_dollar": 1582.5,
-      "current_price": 179.67
+      "realtime_pnl_pct": 9.65,
+      "realtime_pnl_dollar": 1580.5,
+      "current_price": 179.65
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -55,8 +55,8 @@
       "last_signal": "HOLD",
       "last_confidence": 0.7753320592851961,
       "realtime_pnl_pct": 12.2,
-      "realtime_pnl_dollar": 2765.5,
-      "current_price": 254.355
+      "realtime_pnl_dollar": 2766.0,
+      "current_price": 254.36
     }
   },
   "latest_prices": {
@@ -67,11 +67,11 @@
     "AAPL": 253.71
   },
   "realtime_prices": {
-    "TSLA": 430.68,
-    "HOOD": 123.99,
+    "TSLA": 430.445,
+    "HOOD": 124.14,
     "COIN": 330.605,
-    "PLTR": 179.67,
-    "AAPL": 254.355
+    "PLTR": 179.65,
+    "AAPL": 254.36
   },
-  "last_price_update": "2025-09-22T17:20:15.780507+00:00"
+  "last_price_update": "2025-09-22T17:22:16.033016+00:00"
 }
