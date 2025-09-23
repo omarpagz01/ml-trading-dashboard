@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-23T15:01:05.434891+00:00",
+  "timestamp": "2025-09-23T15:02:05.936196+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -10,9 +10,9 @@
       "entry_time": "2025-08-20T14:15:18.654570",
       "last_signal": "HOLD",
       "last_confidence": 0.5295031964770466,
-      "realtime_pnl_pct": 34.26,
-      "realtime_pnl_dollar": 11039.0,
-      "current_price": 432.59
+      "realtime_pnl_pct": 34.06,
+      "realtime_pnl_dollar": 10975.0,
+      "current_price": 431.95
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -21,9 +21,9 @@
       "entry_time": "2025-09-05T14:30:05.424977",
       "last_signal": "HOLD",
       "last_confidence": 0.660755651060599,
-      "realtime_pnl_pct": 27.9,
-      "realtime_pnl_dollar": 2733.0,
-      "current_price": 125.27
+      "realtime_pnl_pct": 27.71,
+      "realtime_pnl_dollar": 2714.0,
+      "current_price": 125.08
     },
     "COIN": {
       "symbol": "COIN",
@@ -43,9 +43,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "HOLD",
       "last_confidence": 0.711033648163883,
-      "realtime_pnl_pct": 11.52,
-      "realtime_pnl_dollar": 1887.5,
-      "current_price": 182.72
+      "realtime_pnl_pct": 11.18,
+      "realtime_pnl_dollar": 1832.0,
+      "current_price": 182.165
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -54,9 +54,9 @@
       "entry_time": "2025-08-20T17:30:22.955922",
       "last_signal": "HOLD",
       "last_confidence": 0.731939362200921,
-      "realtime_pnl_pct": 12.63,
-      "realtime_pnl_dollar": 2863.0,
-      "current_price": 255.33
+      "realtime_pnl_pct": 12.66,
+      "realtime_pnl_dollar": 2871.0,
+      "current_price": 255.41
     }
   },
   "latest_prices": {
@@ -67,11 +67,11 @@
     "AAPL": 253.605
   },
   "realtime_prices": {
-    "TSLA": 432.59,
-    "HOOD": 125.27,
+    "TSLA": 431.95,
+    "HOOD": 125.08,
     "COIN": 331.05,
-    "PLTR": 182.72,
-    "AAPL": 255.33
+    "PLTR": 182.165,
+    "AAPL": 255.41
   },
-  "last_price_update": "2025-09-23T14:59:14.963505+00:00"
+  "last_price_update": "2025-09-23T15:01:15.261571+00:00"
 }
