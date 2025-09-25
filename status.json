@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-25T13:46:05.813816+00:00",
+  "timestamp": "2025-09-25T13:47:05.314982+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -10,9 +10,9 @@
       "entry_time": "2025-08-20T14:15:18.654570",
       "last_signal": "HOLD",
       "last_confidence": 0.6747592702703409,
-      "realtime_pnl_pct": 32.09,
-      "realtime_pnl_dollar": 10339.0,
-      "current_price": 425.59
+      "realtime_pnl_pct": 32.25,
+      "realtime_pnl_dollar": 10390.0,
+      "current_price": 426.1
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -21,9 +21,9 @@
       "entry_time": "2025-09-05T14:30:05.424977",
       "last_signal": "HOLD",
       "last_confidence": 0.5976180077606914,
-      "realtime_pnl_pct": 23.49,
-      "realtime_pnl_dollar": 2300.5,
-      "current_price": 120.945
+      "realtime_pnl_pct": 24.38,
+      "realtime_pnl_dollar": 2388.0,
+      "current_price": 121.82
     },
     "COIN": {
       "symbol": "COIN",
@@ -32,9 +32,9 @@
       "entry_time": "2025-08-19T16:56:26.391163",
       "last_signal": "HOLD",
       "last_confidence": 0.5996979793635906,
-      "realtime_pnl_pct": 0.26,
-      "realtime_pnl_dollar": 78.12,
-      "current_price": 306.52
+      "realtime_pnl_pct": 0.65,
+      "realtime_pnl_dollar": 199.12,
+      "current_price": 307.73
     },
     "PLTR": {
       "symbol": "PLTR",
@@ -43,9 +43,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "HOLD",
       "last_confidence": 0.48651416792653,
-      "realtime_pnl_pct": 6.63,
-      "realtime_pnl_dollar": 1085.5,
-      "current_price": 174.7
+      "realtime_pnl_pct": 7.78,
+      "realtime_pnl_dollar": 1274.5,
+      "current_price": 176.59
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -54,18 +54,18 @@
       "entry_time": "2025-08-20T17:30:22.955922",
       "last_signal": "HOLD",
       "last_confidence": 0.6641510843727118,
-      "realtime_pnl_pct": 11.53,
-      "realtime_pnl_dollar": 2613.0,
-      "current_price": 252.83
+      "realtime_pnl_pct": 11.57,
+      "realtime_pnl_dollar": 2624.0,
+      "current_price": 252.94
     }
   },
   "latest_prices": {},
   "realtime_prices": {
-    "TSLA": 425.59,
-    "HOOD": 120.945,
-    "COIN": 306.52,
-    "PLTR": 174.7,
-    "AAPL": 252.83
+    "TSLA": 426.1,
+    "HOOD": 121.82,
+    "COIN": 307.73,
+    "PLTR": 176.59,
+    "AAPL": 252.94
   },
-  "last_price_update": "2025-09-25T13:44:26.632553+00:00"
+  "last_price_update": "2025-09-25T13:46:26.836514+00:00"
 }
