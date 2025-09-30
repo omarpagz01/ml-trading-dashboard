@@ -631,24 +631,20 @@ def main():
     
     with col2:
         # Watchlist Section
-        st.markdown('<div class="section-header">👁 Watchlist</div>', unsafe_allow_html=True)
+        st.markdown("### 👁 Watchlist")
         
-        watchlist_html = '<div class="watchlist-container"><div class="watchlist-grid">'
+        watchlist_cols = st.columns(2)
         
-        for symbol in WATCHLIST:
+        for idx, symbol in enumerate(WATCHLIST):
             price = prices.get('prices', {}).get(symbol, 0)
             price_display = f"${price:.2f}" if price > 0 else "---"
             
-            watchlist_html += f"""
-                <div class="watchlist-item">
-                    <div class="watchlist-symbol">{symbol}</div>
-                    <div class="watchlist-price">{price_display}</div>
-                    <div class="watchlist-status">MONITORING</div>
-                </div>
-            """
-        
-        watchlist_html += '</div></div>'
-        st.markdown(watchlist_html, unsafe_allow_html=True)
+            with watchlist_cols[idx % 2]:
+                with st.container():
+                    st.markdown(f"**{symbol}**")
+                    st.metric(label="", value=price_display, delta="Monitoring", delta_color="off")
+                    
+        st.divider()
     
     # Tabs for additional content
     tab1, tab2 = st.tabs(["📈 Performance", "💰 Trade History"])
