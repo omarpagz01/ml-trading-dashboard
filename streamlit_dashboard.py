@@ -791,11 +791,14 @@ def main():
                 f"Waiting for breakout"
             ]
             
+            # Format price display
+            price_display = f"${price:.2f}" if price > 0 else "N/A"
+            
             watchlist_html += f"""
             <div class="watchlist-card">
                 <div class="watchlist-header">
                     <div class="watchlist-symbol">{symbol}</div>
-                    <div class="watchlist-price">${price:.2f if price > 0 else 'N/A'}</div>
+                    <div class="watchlist-price">{price_display}</div>
                 </div>
                 <div class="watchlist-details">
                     <div>Status: <span style="color: #ff9500;">Monitoring</span></div>
