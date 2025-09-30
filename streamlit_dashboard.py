@@ -525,7 +525,7 @@ def main():
         # Positions Section
         st.markdown('<div class="section-header">📊 Active Positions</div>', unsafe_allow_html=True)
         
-        positions_html = ""
+        positions_html = '<div class="glass-card">'
         latest_signals = {}
         
         for sig in signals:
@@ -575,10 +575,11 @@ def main():
                     </div>
                 """
         
-        if active_count > 0:
-            st.markdown(f'<div class="glass-card">{positions_html}</div>', unsafe_allow_html=True)
-        else:
-            st.markdown('<div class="glass-card" style="text-align: center; color: #8e8e93;">No active positions</div>', unsafe_allow_html=True)
+        if active_count == 0:
+            positions_html += '<div style="text-align: center; color: #8e8e93; padding: 2rem;">No active positions</div>'
+        
+        positions_html += '</div>'
+        st.markdown(positions_html, unsafe_allow_html=True)
         
         # Recent Signals
         st.markdown('<div class="section-header">📡 Recent Signals</div>', unsafe_allow_html=True)
@@ -604,9 +605,29 @@ def main():
                     </div>
                 """
             
-            st.markdown(f'<div class="glass-card">{signals_html}</div>', unsafe_allow_html=True)
-        else:
-            st.markdown('<div class="glass-card" style="text-align: center; color: #8e8e93;">No signals today</div>', unsafe_allow_html=True)
+            
+            if signals:
+                recent = sorted(signals, key=lambda x: x['timestamp'], reverse=True)[:5]
+                for sig in recent:
+                    sig_time = convert_to_et(sig['timestamp'])
+                    action_class = "signal-long" if sig['action'] == 'LONG' else "signal-exit" if sig['action'] == 'EXIT' else "signal-hold"
+                    action_emoji = "🟢" if sig['action'] == 'LONG' else "🔴" if sig['action'] == 'EXIT' else "⚪"
+                    
+                    signals_html += f"""
+                        <div class="signal-card {action_class}">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <span style="font-size: 14px; font-weight: 600;">{action_emoji} {sig['symbol']} • {sig['action']}</span>
+                                    <span style="font-size: 12px; color: #8e8e93; margin-left: 12px;">${sig['price']:.2f}</span>
+                                </div>
+                                <div style="font-size: 11px; color: #636366;">{sig_time.strftime('%H:%M:%S')}</div>
+                            </div>
+                        </div>
+                    """
+                
+                st.markdown(signals_html, unsafe_allow_html=True)
+            else:
+                st.markdown('<div class="glass-card" style="text-align: center; color: #8e8e93;">No signals today</div>', unsafe_allow_html=True)
     
     with col2:
         # Watchlist Section
