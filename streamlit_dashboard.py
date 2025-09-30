@@ -667,29 +667,16 @@ def main():
         # Current Positions
         st.markdown('<div class="section-header">🎯 Active Positions</div>', unsafe_allow_html=True)
         
-        positions_html = """
-        <div class="position-table">
-            <div class="position-header">
-                <div>Symbol</div>
-                <div>Status</div>
-                <div>Entry Price</div>
-                <div>Current</div>
-                <div>Entry Criteria</div>
-                <div>P&L %</div>
-                <div>P&L $</div>
-            </div>
-        """
-        
         # Get latest signals for entry criteria
         latest_signals = {}
         for sig in raw_signals:
             if sig['symbol'] not in latest_signals or sig['timestamp'] > latest_signals[sig['symbol']]['timestamp']:
                 latest_signals[sig['symbol']] = sig
         
-        has_positions = False
+        # Build positions table
+        positions_data = []
         for symbol in ASSETS:
             if symbol in saved_positions and saved_positions[symbol].get('is_open'):
-                has_positions = True
                 pos = saved_positions[symbol]
                 
                 current = 0
@@ -705,34 +692,604 @@ def main():
                     pnl_pct = ((current - entry) / entry * 100)
                     pnl_dollar = (current - entry) * 100
                 
-                pnl_class = "pnl-positive" if pnl_pct > 0 else "pnl-negative"
-                
                 # Get entry criteria
                 criteria = "N/A"
                 if symbol in latest_signals:
                     criteria = format_entry_criteria(latest_signals[symbol])
                 
-                positions_html += f"""
-                <div class="position-row">
-                    <div class="symbol-cell">{symbol}</div>
-                    <div class="status-long">LONG</div>
-                    <div>${entry:.2f}<br><span style="font-size: 9px; color: #5a5a6a;">{entry_time.strftime('%m/%d %H:%M') if entry_time else ''}</span></div>
-                    <div>${current:.2f}</div>
-                    <div class="criteria-text">{criteria}</div>
-                    <div class="{pnl_class}">{pnl_pct:+.2f}%</div>
-                    <div class="{pnl_class}">${pnl_dollar:+.2f}</div>
-                </div>
-                """
+                positions_data.append({
+                    'Symbol': symbol,
+                    'Status': 'LONG',
+                    'Entry': f"${entry:.2f}",
+                    'Entry Date': entry_time.strftime('%m/%d %H:%M') if entry_time else '',
+                    'Current': f"${current:.2f}",
+                    'Criteria': criteria,
+                    'P&L %': pnl_pct,
+                    'P&L 
         
-        if not has_positions:
-            positions_html += """
-            <div style="padding: 20px; text-align: center; color: #5a5a6a;">
-                No active positions
+        # Recent Signals
+        st.markdown('<div class="section-header">📡 Recent Signals & Analysis</div>', unsafe_allow_html=True)
+        
+        if raw_signals:
+            recent_signals = sorted(raw_signals, key=lambda x: x['timestamp'], reverse=True)[:10]
+            
+            for sig in recent_signals:
+                sig_time = convert_to_et(sig['timestamp'])
+                
+                action_class = ""
+                if sig['action'] == 'LONG':
+                    action_class = "action-long"
+                elif sig['action'] == 'EXIT':
+                    action_class = "action-exit"
+                else:
+                    action_class = "action-hold"
+                
+                criteria = format_entry_criteria(sig)
+                
+                st.markdown(f"""
+                <div class="signal-analysis">
+                    <div class="signal-header">
+                        <div>
+                            <span class="signal-symbol">{sig['symbol']}</span>
+                            <span style="margin-left: 8px; font-size: 11px; color: #8b8b9a;">
+                                {sig_time.strftime('%m/%d %H:%M:%S')} • ${sig['price']:.2f}
+                            </span>
+                        </div>
+                        <div class="signal-action {action_class}">{sig['action']}</div>
+                    </div>
+                    <div style="font-size: 11px; color: #8b8b9a;">
+                        {criteria}
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+        else:
+            st.info("No signals generated today")
+    
+    with tab2:
+        st.markdown('<div class="section-header">👁 Asset Watchlist - Not Trading</div>', unsafe_allow_html=True)
+        
+        watchlist_html = '<div class="watchlist-grid">'
+        
+        for symbol in WATCHLIST:
+            # Get price if available
+            price = 0
+            if realtime_prices.get('prices') and symbol in realtime_prices['prices']:
+                price = realtime_prices['prices'][symbol]
+            
+            # Generate mock reasons for not entering (in real system, this would come from actual analysis)
+            no_entry_reasons = [
+                f"RSI: 45 (neutral)",
+                f"Volume: 0.8x avg",
+                f"No clear trend",
+                f"Waiting for breakout"
+            ]
+            
+            # Format price display
+            price_display = f"${price:.2f}" if price > 0 else "N/A"
+            
+            watchlist_html += f"""
+            <div class="watchlist-card">
+                <div class="watchlist-header">
+                    <div class="watchlist-symbol">{symbol}</div>
+                    <div class="watchlist-price">{price_display}</div>
+                </div>
+                <div class="watchlist-details">
+                    <div>Status: <span style="color: #ff9500;">Monitoring</span></div>
+                    <div class="no-entry-reason">
+                        {' | '.join(no_entry_reasons[:2])}
+                    </div>
+                </div>
             </div>
             """
         
-        positions_html += "</div>"
-        st.markdown(positions_html, unsafe_allow_html=True)
+        watchlist_html += '</div>'
+        st.markdown(watchlist_html, unsafe_allow_html=True)
+        
+        st.markdown("""
+        <div style="margin-top: 16px; padding: 12px; background: #1e1e2e; border-radius: 8px; font-size: 11px; color: #8b8b9a;">
+            <strong>Note:</strong> Watchlist assets are monitored but not actively traded. Entry signals require multiple criteria alignment including technical indicators, ML predictions, and market conditions.
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with tab3:
+        # Performance charts
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown('<div class="section-header">P&L Distribution</div>', unsafe_allow_html=True)
+            
+            if trades_history:
+                df_trades = pd.DataFrame(trades_history)
+                
+                fig = go.Figure()
+                fig.add_trace(go.Histogram(
+                    x=df_trades['pnl_percent'],
+                    nbinsx=20,
+                    name='P&L Distribution',
+                    marker_color='#00d632'
+                ))
+                
+                fig.update_layout(
+                    xaxis_title="P&L %",
+                    yaxis_title="Frequency",
+                    template="plotly_dark",
+                    height=300,
+                    margin=dict(l=40, r=40, t=40, b=40)
+                )
+                
+                st.plotly_chart(fig, use_container_width=True)
+        
+        with col2:
+            st.markdown('<div class="section-header">Cumulative P&L</div>', unsafe_allow_html=True)
+            
+            if trades_history:
+                df_trades = pd.DataFrame(trades_history)
+                if 'exit_time' in df_trades.columns:
+                    df_trades['exit_time'] = pd.to_datetime(df_trades['exit_time'])
+                    df_trades = df_trades.sort_values('exit_time')
+                    df_trades['cumulative_pnl'] = df_trades['pnl_percent'].cumsum()
+                    
+                    fig = go.Figure()
+                    fig.add_trace(go.Scatter(
+                        x=df_trades['exit_time'],
+                        y=df_trades['cumulative_pnl'],
+                        mode='lines',
+                        name='Cumulative P&L',
+                        line=dict(color='#00d632', width=2)
+                    ))
+                    
+                    fig.update_layout(
+                        xaxis_title="Date",
+                        yaxis_title="Cumulative P&L (%)",
+                        template="plotly_dark",
+                        height=300,
+                        margin=dict(l=40, r=40, t=40, b=40)
+                    )
+                    
+                    st.plotly_chart(fig, use_container_width=True)
+    
+    with tab4:
+        st.markdown('<div class="section-header">Recent Trades</div>', unsafe_allow_html=True)
+        
+        if trades_history:
+            df_trades = pd.DataFrame(trades_history)
+            df_trades = df_trades.sort_values('exit_time', ascending=False).head(20)
+            
+            # Format for display
+            df_display = df_trades[['symbol', 'exit_time', 'entry_price', 'exit_price', 'pnl_percent', 'pnl_dollar']].copy()
+            df_display['exit_time'] = pd.to_datetime(df_display['exit_time']).dt.strftime('%m/%d %H:%M')
+            df_display['entry_price'] = df_display['entry_price'].apply(lambda x: f"${x:.2f}")
+            df_display['exit_price'] = df_display['exit_price'].apply(lambda x: f"${x:.2f}")
+            df_display['pnl_percent'] = df_display['pnl_percent'].apply(lambda x: f"{x:+.2f}%")
+            df_display['pnl_dollar'] = df_display['pnl_dollar'].apply(lambda x: f"${x:+.2f}")
+            
+            df_display.columns = ['Symbol', 'Exit Time', 'Entry', 'Exit', 'P&L %', 'P&L $']
+            
+            st.dataframe(
+                df_display,
+                use_container_width=True,
+                hide_index=True,
+                height=400
+            )
+        else:
+            st.info("No completed trades yet")
+    
+    # Footer
+    st.markdown(f"""
+    <div style="text-align: center; color: #5a5a6a; font-size: 11px; 
+         padding: 20px 0; border-top: 1px solid #2e2e3e; margin-top: 30px;">
+        Auto-refresh: 5 seconds • 
+        {'🟢 Connected' if is_connected else '🔴 Disconnected'} • 
+        Data: GitHub
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Auto-refresh
+    time.sleep(5)
+    st.session_state.counter += 1
+    st.rerun()
+
+if __name__ == "__main__":
+    main()
+: pnl_dollar
+                })
+        
+        if positions_data:
+            # Create DataFrame for display
+            df_positions = pd.DataFrame(positions_data)
+            
+            # Custom styling function
+            def style_pnl(val):
+                if isinstance(val, (int, float)):
+                    color = '#00d632' if val > 0 else '#ff3838' if val < 0 else '#8b8b9a'
+                    return f'color: {color}; font-weight: bold'
+                return ''
+            
+            # Format P&L columns
+            df_positions['P&L %'] = df_positions['P&L %'].apply(lambda x: f"{x:+.2f}%")
+            df_positions['P&L 
+        
+        # Recent Signals
+        st.markdown('<div class="section-header">📡 Recent Signals & Analysis</div>', unsafe_allow_html=True)
+        
+        if raw_signals:
+            recent_signals = sorted(raw_signals, key=lambda x: x['timestamp'], reverse=True)[:10]
+            
+            for sig in recent_signals:
+                sig_time = convert_to_et(sig['timestamp'])
+                
+                action_class = ""
+                if sig['action'] == 'LONG':
+                    action_class = "action-long"
+                elif sig['action'] == 'EXIT':
+                    action_class = "action-exit"
+                else:
+                    action_class = "action-hold"
+                
+                criteria = format_entry_criteria(sig)
+                
+                st.markdown(f"""
+                <div class="signal-analysis">
+                    <div class="signal-header">
+                        <div>
+                            <span class="signal-symbol">{sig['symbol']}</span>
+                            <span style="margin-left: 8px; font-size: 11px; color: #8b8b9a;">
+                                {sig_time.strftime('%m/%d %H:%M:%S')} • ${sig['price']:.2f}
+                            </span>
+                        </div>
+                        <div class="signal-action {action_class}">{sig['action']}</div>
+                    </div>
+                    <div style="font-size: 11px; color: #8b8b9a;">
+                        {criteria}
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+        else:
+            st.info("No signals generated today")
+    
+    with tab2:
+        st.markdown('<div class="section-header">👁 Asset Watchlist - Not Trading</div>', unsafe_allow_html=True)
+        
+        watchlist_html = '<div class="watchlist-grid">'
+        
+        for symbol in WATCHLIST:
+            # Get price if available
+            price = 0
+            if realtime_prices.get('prices') and symbol in realtime_prices['prices']:
+                price = realtime_prices['prices'][symbol]
+            
+            # Generate mock reasons for not entering (in real system, this would come from actual analysis)
+            no_entry_reasons = [
+                f"RSI: 45 (neutral)",
+                f"Volume: 0.8x avg",
+                f"No clear trend",
+                f"Waiting for breakout"
+            ]
+            
+            # Format price display
+            price_display = f"${price:.2f}" if price > 0 else "N/A"
+            
+            watchlist_html += f"""
+            <div class="watchlist-card">
+                <div class="watchlist-header">
+                    <div class="watchlist-symbol">{symbol}</div>
+                    <div class="watchlist-price">{price_display}</div>
+                </div>
+                <div class="watchlist-details">
+                    <div>Status: <span style="color: #ff9500;">Monitoring</span></div>
+                    <div class="no-entry-reason">
+                        {' | '.join(no_entry_reasons[:2])}
+                    </div>
+                </div>
+            </div>
+            """
+        
+        watchlist_html += '</div>'
+        st.markdown(watchlist_html, unsafe_allow_html=True)
+        
+        st.markdown("""
+        <div style="margin-top: 16px; padding: 12px; background: #1e1e2e; border-radius: 8px; font-size: 11px; color: #8b8b9a;">
+            <strong>Note:</strong> Watchlist assets are monitored but not actively traded. Entry signals require multiple criteria alignment including technical indicators, ML predictions, and market conditions.
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with tab3:
+        # Performance charts
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown('<div class="section-header">P&L Distribution</div>', unsafe_allow_html=True)
+            
+            if trades_history:
+                df_trades = pd.DataFrame(trades_history)
+                
+                fig = go.Figure()
+                fig.add_trace(go.Histogram(
+                    x=df_trades['pnl_percent'],
+                    nbinsx=20,
+                    name='P&L Distribution',
+                    marker_color='#00d632'
+                ))
+                
+                fig.update_layout(
+                    xaxis_title="P&L %",
+                    yaxis_title="Frequency",
+                    template="plotly_dark",
+                    height=300,
+                    margin=dict(l=40, r=40, t=40, b=40)
+                )
+                
+                st.plotly_chart(fig, use_container_width=True)
+        
+        with col2:
+            st.markdown('<div class="section-header">Cumulative P&L</div>', unsafe_allow_html=True)
+            
+            if trades_history:
+                df_trades = pd.DataFrame(trades_history)
+                if 'exit_time' in df_trades.columns:
+                    df_trades['exit_time'] = pd.to_datetime(df_trades['exit_time'])
+                    df_trades = df_trades.sort_values('exit_time')
+                    df_trades['cumulative_pnl'] = df_trades['pnl_percent'].cumsum()
+                    
+                    fig = go.Figure()
+                    fig.add_trace(go.Scatter(
+                        x=df_trades['exit_time'],
+                        y=df_trades['cumulative_pnl'],
+                        mode='lines',
+                        name='Cumulative P&L',
+                        line=dict(color='#00d632', width=2)
+                    ))
+                    
+                    fig.update_layout(
+                        xaxis_title="Date",
+                        yaxis_title="Cumulative P&L (%)",
+                        template="plotly_dark",
+                        height=300,
+                        margin=dict(l=40, r=40, t=40, b=40)
+                    )
+                    
+                    st.plotly_chart(fig, use_container_width=True)
+    
+    with tab4:
+        st.markdown('<div class="section-header">Recent Trades</div>', unsafe_allow_html=True)
+        
+        if trades_history:
+            df_trades = pd.DataFrame(trades_history)
+            df_trades = df_trades.sort_values('exit_time', ascending=False).head(20)
+            
+            # Format for display
+            df_display = df_trades[['symbol', 'exit_time', 'entry_price', 'exit_price', 'pnl_percent', 'pnl_dollar']].copy()
+            df_display['exit_time'] = pd.to_datetime(df_display['exit_time']).dt.strftime('%m/%d %H:%M')
+            df_display['entry_price'] = df_display['entry_price'].apply(lambda x: f"${x:.2f}")
+            df_display['exit_price'] = df_display['exit_price'].apply(lambda x: f"${x:.2f}")
+            df_display['pnl_percent'] = df_display['pnl_percent'].apply(lambda x: f"{x:+.2f}%")
+            df_display['pnl_dollar'] = df_display['pnl_dollar'].apply(lambda x: f"${x:+.2f}")
+            
+            df_display.columns = ['Symbol', 'Exit Time', 'Entry', 'Exit', 'P&L %', 'P&L $']
+            
+            st.dataframe(
+                df_display,
+                use_container_width=True,
+                hide_index=True,
+                height=400
+            )
+        else:
+            st.info("No completed trades yet")
+    
+    # Footer
+    st.markdown(f"""
+    <div style="text-align: center; color: #5a5a6a; font-size: 11px; 
+         padding: 20px 0; border-top: 1px solid #2e2e3e; margin-top: 30px;">
+        Auto-refresh: 5 seconds • 
+        {'🟢 Connected' if is_connected else '🔴 Disconnected'} • 
+        Data: GitHub
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Auto-refresh
+    time.sleep(5)
+    st.session_state.counter += 1
+    st.rerun()
+
+if __name__ == "__main__":
+    main()
+] = df_positions['P&L 
+        
+        # Recent Signals
+        st.markdown('<div class="section-header">📡 Recent Signals & Analysis</div>', unsafe_allow_html=True)
+        
+        if raw_signals:
+            recent_signals = sorted(raw_signals, key=lambda x: x['timestamp'], reverse=True)[:10]
+            
+            for sig in recent_signals:
+                sig_time = convert_to_et(sig['timestamp'])
+                
+                action_class = ""
+                if sig['action'] == 'LONG':
+                    action_class = "action-long"
+                elif sig['action'] == 'EXIT':
+                    action_class = "action-exit"
+                else:
+                    action_class = "action-hold"
+                
+                criteria = format_entry_criteria(sig)
+                
+                st.markdown(f"""
+                <div class="signal-analysis">
+                    <div class="signal-header">
+                        <div>
+                            <span class="signal-symbol">{sig['symbol']}</span>
+                            <span style="margin-left: 8px; font-size: 11px; color: #8b8b9a;">
+                                {sig_time.strftime('%m/%d %H:%M:%S')} • ${sig['price']:.2f}
+                            </span>
+                        </div>
+                        <div class="signal-action {action_class}">{sig['action']}</div>
+                    </div>
+                    <div style="font-size: 11px; color: #8b8b9a;">
+                        {criteria}
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+        else:
+            st.info("No signals generated today")
+    
+    with tab2:
+        st.markdown('<div class="section-header">👁 Asset Watchlist - Not Trading</div>', unsafe_allow_html=True)
+        
+        watchlist_html = '<div class="watchlist-grid">'
+        
+        for symbol in WATCHLIST:
+            # Get price if available
+            price = 0
+            if realtime_prices.get('prices') and symbol in realtime_prices['prices']:
+                price = realtime_prices['prices'][symbol]
+            
+            # Generate mock reasons for not entering (in real system, this would come from actual analysis)
+            no_entry_reasons = [
+                f"RSI: 45 (neutral)",
+                f"Volume: 0.8x avg",
+                f"No clear trend",
+                f"Waiting for breakout"
+            ]
+            
+            # Format price display
+            price_display = f"${price:.2f}" if price > 0 else "N/A"
+            
+            watchlist_html += f"""
+            <div class="watchlist-card">
+                <div class="watchlist-header">
+                    <div class="watchlist-symbol">{symbol}</div>
+                    <div class="watchlist-price">{price_display}</div>
+                </div>
+                <div class="watchlist-details">
+                    <div>Status: <span style="color: #ff9500;">Monitoring</span></div>
+                    <div class="no-entry-reason">
+                        {' | '.join(no_entry_reasons[:2])}
+                    </div>
+                </div>
+            </div>
+            """
+        
+        watchlist_html += '</div>'
+        st.markdown(watchlist_html, unsafe_allow_html=True)
+        
+        st.markdown("""
+        <div style="margin-top: 16px; padding: 12px; background: #1e1e2e; border-radius: 8px; font-size: 11px; color: #8b8b9a;">
+            <strong>Note:</strong> Watchlist assets are monitored but not actively traded. Entry signals require multiple criteria alignment including technical indicators, ML predictions, and market conditions.
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with tab3:
+        # Performance charts
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown('<div class="section-header">P&L Distribution</div>', unsafe_allow_html=True)
+            
+            if trades_history:
+                df_trades = pd.DataFrame(trades_history)
+                
+                fig = go.Figure()
+                fig.add_trace(go.Histogram(
+                    x=df_trades['pnl_percent'],
+                    nbinsx=20,
+                    name='P&L Distribution',
+                    marker_color='#00d632'
+                ))
+                
+                fig.update_layout(
+                    xaxis_title="P&L %",
+                    yaxis_title="Frequency",
+                    template="plotly_dark",
+                    height=300,
+                    margin=dict(l=40, r=40, t=40, b=40)
+                )
+                
+                st.plotly_chart(fig, use_container_width=True)
+        
+        with col2:
+            st.markdown('<div class="section-header">Cumulative P&L</div>', unsafe_allow_html=True)
+            
+            if trades_history:
+                df_trades = pd.DataFrame(trades_history)
+                if 'exit_time' in df_trades.columns:
+                    df_trades['exit_time'] = pd.to_datetime(df_trades['exit_time'])
+                    df_trades = df_trades.sort_values('exit_time')
+                    df_trades['cumulative_pnl'] = df_trades['pnl_percent'].cumsum()
+                    
+                    fig = go.Figure()
+                    fig.add_trace(go.Scatter(
+                        x=df_trades['exit_time'],
+                        y=df_trades['cumulative_pnl'],
+                        mode='lines',
+                        name='Cumulative P&L',
+                        line=dict(color='#00d632', width=2)
+                    ))
+                    
+                    fig.update_layout(
+                        xaxis_title="Date",
+                        yaxis_title="Cumulative P&L (%)",
+                        template="plotly_dark",
+                        height=300,
+                        margin=dict(l=40, r=40, t=40, b=40)
+                    )
+                    
+                    st.plotly_chart(fig, use_container_width=True)
+    
+    with tab4:
+        st.markdown('<div class="section-header">Recent Trades</div>', unsafe_allow_html=True)
+        
+        if trades_history:
+            df_trades = pd.DataFrame(trades_history)
+            df_trades = df_trades.sort_values('exit_time', ascending=False).head(20)
+            
+            # Format for display
+            df_display = df_trades[['symbol', 'exit_time', 'entry_price', 'exit_price', 'pnl_percent', 'pnl_dollar']].copy()
+            df_display['exit_time'] = pd.to_datetime(df_display['exit_time']).dt.strftime('%m/%d %H:%M')
+            df_display['entry_price'] = df_display['entry_price'].apply(lambda x: f"${x:.2f}")
+            df_display['exit_price'] = df_display['exit_price'].apply(lambda x: f"${x:.2f}")
+            df_display['pnl_percent'] = df_display['pnl_percent'].apply(lambda x: f"{x:+.2f}%")
+            df_display['pnl_dollar'] = df_display['pnl_dollar'].apply(lambda x: f"${x:+.2f}")
+            
+            df_display.columns = ['Symbol', 'Exit Time', 'Entry', 'Exit', 'P&L %', 'P&L $']
+            
+            st.dataframe(
+                df_display,
+                use_container_width=True,
+                hide_index=True,
+                height=400
+            )
+        else:
+            st.info("No completed trades yet")
+    
+    # Footer
+    st.markdown(f"""
+    <div style="text-align: center; color: #5a5a6a; font-size: 11px; 
+         padding: 20px 0; border-top: 1px solid #2e2e3e; margin-top: 30px;">
+        Auto-refresh: 5 seconds • 
+        {'🟢 Connected' if is_connected else '🔴 Disconnected'} • 
+        Data: GitHub
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Auto-refresh
+    time.sleep(5)
+    st.session_state.counter += 1
+    st.rerun()
+
+if __name__ == "__main__":
+    main()
+].apply(lambda x: f"${x:+.2f}")
+            
+            # Display table
+            st.dataframe(
+                df_positions,
+                use_container_width=True,
+                hide_index=True,
+                height=min(400, 80 + len(positions_data) * 35)
+            )
+        else:
+            st.info("No active positions")
         
         # Recent Signals
         st.markdown('<div class="section-header">📡 Recent Signals & Analysis</div>', unsafe_allow_html=True)
