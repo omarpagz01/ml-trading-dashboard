@@ -30,84 +30,298 @@ if 'counter' not in st.session_state:
 if 'previous_signals' not in st.session_state:
     st.session_state.previous_signals = set()
 
-# Custom CSS
+# Apple-inspired CSS
 st.markdown("""
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@200;300;400;500;600;700;800;900&display=swap');
+    
+    /* Global Styles */
+    .stApp {
+        background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    }
+    
+    /* Hide Streamlit Elements */
+    #MainMenu, footer, header {visibility: hidden;}
+    .block-container {padding-top: 2rem;}
+    
+    /* Main Header */
     .main-header {
         text-align: center;
-        padding: 1rem 0 2rem 0;
-        font-size: 2rem;
-        font-weight: bold;
-        color: #ffffff;
+        padding: 2rem 0 3rem 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+        border-radius: 24px;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
     }
     
-    .connection-badge {
-        display: inline-block;
-        padding: 0.25rem 0.75rem;
-        border-radius: 1rem;
-        font-size: 0.75rem;
-        margin-left: 1rem;
+    .header-title {
+        font-size: 3rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #ffffff 0%, #8b8b9a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.5rem;
+    }
+    
+    .connection-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 100px;
+        font-size: 12px;
         font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-top: 1rem;
     }
     
-    .connected {
-        background-color: #00d632;
-        color: #000000;
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
     }
     
-    .disconnected {
-        background-color: #ff3838;
-        color: #ffffff;
+    .connected .status-dot {
+        background: #30d158;
+        box-shadow: 0 0 10px rgba(48, 209, 88, 0.5);
+    }
+    
+    .disconnected .status-dot {
+        background: #ff453a;
+        box-shadow: 0 0 10px rgba(255, 69, 58, 0.5);
+    }
+    
+    @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.1); }
+    }
+    
+    /* Metric Cards */
+    .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
     }
     
     .metric-card {
-        background: #1e1e2e;
-        border-radius: 0.5rem;
-        padding: 1rem;
-        margin: 0.5rem 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        padding: 1.25rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .metric-card:hover {
+        transform: translateY(-4px);
+        background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     }
     
     .metric-label {
-        color: #8b8b9a;
-        font-size: 0.75rem;
-        margin-bottom: 0.25rem;
+        font-size: 11px;
+        font-weight: 600;
+        color: #8e8e93;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
     }
     
     .metric-value {
+        font-size: 24px;
+        font-weight: 700;
         color: #ffffff;
-        font-size: 1.5rem;
-        font-weight: bold;
+        letter-spacing: -0.02em;
     }
     
-    .positive {
-        color: #00d632;
+    .metric-delta {
+        font-size: 12px;
+        font-weight: 500;
+        margin-top: 4px;
+        color: #8e8e93;
     }
     
-    .negative {
-        color: #ff3838;
+    .positive { color: #30d158; }
+    .negative { color: #ff453a; }
+    .neutral { color: #8e8e93; }
+    
+    /* Glass Cards */
+    .glass-card {
+        background: rgba(255,255,255,0.05);
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 20px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
+    .glass-card:hover {
+        background: rgba(255,255,255,0.07);
+        transform: scale(1.01);
+    }
+    
+    /* Section Headers */
     .section-header {
-        font-size: 1.1rem;
+        font-size: 18px;
         font-weight: 600;
-        margin: 1.5rem 0 1rem 0;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid #2e2e3e;
+        color: #ffffff;
+        margin: 2rem 0 1rem 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
     
+    .section-header::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+    }
+    
+    /* Position Row */
+    .position-row {
+        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+        border: 1px solid rgba(255,255,255,0.08);
+        transition: all 0.2s ease;
+    }
+    
+    .position-row:hover {
+        background: rgba(255,255,255,0.08);
+        transform: translateX(4px);
+    }
+    
+    /* Signal Card */
     .signal-card {
-        background: #1e1e2e;
-        border-radius: 0.5rem;
-        padding: 0.75rem;
-        margin: 0.5rem 0;
-        border-left: 3px solid #667eea;
+        background: rgba(255,255,255,0.03);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+        border-left: 3px solid;
+        transition: all 0.2s ease;
     }
     
-    .watchlist-card {
-        background: #1e1e2e;
-        border-radius: 0.5rem;
-        padding: 0.75rem;
-        margin: 0.5rem;
+    .signal-long { border-color: #30d158; }
+    .signal-exit { border-color: #ff453a; }
+    .signal-hold { border-color: #8e8e93; }
+    
+    /* Watchlist Grid */
+    .watchlist-container {
+        background: rgba(255,255,255,0.02);
+        border-radius: 20px;
+        padding: 1.5rem;
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+    
+    .watchlist-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .watchlist-item {
+        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+        border-radius: 12px;
+        padding: 1rem;
+        text-align: center;
+        border: 1px solid rgba(255,255,255,0.05);
+        transition: all 0.2s ease;
+    }
+    
+    .watchlist-item:hover {
+        background: rgba(255,255,255,0.08);
+        transform: translateY(-2px);
+    }
+    
+    .watchlist-symbol {
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 4px;
+    }
+    
+    .watchlist-price {
+        font-size: 20px;
+        font-weight: 700;
+        color: #8e8e93;
+        margin-bottom: 8px;
+    }
+    
+    .watchlist-status {
+        font-size: 11px;
+        color: #ff9f0a;
+        font-weight: 500;
+    }
+    
+    /* Button Styles */
+    .stButton > button {
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 12px;
+        color: white;
+        font-weight: 500;
+        padding: 0.5rem 1.5rem;
+        transition: all 0.2s ease;
+    }
+    
+    .stButton > button:hover {
+        background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    
+    /* Tab Styles */
+    .stTabs [data-baseweb="tab-list"] {
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        padding: 4px;
+        gap: 4px;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        border-radius: 8px;
+        color: #8e8e93;
+        font-weight: 500;
+        padding: 8px 16px;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background: rgba(255,255,255,0.1);
+        color: white;
+    }
+    
+    /* Dataframe Styles */
+    .dataframe {
+        background: transparent !important;
+    }
+    
+    .dataframe th {
+        background: rgba(255,255,255,0.05) !important;
+        color: #8e8e93 !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        font-size: 11px !important;
+        letter-spacing: 0.5px !important;
+    }
+    
+    .dataframe td {
+        background: transparent !important;
+        color: #ffffff !important;
+        border-bottom: 1px solid rgba(255,255,255,0.05) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -120,46 +334,34 @@ def load_from_github(path):
         random_val = random.randint(100000, 999999)
         
         url = f"{GITHUB_RAW_BASE}/{path}"
-        params = {
-            't': timestamp,
-            'r': random_val
-        }
-        headers = {
-            'Cache-Control': 'no-cache',
-            'Pragma': 'no-cache'
-        }
+        params = {'t': timestamp, 'r': random_val}
+        headers = {'Cache-Control': 'no-cache', 'Pragma': 'no-cache'}
         
         response = requests.get(url, params=params, headers=headers, timeout=5)
         
         if response.status_code == 200:
             return response.json()
-    except Exception as e:
-        st.error(f"Error loading {path}: {str(e)}")
+    except:
+        pass
     return None
 
 def load_status():
-    """Load system status"""
     return load_from_github("status.json") or {}
 
 def load_realtime_prices():
-    """Load real-time prices"""
     return load_from_github("realtime_prices.json") or {}
 
 def load_signals():
-    """Load today's signals"""
     today = datetime.now().strftime('%Y%m%d')
     return load_from_github(f"signals/signals_{today}.json") or []
 
 def load_positions():
-    """Load position states"""
     return load_from_github("data/position_states.json") or {}
 
 def load_trades():
-    """Load trade history"""
     return load_from_github("data/trades_history.json") or []
 
 def convert_to_et(timestamp_str):
-    """Convert timestamp to ET"""
     try:
         dt = datetime.fromisoformat(timestamp_str.replace('Z', '+00:00'))
         if dt.tzinfo is None:
@@ -169,44 +371,35 @@ def convert_to_et(timestamp_str):
         return datetime.now(ET)
 
 def get_market_status():
-    """Get current market status"""
     now = datetime.now(ET)
     weekday = now.weekday()
     current_time = now.time()
     
     if weekday >= 5:
-        return "WEEKEND"
+        return "WEEKEND", "#ff9f0a"
     elif current_time < datetime.strptime("09:30", "%H:%M").time():
-        return "PRE-MARKET"
+        return "PRE-MARKET", "#ff9f0a"
     elif current_time >= datetime.strptime("16:00", "%H:%M").time():
-        return "AFTER-HOURS"
+        return "AFTER-HOURS", "#8e8e93"
     elif datetime.strptime("09:30", "%H:%M").time() <= current_time < datetime.strptime("16:00", "%H:%M").time():
-        return "MARKET OPEN"
+        return "OPEN", "#30d158"
     else:
-        return "CLOSED"
+        return "CLOSED", "#8e8e93"
 
 def format_criteria(signal):
-    """Format entry criteria from signal"""
     criteria_parts = []
     
     if 'features_snapshot' in signal and signal['features_snapshot']:
         features = signal['features_snapshot']
         
         if 'rsi' in features:
-            rsi = features['rsi']
-            criteria_parts.append(f"RSI:{rsi:.1f}")
-        
+            criteria_parts.append(f"RSI:{features['rsi']:.0f}")
         if 'macd' in features:
-            macd = features['macd']
-            criteria_parts.append(f"MACD:{macd:.2f}")
-        
+            criteria_parts.append(f"MACD:{features['macd']:.1f}")
         if 'bb_position' in features:
-            bb = features['bb_position']
-            criteria_parts.append(f"BB:{bb:.2f}")
-        
+            criteria_parts.append(f"BB:{features['bb_position']:.1f}")
         if 'volume_ratio' in features:
-            vol = features['volume_ratio']
-            criteria_parts.append(f"Vol:{vol:.1f}x")
+            criteria_parts.append(f"Vol:{features['volume_ratio']:.1f}x")
     
     if 'ml_scores' in signal and signal['ml_scores']:
         scores = signal['ml_scores']
@@ -215,10 +408,9 @@ def format_criteria(signal):
         if 'gb_long' in scores:
             criteria_parts.append(f"GB:{scores['gb_long']*100:.0f}%")
     
-    return " | ".join(criteria_parts) if criteria_parts else "Standard"
+    return " • ".join(criteria_parts) if criteria_parts else "Standard"
 
 def calculate_metrics(trades):
-    """Calculate trading metrics"""
     if not trades:
         return {'total_pnl': 0, 'win_rate': 0, 'profit_factor': 0, 'total_trades': 0}
     
@@ -235,29 +427,8 @@ def calculate_metrics(trades):
         'total_trades': len(trades)
     }
 
-def check_new_signals(signals):
-    """Check for new signals and play sound"""
-    if not signals:
-        return
-    
-    current_signals = set()
-    
-    for sig in signals:
-        if sig.get('action') not in ['HOLD', None]:
-            sig_id = f"{sig['symbol']}_{sig['action']}_{sig['timestamp']}"
-            current_signals.add(sig_id)
-    
-    new_signals = current_signals - st.session_state.previous_signals
-    
-    if new_signals and st.session_state.previous_signals:
-        # Play notification sound
-        st.balloons()
-    
-    st.session_state.previous_signals = current_signals
-
 # Main application
 def main():
-    # Clear cache periodically
     if st.session_state.counter % 10 == 0:
         st.cache_data.clear()
     
@@ -268,10 +439,7 @@ def main():
     trades = load_trades()
     prices = load_realtime_prices()
     
-    # Check for new signals
-    check_new_signals(signals)
-    
-    # Check connection status
+    # Check connection
     is_connected = False
     if status and 'timestamp' in status:
         try:
@@ -284,13 +452,13 @@ def main():
             is_connected = False
     
     # Header
-    connection_status = "LIVE" if is_connected else "OFFLINE"
-    connection_class = "connected" if is_connected else "disconnected"
-    
     st.markdown(f"""
         <div class="main-header">
-            SIGNALS DASHBOARD
-            <span class="connection-badge {connection_class}">{connection_status}</span>
+            <div class="header-title">Signals Dashboard</div>
+            <div class="connection-pill {'connected' if is_connected else 'disconnected'}">
+                <div class="status-dot"></div>
+                {'LIVE' if is_connected else 'OFFLINE'}
+            </div>
         </div>
     """, unsafe_allow_html=True)
     
@@ -302,65 +470,73 @@ def main():
         return
     
     # Calculate metrics
-    market_status = get_market_status()
+    market_status, market_color = get_market_status()
     metrics = calculate_metrics(trades)
     
-    # Top metrics row
-    col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
+    # Calculate open PnL
+    open_pnl = 0
+    if positions and prices.get('prices'):
+        for symbol, pos in positions.items():
+            if pos.get('is_open'):
+                current = prices['prices'].get(symbol, 0)
+                entry = pos.get('entry_price', 0)
+                if current > 0 and entry > 0:
+                    open_pnl += ((current - entry) / entry * 100)
+    
+    # Metrics Grid
+    st.markdown("""
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="metric-label">Market</div>
+                <div class="metric-value" style="color: """ + market_color + """;">""" + market_status + """</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Positions</div>
+                <div class="metric-value">""" + str(sum(1 for p in positions.values() if p.get('is_open'))) + """/""" + str(len(ASSETS)) + """</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Open P&L</div>
+                <div class="metric-value """ + ('class="positive"' if open_pnl > 0 else 'class="negative"' if open_pnl < 0 else '') + """>""" + f"{open_pnl:+.1f}%" + """</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Total P&L</div>
+                <div class="metric-value """ + ('class="positive"' if metrics['total_pnl'] > 0 else 'class="negative"' if metrics['total_pnl'] < 0 else '') + """>""" + f"{metrics['total_pnl']:+.1f}%" + """</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Win Rate</div>
+                <div class="metric-value">""" + f"{metrics['win_rate']:.0f}%" + """</div>
+                <div class="metric-delta">""" + f"{metrics['total_trades']} trades" + """</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Profit Factor</div>
+                <div class="metric-value">""" + f"{metrics['profit_factor']:.2f}" + """</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Today's Signals</div>
+                <div class="metric-value">""" + str(len(signals) if signals else 0) + """</div>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    # Main content with two columns
+    col1, col2 = st.columns([2, 1])
     
     with col1:
-        st.metric("Market", market_status)
-    
-    with col2:
-        active_positions = sum(1 for p in positions.values() if p.get('is_open'))
-        st.metric("Positions", f"{active_positions}/{len(ASSETS)}")
-    
-    with col3:
-        # Calculate open PnL
-        open_pnl = 0
-        if positions and prices.get('prices'):
-            for symbol, pos in positions.items():
-                if pos.get('is_open'):
-                    current = prices['prices'].get(symbol, 0)
-                    entry = pos.get('entry_price', 0)
-                    if current > 0 and entry > 0:
-                        open_pnl += ((current - entry) / entry * 100)
+        # Positions Section
+        st.markdown('<div class="section-header">📊 Active Positions</div>', unsafe_allow_html=True)
         
-        st.metric("Open P&L", f"{open_pnl:+.2f}%", 
-                 delta=None if open_pnl == 0 else f"{'↑' if open_pnl > 0 else '↓'}")
-    
-    with col4:
-        st.metric("Total P&L", f"{metrics['total_pnl']:+.2f}%",
-                 delta=None if metrics['total_pnl'] == 0 else f"{'↑' if metrics['total_pnl'] > 0 else '↓'}")
-    
-    with col5:
-        st.metric("Win Rate", f"{metrics['win_rate']:.0f}%")
-    
-    with col6:
-        st.metric("Profit Factor", f"{metrics['profit_factor']:.2f}")
-    
-    with col7:
-        st.metric("Signals Today", len(signals) if signals else 0)
-    
-    # Main tabs
-    tab1, tab2, tab3, tab4 = st.tabs(["📊 Positions & Signals", "👁 Watchlist", "📈 Performance", "💰 Trades"])
-    
-    with tab1:
-        # Active Positions Section
-        st.subheader("🎯 Active Positions")
-        
-        # Build positions data
-        positions_list = []
+        positions_html = ""
         latest_signals = {}
         
-        # Get latest signal for each symbol
         for sig in signals:
             sym = sig.get('symbol')
             if sym and (sym not in latest_signals or sig['timestamp'] > latest_signals[sym]['timestamp']):
                 latest_signals[sym] = sig
         
+        active_count = 0
         for symbol in ASSETS:
             if symbol in positions and positions[symbol].get('is_open'):
+                active_count += 1
                 pos = positions[symbol]
                 
                 current_price = prices.get('prices', {}).get(symbol, 0)
@@ -380,75 +556,86 @@ def main():
                     except:
                         pass
                 
-                criteria = "Standard"
-                if symbol in latest_signals:
-                    criteria = format_criteria(latest_signals[symbol])
+                criteria = format_criteria(latest_signals[symbol]) if symbol in latest_signals else "Standard"
+                pnl_color = "positive" if pnl_pct > 0 else "negative"
                 
-                positions_list.append({
-                    'Symbol': symbol,
-                    'Status': 'LONG',
-                    'Entry': f"${entry_price:.2f}",
-                    'Entry Time': entry_time,
-                    'Current': f"${current_price:.2f}",
-                    'Criteria': criteria,
-                    'P&L (%)': f"{pnl_pct:+.2f}%",
-                    'P&L ($)': f"${pnl_usd:+.2f}"
-                })
+                positions_html += f"""
+                    <div class="position-row">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-size: 16px; font-weight: 600; color: white; margin-bottom: 4px;">{symbol}</div>
+                                <div style="font-size: 12px; color: #8e8e93;">Entry: ${entry_price:.2f} • {entry_time}</div>
+                                <div style="font-size: 11px; color: #636366; margin-top: 4px;">{criteria}</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 18px; font-weight: 700; color: white;">${current_price:.2f}</div>
+                                <div class="{pnl_color}" style="font-size: 14px; font-weight: 600;">{pnl_pct:+.1f}% • ${pnl_usd:+.0f}</div>
+                            </div>
+                        </div>
+                    </div>
+                """
         
-        if positions_list:
-            df = pd.DataFrame(positions_list)
-            st.dataframe(df, use_container_width=True, hide_index=True)
+        if active_count > 0:
+            st.markdown(f'<div class="glass-card">{positions_html}</div>', unsafe_allow_html=True)
         else:
-            st.info("No active positions")
+            st.markdown('<div class="glass-card" style="text-align: center; color: #8e8e93;">No active positions</div>', unsafe_allow_html=True)
         
-        # Recent Signals Section
-        st.subheader("📡 Recent Signals")
+        # Recent Signals
+        st.markdown('<div class="section-header">📡 Recent Signals</div>', unsafe_allow_html=True)
         
         if signals:
-            recent = sorted(signals, key=lambda x: x['timestamp'], reverse=True)[:10]
+            recent = sorted(signals, key=lambda x: x['timestamp'], reverse=True)[:5]
+            signals_html = ""
             
             for sig in recent:
                 sig_time = convert_to_et(sig['timestamp'])
+                action_class = "signal-long" if sig['action'] == 'LONG' else "signal-exit" if sig['action'] == 'EXIT' else "signal-hold"
+                action_emoji = "🟢" if sig['action'] == 'LONG' else "🔴" if sig['action'] == 'EXIT' else "⚪"
                 
-                col1, col2, col3 = st.columns([2, 3, 2])
-                
-                with col1:
-                    action_color = "🟢" if sig['action'] == 'LONG' else "🔴" if sig['action'] == 'EXIT' else "⚪"
-                    st.write(f"{action_color} **{sig['symbol']}** - {sig['action']}")
-                
-                with col2:
-                    st.write(f"${sig['price']:.2f} @ {sig_time.strftime('%H:%M:%S')}")
-                
-                with col3:
-                    criteria = format_criteria(sig)
-                    st.write(f"{criteria[:30]}..." if len(criteria) > 30 else criteria)
+                signals_html += f"""
+                    <div class="signal-card {action_class}">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span style="font-size: 14px; font-weight: 600;">{action_emoji} {sig['symbol']} • {sig['action']}</span>
+                                <span style="font-size: 12px; color: #8e8e93; margin-left: 12px;">${sig['price']:.2f}</span>
+                            </div>
+                            <div style="font-size: 11px; color: #636366;">{sig_time.strftime('%H:%M:%S')}</div>
+                        </div>
+                    </div>
+                """
+            
+            st.markdown(f'<div class="glass-card">{signals_html}</div>', unsafe_allow_html=True)
         else:
-            st.info("No signals today")
+            st.markdown('<div class="glass-card" style="text-align: center; color: #8e8e93;">No signals today</div>', unsafe_allow_html=True)
     
-    with tab2:
-        st.subheader("👁 Watchlist - Monitoring Only")
+    with col2:
+        # Watchlist Section
+        st.markdown('<div class="section-header">👁 Watchlist</div>', unsafe_allow_html=True)
         
-        cols = st.columns(len(WATCHLIST))
+        watchlist_html = '<div class="watchlist-container"><div class="watchlist-grid">'
         
-        for idx, symbol in enumerate(WATCHLIST):
-            with cols[idx]:
-                price = prices.get('prices', {}).get(symbol, 0)
-                
-                st.markdown(f"**{symbol}**")
-                st.write(f"${price:.2f}" if price > 0 else "N/A")
-                st.caption("Monitoring")
-                
-                # Mock reasons for demo
-                reasons = ["RSI: Neutral", "Volume: Low", "No trend"]
-                st.caption(" | ".join(reasons[:2]))
+        for symbol in WATCHLIST:
+            price = prices.get('prices', {}).get(symbol, 0)
+            price_display = f"${price:.2f}" if price > 0 else "---"
+            
+            watchlist_html += f"""
+                <div class="watchlist-item">
+                    <div class="watchlist-symbol">{symbol}</div>
+                    <div class="watchlist-price">{price_display}</div>
+                    <div class="watchlist-status">MONITORING</div>
+                </div>
+            """
+        
+        watchlist_html += '</div></div>'
+        st.markdown(watchlist_html, unsafe_allow_html=True)
     
-    with tab3:
-        st.subheader("📈 Performance Analysis")
-        
+    # Tabs for additional content
+    tab1, tab2 = st.tabs(["📈 Performance", "💰 Trade History"])
+    
+    with tab1:
         if trades:
             df_trades = pd.DataFrame(trades)
             
-            # P&L Distribution
             col1, col2 = st.columns(2)
             
             with col1:
@@ -456,13 +643,19 @@ def main():
                 fig.add_trace(go.Histogram(
                     x=df_trades['pnl_percent'],
                     nbinsx=20,
-                    marker_color='green'
+                    marker=dict(
+                        color='rgba(48, 209, 88, 0.7)',
+                        line=dict(color='rgba(48, 209, 88, 1)', width=1)
+                    )
                 ))
                 fig.update_layout(
                     title="P&L Distribution",
                     xaxis_title="P&L (%)",
-                    yaxis_title="Count",
-                    height=400
+                    yaxis_title="Frequency",
+                    plot_bgcolor='rgba(0,0,0,0)',
+                    paper_bgcolor='rgba(0,0,0,0)',
+                    font=dict(color='white'),
+                    height=300
                 )
                 st.plotly_chart(fig, use_container_width=True)
             
@@ -477,43 +670,42 @@ def main():
                         x=df_trades['exit_time'],
                         y=df_trades['cumulative'],
                         mode='lines',
-                        line=dict(color='green', width=2)
+                        line=dict(color='rgba(48, 209, 88, 0.9)', width=2),
+                        fill='tozeroy',
+                        fillcolor='rgba(48, 209, 88, 0.1)'
                     ))
                     fig.update_layout(
                         title="Cumulative P&L",
                         xaxis_title="Date",
-                        yaxis_title="Cumulative P&L (%)",
-                        height=400
+                        yaxis_title="Cumulative (%)",
+                        plot_bgcolor='rgba(0,0,0,0)',
+                        paper_bgcolor='rgba(0,0,0,0)',
+                        font=dict(color='white'),
+                        height=300
                     )
                     st.plotly_chart(fig, use_container_width=True)
         else:
-            st.info("No trades to display")
+            st.info("No performance data available")
     
-    with tab4:
-        st.subheader("💰 Trade History")
-        
+    with tab2:
         if trades:
-            df_trades = pd.DataFrame(trades)
-            df_trades = df_trades.sort_values('exit_time', ascending=False).head(20)
+            df_display = pd.DataFrame(trades).sort_values('exit_time', ascending=False).head(15)
+            df_display['exit_time'] = pd.to_datetime(df_display['exit_time']).dt.strftime('%m/%d %H:%M')
+            df_display = df_display[['symbol', 'exit_time', 'entry_price', 'exit_price', 'pnl_percent', 'pnl_dollar']]
+            df_display.columns = ['Symbol', 'Exit Time', 'Entry', 'Exit', 'P&L (%)', 'P&L ($)']
             
-            # Format columns
-            display_df = df_trades[['symbol', 'exit_time', 'entry_price', 'exit_price', 'pnl_percent', 'pnl_dollar']].copy()
-            display_df.columns = ['Symbol', 'Exit Time', 'Entry', 'Exit', 'P&L (%)', 'P&L ($)']
+            for col in ['Entry', 'Exit']:
+                df_display[col] = df_display[col].apply(lambda x: f"${x:.2f}")
+            df_display['P&L (%)'] = df_display['P&L (%)'].apply(lambda x: f"{x:+.1f}%")
+            df_display['P&L ($)'] = df_display['P&L ($)'].apply(lambda x: f"${x:+.0f}")
             
-            # Format values
-            display_df['Exit Time'] = pd.to_datetime(display_df['Exit Time']).dt.strftime('%m/%d %H:%M')
-            display_df['Entry'] = display_df['Entry'].apply(lambda x: f"${x:.2f}")
-            display_df['Exit'] = display_df['Exit'].apply(lambda x: f"${x:.2f}")
-            display_df['P&L (%)'] = display_df['P&L (%)'].apply(lambda x: f"{x:+.2f}%")
-            display_df['P&L ($)'] = display_df['P&L ($)'].apply(lambda x: f"${x:+.2f}")
-            
-            st.dataframe(display_df, use_container_width=True, hide_index=True)
+            st.dataframe(df_display, use_container_width=True, hide_index=True)
         else:
             st.info("No completed trades")
     
     # Footer
     st.markdown("---")
-    st.caption(f"Auto-refresh: 5 seconds | Last update: {datetime.now().strftime('%H:%M:%S')} | Data: GitHub")
+    st.caption(f"Auto-refresh: 5 seconds • Last update: {datetime.now().strftime('%H:%M:%S')}")
     
     # Auto refresh
     time.sleep(5)
