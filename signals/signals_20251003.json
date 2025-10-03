@@ -1450,5 +1450,71 @@
       "volume_ratio": 0.02337007417749957
     },
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-03T16:30:35.646095",
+    "symbol": "IONQ",
+    "action": "HOLD",
+    "confidence": 0.4799073773525661,
+    "price": 72.23,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.4377407504260445,
+      "gb_long": 0.0920706837588706,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.5184022188186646
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 84.01761354077519,
+      "macd": 1.428187001957653,
+      "bb_position": 0.9509824072759424,
+      "volume_ratio": 0.03302866672867701
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-03T16:30:36.732271",
+    "symbol": "SOUN",
+    "action": "HOLD",
+    "confidence": 0.45414274369746743,
+    "price": 17.945,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5191082449206018,
+      "gb_long": 0.08778310835366379,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.4525454044342041
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 70.65217391304348,
+      "macd": 0.5137725104652517,
+      "bb_position": 0.7710012760017537,
+      "volume_ratio": 0.024284635747735282
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-03T16:30:37.766118",
+    "symbol": "AAPL",
+    "action": "HOLD",
+    "confidence": 0.6415277546914601,
+    "price": 258.55,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5577109993454821,
+      "gb_long": 0.3175241958845578,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.6347392797470093
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 69.05026241421086,
+      "macd": 1.1491509441485164,
+      "bb_position": 0.8590165612768311,
+      "volume_ratio": 0.03282382375382363
+    },
+    "is_realtime": true
   }
 ]
