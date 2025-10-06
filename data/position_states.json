@@ -4,8 +4,8 @@
     "is_open": false,
     "entry_price": 0,
     "entry_time": null,
-    "last_signal": "EXIT",
-    "last_confidence": 0.3138359699546647
+    "last_signal": "HOLD",
+    "last_confidence": 0.31382824519270175
   },
   "HOOD": {
     "symbol": "HOOD",
@@ -13,7 +13,7 @@
     "entry_price": 97.94,
     "entry_time": "2025-09-05T14:30:05.424977",
     "last_signal": "HOLD",
-    "last_confidence": 0.5385960487856012
+    "last_confidence": 0.5173020289445089
   },
   "COIN": {
     "symbol": "COIN",
@@ -21,7 +21,7 @@
     "entry_price": 305.7388,
     "entry_time": "2025-08-19T16:56:26.391163",
     "last_signal": "HOLD",
-    "last_confidence": 0.5723102993020681
+    "last_confidence": 0.561408422073242
   },
   "PLTR": {
     "symbol": "PLTR",
@@ -29,7 +29,7 @@
     "entry_price": 163.845,
     "entry_time": "2025-08-19T16:13:09.801014",
     "last_signal": "HOLD",
-    "last_confidence": 0.5651743733558664
+    "last_confidence": 0.6435117253381102
   },
   "NVDA": {
     "symbol": "NVDA",
@@ -37,7 +37,7 @@
     "entry_price": 0.0,
     "entry_time": null,
     "last_signal": "HOLD",
-    "last_confidence": 0.6313106274777771
+    "last_confidence": 0.6601911228843214
   },
   "MSTR": {
     "symbol": "MSTR",
@@ -45,7 +45,7 @@
     "entry_price": 346.99,
     "entry_time": "2025-10-03T14:30:16.603364",
     "last_signal": "HOLD",
-    "last_confidence": 0.7346092592317036
+    "last_confidence": 0.8183769618908195
   },
   "RIVN": {
     "symbol": "RIVN",
@@ -53,7 +53,7 @@
     "entry_price": 0.0,
     "entry_time": null,
     "last_signal": "HOLD",
-    "last_confidence": 0.566098007811854
+    "last_confidence": 0.5004357622894691
   },
   "GOOG": {
     "symbol": "GOOG",
@@ -61,23 +61,23 @@
     "entry_price": 0.0,
     "entry_time": null,
     "last_signal": "HOLD",
-    "last_confidence": 0.5841635303266104
+    "last_confidence": 0.5050461997345008
   },
   "META": {
     "symbol": "META",
-    "is_open": false,
-    "entry_price": 0.0,
-    "entry_time": null,
-    "last_signal": "HOLD",
-    "last_confidence": 0.428763602234121
+    "is_open": true,
+    "entry_price": 703.36,
+    "entry_time": "2025-10-06T15:30:24.027737",
+    "last_signal": "LONG",
+    "last_confidence": 0.7045406203218818
   },
   "RGTI": {
     "symbol": "RGTI",
     "is_open": true,
     "entry_price": 39.385,
     "entry_time": "2025-10-03T18:30:23.511500",
-    "last_signal": "LONG",
-    "last_confidence": 0.7254499135538396
+    "last_signal": "HOLD",
+    "last_confidence": 0.6539119372345505
   },
   "LCID": {
     "symbol": "LCID",
@@ -85,7 +85,7 @@
     "entry_price": 0.0,
     "entry_time": null,
     "last_signal": "HOLD",
-    "last_confidence": 0.5680305654333686
+    "last_confidence": 0.4618662278126177
   },
   "AMZN": {
     "symbol": "AMZN",
@@ -93,7 +93,7 @@
     "entry_price": 0.0,
     "entry_time": null,
     "last_signal": "HOLD",
-    "last_confidence": 0.6453964823656319
+    "last_confidence": 0.6673737769280651
   },
   "RUM": {
     "symbol": "RUM",
@@ -101,7 +101,7 @@
     "entry_price": 8.315,
     "entry_time": "2025-10-03T17:30:26.806112",
     "last_signal": "HOLD",
-    "last_confidence": 0.757213724933997
+    "last_confidence": 0.815683077202934
   },
   "ORCL": {
     "symbol": "ORCL",
@@ -109,15 +109,15 @@
     "entry_price": 288.93,
     "entry_time": "2025-10-03T16:30:28.560469",
     "last_signal": "HOLD",
-    "last_confidence": 0.5790861627677747
+    "last_confidence": 0.6761264409068741
   },
   "NIO": {
     "symbol": "NIO",
     "is_open": true,
     "entry_price": 7.57,
     "entry_time": "2025-10-03T18:30:28.978662",
-    "last_signal": "LONG",
-    "last_confidence": 0.7083761754847394
+    "last_signal": "HOLD",
+    "last_confidence": 0.6519450841326544
   },
   "MARA": {
     "symbol": "MARA",
@@ -125,7 +125,7 @@
     "entry_price": 0.0,
     "entry_time": null,
     "last_signal": "HOLD",
-    "last_confidence": 0.5110366628596914
+    "last_confidence": 0.5578584527807984
   },
   "LMT": {
     "symbol": "LMT",
@@ -133,7 +133,7 @@
     "entry_price": 0.0,
     "entry_time": null,
     "last_signal": "HOLD",
-    "last_confidence": 0.5554606783004665
+    "last_confidence": 0.4216908732681127
   },
   "PANW": {
     "symbol": "PANW",
@@ -141,7 +141,7 @@
     "entry_price": 0.0,
     "entry_time": null,
     "last_signal": "HOLD",
-    "last_confidence": 0.6628380529804732
+    "last_confidence": 0.5140747087064199
   },
   "F": {
     "symbol": "F",
@@ -149,7 +149,7 @@
     "entry_price": 12.28,
     "entry_time": "2025-10-03T14:30:33.693412",
     "last_signal": "HOLD",
-    "last_confidence": 0.7520507831701563
+    "last_confidence": 0.8366275153269165
   },
   "INTC": {
     "symbol": "INTC",
@@ -157,7 +157,7 @@
     "entry_price": 0.0,
     "entry_time": null,
     "last_signal": "HOLD",
-    "last_confidence": 0.6159544945489306
+    "last_confidence": 0.4932929083090971
   },
   "IONQ": {
     "symbol": "IONQ",
@@ -165,7 +165,7 @@
     "entry_price": 0.0,
     "entry_time": null,
     "last_signal": "HOLD",
-    "last_confidence": 0.5117023502082437
+    "last_confidence": 0.5617403485986845
   },
   "SOUN": {
     "symbol": "SOUN",
@@ -173,7 +173,7 @@
     "entry_price": 0.0,
     "entry_time": null,
     "last_signal": "HOLD",
-    "last_confidence": 0.49725144525633036
+    "last_confidence": 0.522367078625616
   },
   "AAPL": {
     "symbol": "AAPL",
@@ -181,6 +181,6 @@
     "entry_price": 226.7,
     "entry_time": "2025-08-20T17:30:22.955922",
     "last_signal": "HOLD",
-    "last_confidence": 0.6888475740429423
+    "last_confidence": 0.769608426195387
   }
 }
