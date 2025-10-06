@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-10-06T16:33:24.280939+00:00",
+  "timestamp": "2025-10-06T16:35:24.286412+00:00",
   "market_open": true,
   "session_type": "MARKET",
   "positions": {
@@ -29,9 +29,9 @@
       "entry_time": "2025-08-19T16:56:26.391163",
       "last_signal": "HOLD",
       "last_confidence": 0.5746213740939539,
-      "realtime_pnl_pct": 26.66,
-      "realtime_pnl_dollar": 8150.62,
-      "current_price": 387.245
+      "realtime_pnl_pct": 26.87,
+      "realtime_pnl_dollar": 8214.12,
+      "current_price": 387.88
     },
     "PLTR": {
       "symbol": "PLTR",
@@ -40,9 +40,9 @@
       "entry_time": "2025-08-19T16:13:09.801014",
       "last_signal": "HOLD",
       "last_confidence": 0.5971899660201885,
-      "realtime_pnl_pct": 10.4,
-      "realtime_pnl_dollar": 1704.5,
-      "current_price": 180.89
+      "realtime_pnl_pct": 10.3,
+      "realtime_pnl_dollar": 1687.5,
+      "current_price": 180.72
     },
     "NVDA": {
       "symbol": "NVDA",
@@ -59,9 +59,9 @@
       "entry_time": "2025-10-03T14:30:16.603364",
       "last_signal": "HOLD",
       "last_confidence": 0.8039710286950151,
-      "realtime_pnl_pct": 2.8,
-      "realtime_pnl_dollar": 972.0,
-      "current_price": 356.71
+      "realtime_pnl_pct": 2.81,
+      "realtime_pnl_dollar": 976.0,
+      "current_price": 356.75
     },
     "RIVN": {
       "symbol": "RIVN",
@@ -87,8 +87,8 @@
       "last_signal": "HOLD",
       "last_confidence": 0.5343961320798023,
       "realtime_pnl_pct": 0.41,
-      "realtime_pnl_dollar": 287.0,
-      "current_price": 706.23
+      "realtime_pnl_dollar": 286.0,
+      "current_price": 706.22
     },
     "RGTI": {
       "symbol": "RGTI",
@@ -97,9 +97,9 @@
       "entry_time": "2025-10-03T18:30:23.511500",
       "last_signal": "HOLD",
       "last_confidence": 0.6878917148881043,
-      "realtime_pnl_pct": 2.97,
-      "realtime_pnl_dollar": 117.0,
-      "current_price": 40.555
+      "realtime_pnl_pct": 2.68,
+      "realtime_pnl_dollar": 105.5,
+      "current_price": 40.44
     },
     "LCID": {
       "symbol": "LCID",
@@ -124,9 +124,9 @@
       "entry_time": "2025-10-03T17:30:26.806112",
       "last_signal": "HOLD",
       "last_confidence": 0.7145930181080575,
-      "realtime_pnl_pct": -0.6,
-      "realtime_pnl_dollar": -5.0,
-      "current_price": 8.265
+      "realtime_pnl_pct": -0.3,
+      "realtime_pnl_dollar": -2.5,
+      "current_price": 8.29
     },
     "ORCL": {
       "symbol": "ORCL",
@@ -135,9 +135,9 @@
       "entry_time": "2025-10-03T16:30:28.560469",
       "last_signal": "HOLD",
       "last_confidence": 0.5240810844412326,
-      "realtime_pnl_pct": 1.79,
-      "realtime_pnl_dollar": 518.0,
-      "current_price": 294.11
+      "realtime_pnl_pct": 1.89,
+      "realtime_pnl_dollar": 546.0,
+      "current_price": 294.39
     },
     "NIO": {
       "symbol": "NIO",
@@ -146,9 +146,9 @@
       "entry_time": "2025-10-03T18:30:28.978662",
       "last_signal": "HOLD",
       "last_confidence": 0.6436553529904316,
-      "realtime_pnl_pct": 3.1,
-      "realtime_pnl_dollar": 23.5,
-      "current_price": 7.805
+      "realtime_pnl_pct": 3.04,
+      "realtime_pnl_dollar": 23.0,
+      "current_price": 7.8
     },
     "MARA": {
       "symbol": "MARA",
@@ -216,9 +216,9 @@
       "entry_time": "2025-08-20T17:30:22.955922",
       "last_signal": "HOLD",
       "last_confidence": 0.7648676741875178,
-      "realtime_pnl_pct": 13.42,
-      "realtime_pnl_dollar": 3042.0,
-      "current_price": 257.12
+      "realtime_pnl_pct": 13.37,
+      "realtime_pnl_dollar": 3031.0,
+      "current_price": 257.01
     }
   },
   "latest_prices": {
@@ -247,29 +247,29 @@
     "AAPL": 257.14
   },
   "realtime_prices": {
-    "TSLA": 448.075,
+    "TSLA": 448.06,
     "HOOD": 149.24,
-    "COIN": 387.245,
-    "PLTR": 180.89,
-    "NVDA": 186.725,
-    "MSTR": 356.71,
-    "RIVN": 13.71,
-    "GOOG": 248.92,
-    "META": 706.23,
-    "RGTI": 40.555,
-    "LCID": 24.54,
-    "AMZN": 219.73,
-    "RUM": 8.265,
-    "ORCL": 294.11,
-    "NIO": 7.805,
-    "MARA": 19.705,
+    "COIN": 387.88,
+    "PLTR": 180.72,
+    "NVDA": 186.625,
+    "MSTR": 356.75,
+    "RIVN": 13.705,
+    "GOOG": 249.06,
+    "META": 706.22,
+    "RGTI": 40.44,
+    "LCID": 24.51,
+    "AMZN": 219.65,
+    "RUM": 8.29,
+    "ORCL": 294.39,
+    "NIO": 7.8,
+    "MARA": 19.84,
     "LMT": 513.25,
-    "PANW": 212.125,
+    "PANW": 212.39,
     "F": 12.67,
-    "INTC": 37.49,
-    "IONQ": 77.24,
-    "SOUN": 18.36,
-    "AAPL": 257.12
+    "INTC": 37.45,
+    "IONQ": 77.435,
+    "SOUN": 18.365,
+    "AAPL": 257.01
   },
-  "last_price_update": "2025-10-06T16:32:56.426450+00:00"
+  "last_price_update": "2025-10-06T16:34:56.627622+00:00"
 }
