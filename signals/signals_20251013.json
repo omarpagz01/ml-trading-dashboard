@@ -1,0 +1,508 @@
+[
+  {
+    "timestamp": "2025-10-13T14:30:12.970461",
+    "symbol": "TSLA",
+    "action": "HOLD",
+    "confidence": 0.5524424981114809,
+    "price": 423.34,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.3934370657353851,
+      "gb_long": 0.6417224494001492,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.4715445637702942
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 29.825166781688495,
+      "macd": -2.9806554627550668,
+      "bb_position": 0.03248668679682145,
+      "volume_ratio": 0.786724415217973
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:14.003685",
+    "symbol": "HOOD",
+    "action": "HOLD",
+    "confidence": 0.5565137481273044,
+    "price": 139.17,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5002727272727273,
+      "gb_long": 0.4160627216754214,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.5870130658149719
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 38.90915724188248,
+      "macd": 0.9702287132862182,
+      "bb_position": -0.11448452469073124,
+      "volume_ratio": 1.1333725195877946
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:15.017534",
+    "symbol": "COIN",
+    "action": "HOLD",
+    "confidence": 0.6143552044994387,
+    "price": 352.75,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.6465143605669468,
+      "gb_long": 0.2552445770727429,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.4213201701641083
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 29.923564807285686,
+      "macd": 2.1928843613849267,
+      "bb_position": -0.269604677194108,
+      "volume_ratio": 0.8248052659821297
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:16.553888",
+    "symbol": "PLTR",
+    "action": "HOLD",
+    "confidence": 0.5695477347766043,
+    "price": 176.32,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.41725541125541127,
+      "gb_long": 0.31701828766524776,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5212688446044922
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 33.73106929784312,
+      "macd": 0.11613417374888968,
+      "bb_position": -0.2763548252593319,
+      "volume_ratio": 0.6115881858849594
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:17.598963",
+    "symbol": "NVDA",
+    "action": "HOLD",
+    "confidence": 0.6159549108727007,
+    "price": 188.48,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5831565074432108,
+      "gb_long": 0.3628767598769481,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.6056547164916992
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 57.85694559513945,
+      "macd": 1.4472761450787743,
+      "bb_position": 0.4627799572860078,
+      "volume_ratio": 0.578507622721881
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:19.113224",
+    "symbol": "MSTR",
+    "action": "HOLD",
+    "confidence": 0.5437614572071438,
+    "price": 304.4,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.5709614239455599,
+      "gb_long": 0.3280708699269834,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.5095362067222595
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 21.88116857481252,
+      "macd": -6.930097336142069,
+      "bb_position": -0.05148709099666869,
+      "volume_ratio": 0.317391793232509
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:20.164378",
+    "symbol": "RIVN",
+    "action": "HOLD",
+    "confidence": 0.6302500220260474,
+    "price": 13.0,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.3028765854470505,
+      "gb_long": 0.8563154912352773,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.5508217215538025
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 30.541871921182235,
+      "macd": -0.21680043317843634,
+      "bb_position": 0.27739689188259703,
+      "volume_ratio": 0.4872832113433746
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:21.174166",
+    "symbol": "GOOG",
+    "action": "HOLD",
+    "confidence": 0.5173467115019439,
+    "price": 241.51,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.24969235372732765,
+      "gb_long": 0.3192845326773342,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.5506662726402283
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 24.638247946812783,
+      "macd": -1.4562071692467669,
+      "bb_position": 0.20677765057411074,
+      "volume_ratio": 0.5198748318720626
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:22.174007",
+    "symbol": "META",
+    "action": "HOLD",
+    "confidence": 0.7768008992162905,
+    "price": 716.755,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.7557472743612496,
+      "gb_long": 0.979838126412977,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.5366491079330444
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 57.60008340283569,
+      "macd": 2.1336247340836962,
+      "bb_position": 0.45998400910577586,
+      "volume_ratio": 0.745535055923376
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:23.216327",
+    "symbol": "RGTI",
+    "action": "HOLD",
+    "confidence": 0.618322645556443,
+    "price": 50.24,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.41570854260671003,
+      "gb_long": 0.5913714022318345,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.4249090254306793
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 68.54491216440172,
+      "macd": 2.2569788455812656,
+      "bb_position": 1.2706824413162487,
+      "volume_ratio": 0.6733609850068081
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:24.241586",
+    "symbol": "LCID",
+    "action": "HOLD",
+    "confidence": 0.4921465322347395,
+    "price": 20.99,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.389108181870792,
+      "gb_long": 0.39048109289132116,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.4916919767856598
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 38.01169590643273,
+      "macd": -0.562832407090216,
+      "bb_position": 0.10628335647962459,
+      "volume_ratio": 0.2646678496856789
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:25.239255",
+    "symbol": "AMZN",
+    "action": "HOLD",
+    "confidence": 0.7693836776422729,
+    "price": 220.05,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.6615142793956436,
+      "gb_long": 0.9768363865141892,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.4682229161262512
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 47.3064735174287,
+      "macd": 0.8374696425294417,
+      "bb_position": 0.1426371065053924,
+      "volume_ratio": 1.0594535580739555
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:26.380972",
+    "symbol": "RUM",
+    "action": "HOLD",
+    "confidence": 0.6273733283543039,
+    "price": 7.71,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.34150307444596223,
+      "gb_long": 0.7564208523782933,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.393710196018219
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 39.25925925925927,
+      "macd": -0.03737991267449381,
+      "bb_position": 0.08458331343070534,
+      "volume_ratio": 0.690177488496116
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:27.395348",
+    "symbol": "ORCL",
+    "action": "HOLD",
+    "confidence": 0.4802026795398382,
+    "price": 306.15,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.4322453562697465,
+      "gb_long": 0.23871453307189308,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.5461908578872681
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 84.82334869431642,
+      "macd": 3.338805199754688,
+      "bb_position": 1.0256145267545949,
+      "volume_ratio": 0.551790186211674
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:28.426706",
+    "symbol": "NIO",
+    "action": "HOLD",
+    "confidence": 0.8093770212606564,
+    "price": 7.1,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.6556510668728899,
+      "gb_long": 0.9912901453451405,
+      "hmm_regime": 1.2,
+      "lstm_long": 0.4603830575942993
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 34.43983402489624,
+      "macd": -0.058701727381972546,
+      "bb_position": -0.0996095521424857,
+      "volume_ratio": 0.3431816712695791
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:29.449105",
+    "symbol": "MARA",
+    "action": "HOLD",
+    "confidence": 0.595697650521348,
+    "price": 19.385,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.659067588208787,
+      "gb_long": 0.45712636551783414,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.45371201634407043
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 37.75649794801642,
+      "macd": 0.1368837308869999,
+      "bb_position": 0.0654010031565918,
+      "volume_ratio": 0.2892149222079037
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:30.783520",
+    "symbol": "LMT",
+    "action": "HOLD",
+    "confidence": 0.714690110615021,
+    "price": 504.98,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.6899492600422832,
+      "gb_long": 0.945819182677926,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.3837653696537018
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 32.62537973671607,
+      "macd": 0.7607950183079879,
+      "bb_position": -0.11811455486106878,
+      "volume_ratio": 0.16566859639218812
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:31.783678",
+    "symbol": "PANW",
+    "action": "HOLD",
+    "confidence": 0.5963773389818631,
+    "price": 213.1,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.6171597459287033,
+      "gb_long": 0.4359544387390839,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.5569140911102295
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 57.309140705237894,
+      "macd": 1.5428747865846901,
+      "bb_position": 0.4201120364146371,
+      "volume_ratio": 0.38782206833607386
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:32.863687",
+    "symbol": "F",
+    "action": "HOLD",
+    "confidence": 0.6352948138454175,
+    "price": 11.53,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.34477994092373804,
+      "gb_long": 0.7274906816705902,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.6637458205223083
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 14.634146341463179,
+      "macd": -0.18213475507783627,
+      "bb_position": 0.2747884578211762,
+      "volume_ratio": 0.436682684177893
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:33.872671",
+    "symbol": "INTC",
+    "action": "HOLD",
+    "confidence": 0.536414441871228,
+    "price": 37.19,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.6110299228847615,
+      "gb_long": 0.27040375405494926,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.4747651517391205
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 49.08376963350785,
+      "macd": 0.2607802157046848,
+      "bb_position": 0.4558423336217959,
+      "volume_ratio": 0.6230201466670858
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:34.982365",
+    "symbol": "IONQ",
+    "action": "HOLD",
+    "confidence": 0.6648882052433438,
+    "price": 77.11,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.43213076923076926,
+      "gb_long": 0.8374570121167041,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.5213909149169922
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 38.97838899803533,
+      "macd": 0.7848570924476093,
+      "bb_position": 0.5436724066608951,
+      "volume_ratio": 1.3976623854513999
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:36.005618",
+    "symbol": "SOUN",
+    "action": "HOLD",
+    "confidence": 0.5478870524878556,
+    "price": 18.74,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.4886786082854194,
+      "gb_long": 0.5341721928519574,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.4165324568748474
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 61.883408071748846,
+      "macd": 0.24102898176257526,
+      "bb_position": 0.549215248354419,
+      "volume_ratio": 0.7391423282272521
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T14:30:36.998828",
+    "symbol": "AAPL",
+    "action": "HOLD",
+    "confidence": 0.5545196469284694,
+    "price": 246.39,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.3819225681725682,
+      "gb_long": 0.5600744808281903,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.6041406393051147
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 16.621067031463667,
+      "macd": -1.3145977694173894,
+      "bb_position": -0.3637842505006036,
+      "volume_ratio": 0.619895419631349
+    },
+    "is_realtime": true
+  }
+]
