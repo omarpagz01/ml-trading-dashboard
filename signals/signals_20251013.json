@@ -2000,5 +2000,27 @@
       "volume_ratio": 0.2131631388902329
     },
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-13T17:40:21.798544",
+    "symbol": "LMT",
+    "action": "HOLD",
+    "confidence": 0.5713962578070209,
+    "price": 505.26,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.4590504552918345,
+      "gb_long": 0.7091092476021689,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.36725643277168274
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 27.46385972626848,
+      "macd": -0.2555127823632688,
+      "bb_position": 0.10485193107806953,
+      "volume_ratio": 0.021600793975129897
+    },
+    "is_realtime": true
   }
 ]
