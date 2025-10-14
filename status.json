@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-10-14T13:01:00.496856+00:00",
+  "timestamp": "2025-10-14T13:03:00.498688+00:00",
   "market_open": false,
   "session_type": "PREMARKET",
   "positions": {
@@ -155,9 +155,9 @@
       "entry_time": "2025-10-03T18:30:28.978662",
       "last_signal": "HOLD",
       "last_confidence": 0.36447434681824087,
-      "realtime_pnl_pct": -10.3,
-      "realtime_pnl_dollar": -78.0,
-      "current_price": 6.79
+      "realtime_pnl_pct": -10.04,
+      "realtime_pnl_dollar": -76.0,
+      "current_price": 6.81
     },
     "MARA": {
       "symbol": "MARA",
@@ -166,9 +166,9 @@
       "entry_time": "2025-10-10T19:30:30.326090",
       "last_signal": "HOLD",
       "last_confidence": 0.42167024803346176,
-      "realtime_pnl_pct": 5.74,
-      "realtime_pnl_dollar": 105.5,
-      "current_price": 19.45
+      "realtime_pnl_pct": 5.63,
+      "realtime_pnl_dollar": 103.5,
+      "current_price": 19.43
     },
     "LMT": {
       "symbol": "LMT",
@@ -265,7 +265,7 @@
     "AAPL": 248.36
   },
   "realtime_prices": {
-    "TSLA": 425.79,
+    "TSLA": 426.57,
     "HOOD": 140.67,
     "COIN": 356.935,
     "PLTR": 177.18,
@@ -279,8 +279,8 @@
     "AMZN": 220.0,
     "RUM": 7.85,
     "ORCL": 308.02,
-    "NIO": 6.79,
-    "MARA": 19.45,
+    "NIO": 6.81,
+    "MARA": 19.43,
     "LMT": 503.71,
     "PANW": 213.21,
     "F": 11.41,
@@ -289,5 +289,5 @@
     "SOUN": 18.72,
     "AAPL": 247.54
   },
-  "last_price_update": "2025-10-14T13:00:43.451233+00:00"
+  "last_price_update": "2025-10-14T13:02:43.646448+00:00"
 }
