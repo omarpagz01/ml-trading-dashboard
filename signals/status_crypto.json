@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-10-14T10:00:27.360346+00:00",
+  "timestamp": "2025-10-14T11:00:27.384108+00:00",
   "market_open": true,
   "session_type": "CRYPTO_24/7",
   "timeframe": "1h",
@@ -28,14 +28,15 @@
     },
     "BTCUSDT": {
       "symbol": "BTCUSDT",
-      "is_open": false,
-      "entry_price": 0.0,
-      "entry_time": null,
-      "last_signal": "HOLD",
-      "last_confidence": 0.5,
-      "position_type": null,
+      "is_open": true,
+      "entry_price": 110614.27,
+      "entry_time": "2025-10-14T11:00:18.969907+00:00",
+      "last_signal": "SHORT",
+      "last_confidence": 1.0,
+      "position_type": "SHORT",
       "realtime_pnl_pct": 0.0,
-      "realtime_pnl_dollar": 0.0
+      "realtime_pnl_dollar": 0.0,
+      "current_price": 110614.27
     },
     "SOLUSDT": {
       "symbol": "SOLUSDT",
@@ -105,28 +106,28 @@
     }
   },
   "latest_prices": {
-    "ETHUSDT": 3985.43,
-    "LINKUSDT": 18.53,
-    "BTCUSDT": 111314.0,
-    "SOLUSDT": 194.83,
-    "XRPUSDT": 2.4608,
-    "BNBUSDT": 1199.17,
-    "SUIUSDT": 2.734,
-    "AVAXUSDT": 22.53,
-    "DOGEUSDT": 0.19951
+    "ETHUSDT": 3941.9,
+    "LINKUSDT": 18.35,
+    "BTCUSDT": 110614.27,
+    "SOLUSDT": 194.08,
+    "XRPUSDT": 2.4387,
+    "BNBUSDT": 1183.5,
+    "SUIUSDT": 2.7072,
+    "AVAXUSDT": 22.22,
+    "DOGEUSDT": 0.19736
   },
   "realtime_prices": {
-    "ETHUSDT": 3985.43,
-    "LINKUSDT": 18.53,
-    "BTCUSDT": 111314.0,
-    "SOLUSDT": 194.83,
-    "XRPUSDT": 2.4608,
-    "BNBUSDT": 1199.17,
-    "SUIUSDT": 2.734,
-    "AVAXUSDT": 22.53,
-    "DOGEUSDT": 0.19951
+    "ETHUSDT": 3941.9,
+    "LINKUSDT": 18.35,
+    "BTCUSDT": 110614.27,
+    "SOLUSDT": 194.08,
+    "XRPUSDT": 2.4387,
+    "BNBUSDT": 1183.5,
+    "SUIUSDT": 2.7072,
+    "AVAXUSDT": 22.22,
+    "DOGEUSDT": 0.19736
   },
-  "last_price_update": "2025-10-14T10:00:27.360355+00:00",
+  "last_price_update": "2025-10-14T11:00:27.384116+00:00",
   "portfolio_stats": {
     "initial_capital": 100000,
     "current_capital": 100468.61,
