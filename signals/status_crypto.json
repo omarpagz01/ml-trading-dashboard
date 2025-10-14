@@ -1,20 +1,19 @@
 {
-  "timestamp": "2025-10-14T17:00:27.637640+00:00",
+  "timestamp": "2025-10-14T18:00:28.406490+00:00",
   "market_open": true,
   "session_type": "CRYPTO_24/7",
   "timeframe": "1h",
   "positions": {
     "ETHUSDT": {
       "symbol": "ETHUSDT",
-      "is_open": true,
-      "entry_price": 4090.0,
-      "entry_time": "2025-10-14T17:00:16.321758+00:00",
-      "last_signal": "SHORT",
-      "last_confidence": 1.0,
-      "position_type": "SHORT",
+      "is_open": false,
+      "entry_price": 0.0,
+      "entry_time": null,
+      "last_signal": "HOLD",
+      "last_confidence": 0.5,
+      "position_type": null,
       "realtime_pnl_pct": 0.0,
-      "realtime_pnl_dollar": 0.0,
-      "current_price": 4090.0
+      "realtime_pnl_dollar": 0.0
     },
     "LINKUSDT": {
       "symbol": "LINKUSDT",
@@ -106,32 +105,32 @@
     }
   },
   "latest_prices": {
-    "ETHUSDT": 4090.0,
-    "LINKUSDT": 18.97,
-    "BTCUSDT": 112191.82,
-    "SOLUSDT": 201.88,
-    "XRPUSDT": 2.4991,
-    "BNBUSDT": 1213.36,
-    "SUIUSDT": 2.8154,
-    "AVAXUSDT": 22.74,
-    "DOGEUSDT": 0.20247
+    "ETHUSDT": 4102.16,
+    "LINKUSDT": 19.03,
+    "BTCUSDT": 112807.45,
+    "SOLUSDT": 201.94,
+    "XRPUSDT": 2.5064,
+    "BNBUSDT": 1215.72,
+    "SUIUSDT": 2.8311,
+    "AVAXUSDT": 22.85,
+    "DOGEUSDT": 0.20349
   },
   "realtime_prices": {
-    "ETHUSDT": 4090.0,
-    "LINKUSDT": 18.97,
-    "BTCUSDT": 112191.82,
-    "SOLUSDT": 201.88,
-    "XRPUSDT": 2.4991,
-    "BNBUSDT": 1213.36,
-    "SUIUSDT": 2.8154,
-    "AVAXUSDT": 22.74,
-    "DOGEUSDT": 0.20247
+    "ETHUSDT": 4102.16,
+    "LINKUSDT": 19.03,
+    "BTCUSDT": 112807.45,
+    "SOLUSDT": 201.94,
+    "XRPUSDT": 2.5064,
+    "BNBUSDT": 1215.72,
+    "SUIUSDT": 2.8311,
+    "AVAXUSDT": 22.85,
+    "DOGEUSDT": 0.20349
   },
-  "last_price_update": "2025-10-14T17:00:27.637650+00:00",
+  "last_price_update": "2025-10-14T18:00:28.406505+00:00",
   "portfolio_stats": {
     "initial_capital": 100000,
-    "current_capital": 100401.27,
-    "total_pnl": 401.27,
-    "total_pnl_pct": 0.4
+    "current_capital": 100371.42,
+    "total_pnl": 371.42,
+    "total_pnl_pct": 0.37
   }
 }
