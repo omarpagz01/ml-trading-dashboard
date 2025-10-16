@@ -1,7 +1,7 @@
 {
-  "timestamp": "2025-10-16T13:29:00.318835+00:00",
-  "market_open": false,
-  "session_type": "PREMARKET",
+  "timestamp": "2025-10-16T13:30:12.321364+00:00",
+  "market_open": true,
+  "session_type": "MARKET",
   "positions": {
     "TSLA": {
       "symbol": "TSLA",
@@ -100,9 +100,9 @@
       "entry_time": "2025-10-03T18:30:23.511500",
       "last_signal": "HOLD",
       "last_confidence": 0.6679567164836977,
-      "realtime_pnl_pct": 38.53,
-      "realtime_pnl_dollar": 1517.5,
-      "current_price": 54.56
+      "realtime_pnl_pct": 38.38,
+      "realtime_pnl_dollar": 1511.5,
+      "current_price": 54.5
     },
     "LCID": {
       "symbol": "LCID",
@@ -231,9 +231,9 @@
       "entry_time": "2025-08-20T17:30:22.955922",
       "last_signal": "HOLD",
       "last_confidence": 0.5887300348932915,
-      "realtime_pnl_pct": 9.77,
-      "realtime_pnl_dollar": 2214.0,
-      "current_price": 248.84
+      "realtime_pnl_pct": 9.35,
+      "realtime_pnl_dollar": 2120.0,
+      "current_price": 247.9
     }
   },
   "latest_prices": {
@@ -271,12 +271,12 @@
     "RIVN": 13.43,
     "GOOG": 251.71,
     "META": 717.66,
-    "RGTI": 54.56,
+    "RGTI": 54.5,
     "LCID": 21.685,
     "AMZN": 215.56,
     "RUM": 8.0,
     "ORCL": 303.535,
-    "NIO": 6.29,
+    "NIO": 6.26,
     "MARA": 23.1,
     "LMT": 499.64,
     "PANW": 206.74,
@@ -284,7 +284,7 @@
     "INTC": 37.12,
     "IONQ": 72.52,
     "SOUN": 21.86,
-    "AAPL": 248.84
+    "AAPL": 247.9
   },
-  "last_price_update": "2025-10-16T13:27:16.582514+00:00"
+  "last_price_update": "2025-10-16T13:29:16.781486+00:00"
 }
