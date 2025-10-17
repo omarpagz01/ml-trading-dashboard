@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-10-17T12:05:00.100287+00:00",
+  "timestamp": "2025-10-17T12:06:00.101257+00:00",
   "market_open": false,
   "session_type": "PREMARKET",
   "positions": {
@@ -51,9 +51,9 @@
       "entry_time": "2025-10-10T19:30:18.025038",
       "last_signal": "HOLD",
       "last_confidence": 0.4989750021735571,
-      "realtime_pnl_pct": -2.46,
-      "realtime_pnl_dollar": -459.0,
-      "current_price": 181.84
+      "realtime_pnl_pct": -3.5,
+      "realtime_pnl_dollar": -652.0,
+      "current_price": 179.91
     },
     "MSTR": {
       "symbol": "MSTR",
@@ -103,9 +103,9 @@
       "entry_time": "2025-10-03T18:30:23.511500",
       "last_signal": "HOLD",
       "last_confidence": 0.5718285454233483,
-      "realtime_pnl_pct": 20.76,
-      "realtime_pnl_dollar": 817.5,
-      "current_price": 47.56
+      "realtime_pnl_pct": 18.93,
+      "realtime_pnl_dollar": 745.5,
+      "current_price": 46.84
     },
     "LCID": {
       "symbol": "LCID",
@@ -269,12 +269,12 @@
     "HOOD": 131.4,
     "COIN": 327.94,
     "PLTR": 178.13,
-    "NVDA": 181.84,
+    "NVDA": 179.91,
     "MSTR": 282.58,
     "RIVN": 12.925,
     "GOOG": 251.89,
     "META": 712.15,
-    "RGTI": 47.56,
+    "RGTI": 46.84,
     "LCID": 20.52,
     "AMZN": 214.44,
     "RUM": 7.5,
@@ -289,5 +289,5 @@
     "SOUN": 20.75,
     "AAPL": 247.45
   },
-  "last_price_update": "2025-10-17T12:03:31.390911+00:00"
+  "last_price_update": "2025-10-17T12:05:31.588958+00:00"
 }
