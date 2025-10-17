@@ -2528,5 +2528,115 @@
       "volume_ratio": 0.7206631729922647
     },
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T19:30:12.894102",
+    "symbol": "TSLA",
+    "action": "HOLD",
+    "confidence": 0.422428221690637,
+    "price": 439.4,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.4315788848291215,
+      "gb_long": 0.030569147983467094,
+      "hmm_regime": 0.8,
+      "lstm_long": 0.5186666250228882
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 61.76791560567475,
+      "macd": 1.6486328558720516,
+      "bb_position": 0.9052587238617718,
+      "volume_ratio": 0.5189078713243612
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T19:30:13.925288",
+    "symbol": "HOOD",
+    "action": "HOLD",
+    "confidence": 0.4271276597651533,
+    "price": 130.7,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.2193302763901062,
+      "gb_long": 0.10319814911763837,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.6228126287460327
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 34.10067526089617,
+      "macd": -2.954155632948016,
+      "bb_position": 0.30932314274939343,
+      "volume_ratio": 0.35318414462591413
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T19:30:14.993384",
+    "symbol": "COIN",
+    "action": "HOLD",
+    "confidence": 0.42582734531834715,
+    "price": 334.42,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.34554695998182244,
+      "gb_long": 0.025883974098458634,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.492074579000473
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 43.57390387223144,
+      "macd": -6.536355501697358,
+      "bb_position": 0.43137327436560946,
+      "volume_ratio": 0.37280937533598535
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T19:30:16.013565",
+    "symbol": "PLTR",
+    "action": "HOLD",
+    "confidence": 0.4925119728418896,
+    "price": 178.84,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.3154791874791875,
+      "gb_long": 0.29260389466512843,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.5447164177894592
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 49.00159744408946,
+      "macd": -0.48803267234140435,
+      "bb_position": 0.4266833591964427,
+      "volume_ratio": 0.34929206796929196
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T19:30:17.029264",
+    "symbol": "NVDA",
+    "action": "HOLD",
+    "confidence": 0.47475018184395945,
+    "price": 183.72,
+    "signal_strength": "NEUTRAL",
+    "ml_scores": {
+      "rf_long": 0.4085727793460685,
+      "gb_long": 0.04579699684432046,
+      "hmm_regime": 1.0,
+      "lstm_long": 0.6015022993087769
+    },
+    "market_context": null,
+    "features_snapshot": {
+      "rsi": 70.84999999999988,
+      "macd": -0.5390176410816707,
+      "bb_position": 0.932822295718205,
+      "volume_ratio": 0.4226555760796547
+    },
+    "is_realtime": true
   }
 ]
