@@ -1,0 +1,182 @@
+[
+  {
+    "timestamp": "2025-10-17T00:00:16.194319+00:00",
+    "symbol": "ETHUSDT",
+    "action": "HOLD",
+    "confidence": 0.5,
+    "price": 3892.24,
+    "signal_strength": "NEUTRAL",
+    "timeframe": "1h",
+    "technical_indicators": {
+      "roc": -0.0006726423219085197,
+      "smoothed_price": 3902.476894740232,
+      "raw_signal": 0
+    },
+    "parameters_used": {
+      "lambda_hp": 127.96582630563304,
+      "roc_threshold": 0.0008471318290391066,
+      "method": "ensemble"
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T00:00:17.510127+00:00",
+    "symbol": "LINKUSDT",
+    "action": "HOLD",
+    "confidence": 0.5,
+    "price": 17.41,
+    "signal_strength": "NEUTRAL",
+    "timeframe": "1h",
+    "technical_indicators": {
+      "roc": -0.004358621683874844,
+      "smoothed_price": 17.479107246262235,
+      "raw_signal": 0
+    },
+    "parameters_used": {
+      "lambda_hp": 127.83004920539034,
+      "roc_threshold": 0.001236213193506341,
+      "method": "ensemble"
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T00:00:18.693494+00:00",
+    "symbol": "BTCUSDT",
+    "action": "HOLD",
+    "confidence": 0.5,
+    "price": 108138.01,
+    "signal_strength": "NEUTRAL",
+    "timeframe": "1h",
+    "technical_indicators": {
+      "roc": -0.00012413616677163465,
+      "smoothed_price": 108496.08200692592,
+      "raw_signal": 0
+    },
+    "parameters_used": {
+      "lambda_hp": 123.52073593081361,
+      "roc_threshold": 0.001476022343073415,
+      "method": "ensemble"
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T00:00:20.018289+00:00",
+    "symbol": "SOLUSDT",
+    "action": "EXIT",
+    "confidence": 0.5,
+    "price": 184.62,
+    "signal_strength": "NEUTRAL",
+    "timeframe": "1h",
+    "technical_indicators": {
+      "roc": -0.010515105310400735,
+      "smoothed_price": 185.96951339839288,
+      "raw_signal": 0
+    },
+    "parameters_used": {
+      "lambda_hp": 134.91302149639375,
+      "roc_threshold": 0.0048999137341133436,
+      "method": "ensemble"
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T00:00:21.347238+00:00",
+    "symbol": "XRPUSDT",
+    "action": "HOLD",
+    "confidence": 0.5,
+    "price": 2.3254,
+    "signal_strength": "NEUTRAL",
+    "timeframe": "1h",
+    "technical_indicators": {
+      "roc": -0.0003980013537020811,
+      "smoothed_price": 2.3346144649899765,
+      "raw_signal": 0
+    },
+    "parameters_used": {
+      "lambda_hp": 140.61540744127382,
+      "roc_threshold": 0.001848099964261344,
+      "method": "ensemble"
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T00:00:22.676616+00:00",
+    "symbol": "BNBUSDT",
+    "action": "HOLD",
+    "confidence": 0.5,
+    "price": 1146.01,
+    "signal_strength": "NEUTRAL",
+    "timeframe": "1h",
+    "technical_indicators": {
+      "roc": 0.00998526296035704,
+      "smoothed_price": 1155.5348312440267,
+      "raw_signal": 0
+    },
+    "parameters_used": {
+      "lambda_hp": 106.5699990520835,
+      "roc_threshold": 0.0002691635897519662,
+      "method": "ensemble"
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T00:00:23.845180+00:00",
+    "symbol": "SUIUSDT",
+    "action": "HOLD",
+    "confidence": 0.5,
+    "price": 2.513,
+    "signal_strength": "NEUTRAL",
+    "timeframe": "1h",
+    "technical_indicators": {
+      "roc": 0.004418735733590473,
+      "smoothed_price": 2.549674261296699,
+      "raw_signal": 0
+    },
+    "parameters_used": {
+      "lambda_hp": 118.3402089814737,
+      "roc_threshold": 0.004918291218787745,
+      "method": "ensemble"
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T00:00:25.173431+00:00",
+    "symbol": "AVAXUSDT",
+    "action": "HOLD",
+    "confidence": 0.5,
+    "price": 20.96,
+    "signal_strength": "NEUTRAL",
+    "timeframe": "1h",
+    "technical_indicators": {
+      "roc": -0.007058067897280765,
+      "smoothed_price": 21.0895860644823,
+      "raw_signal": 0
+    },
+    "parameters_used": {
+      "lambda_hp": 124.81722996851276,
+      "roc_threshold": 0.003526101928655122,
+      "method": "ensemble"
+    },
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-10-17T00:00:26.495786+00:00",
+    "symbol": "DOGEUSDT",
+    "action": "HOLD",
+    "confidence": 0.5,
+    "price": 0.18821,
+    "signal_strength": "NEUTRAL",
+    "timeframe": "1h",
+    "technical_indicators": {
+      "roc": -0.004542692257095169,
+      "smoothed_price": 0.1888684000554107,
+      "raw_signal": 0
+    },
+    "parameters_used": {
+      "lambda_hp": 114.39302609507277,
+      "roc_threshold": 0.004133011838665827,
+      "method": "ensemble"
+    },
+    "is_realtime": true
+  }
+]
