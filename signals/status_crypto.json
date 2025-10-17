@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-10-17T11:00:27.450453+00:00",
+  "timestamp": "2025-10-17T12:00:26.764763+00:00",
   "market_open": true,
   "session_type": "CRYPTO_24/7",
   "timeframe": "1h",
@@ -67,9 +67,9 @@
       "last_signal": "HOLD",
       "last_confidence": 1.0,
       "position_type": "SHORT",
-      "realtime_pnl_pct": 4.6,
-      "realtime_pnl_dollar": 461.06,
-      "current_price": 1045.0
+      "realtime_pnl_pct": 2.15,
+      "realtime_pnl_dollar": 214.51,
+      "current_price": 1071.92
     },
     "SUIUSDT": {
       "symbol": "SUIUSDT",
@@ -95,44 +95,43 @@
     },
     "DOGEUSDT": {
       "symbol": "DOGEUSDT",
-      "is_open": true,
-      "entry_price": 0.17913,
-      "entry_time": "2025-10-17T11:00:26.565587+00:00",
-      "last_signal": "SHORT",
-      "last_confidence": 1.0,
-      "position_type": "SHORT",
+      "is_open": false,
+      "entry_price": 0.0,
+      "entry_time": null,
+      "last_signal": "HOLD",
+      "last_confidence": 0.5,
+      "position_type": null,
       "realtime_pnl_pct": 0.0,
-      "realtime_pnl_dollar": 0.0,
-      "current_price": 0.17913
+      "realtime_pnl_dollar": 0.0
     }
   },
   "latest_prices": {
-    "ETHUSDT": 3724.24,
-    "LINKUSDT": 16.06,
-    "BTCUSDT": 104728.8,
-    "SOLUSDT": 177.31,
-    "XRPUSDT": 2.2282,
-    "BNBUSDT": 1045.0,
-    "SUIUSDT": 2.3321,
-    "AVAXUSDT": 19.47,
-    "DOGEUSDT": 0.17913
+    "ETHUSDT": 3776.61,
+    "LINKUSDT": 16.53,
+    "BTCUSDT": 105666.69,
+    "SOLUSDT": 181.33,
+    "XRPUSDT": 2.2832,
+    "BNBUSDT": 1071.92,
+    "SUIUSDT": 2.3914,
+    "AVAXUSDT": 19.82,
+    "DOGEUSDT": 0.18269
   },
   "realtime_prices": {
-    "ETHUSDT": 3724.24,
-    "LINKUSDT": 16.06,
-    "BTCUSDT": 104728.8,
-    "SOLUSDT": 177.31,
-    "XRPUSDT": 2.2282,
-    "BNBUSDT": 1045.0,
-    "SUIUSDT": 2.3321,
-    "AVAXUSDT": 19.47,
-    "DOGEUSDT": 0.17913
+    "ETHUSDT": 3776.61,
+    "LINKUSDT": 16.53,
+    "BTCUSDT": 105666.69,
+    "SOLUSDT": 181.33,
+    "XRPUSDT": 2.2832,
+    "BNBUSDT": 1071.92,
+    "SUIUSDT": 2.3914,
+    "AVAXUSDT": 19.82,
+    "DOGEUSDT": 0.18269
   },
-  "last_price_update": "2025-10-17T11:00:27.450463+00:00",
+  "last_price_update": "2025-10-17T12:00:26.764777+00:00",
   "portfolio_stats": {
     "initial_capital": 100000,
-    "current_capital": 100149.81,
-    "total_pnl": 149.81,
-    "total_pnl_pct": 0.15
+    "current_capital": 99950.77,
+    "total_pnl": -49.23,
+    "total_pnl_pct": -0.05
   }
 }
