@@ -37,12 +37,12 @@
   },
   "XRPUSDT": {
     "symbol": "XRPUSDT",
-    "is_open": true,
-    "entry_price": 2.3693,
-    "entry_time": "2025-10-19T04:00:21.871449+00:00",
-    "last_signal": "LONG",
-    "last_confidence": 1.0,
-    "position_type": "LONG"
+    "is_open": false,
+    "entry_price": 0.0,
+    "entry_time": null,
+    "last_signal": "HOLD",
+    "last_confidence": 0.5,
+    "position_type": null
   },
   "BNBUSDT": {
     "symbol": "BNBUSDT",
@@ -73,11 +73,11 @@
   },
   "DOGEUSDT": {
     "symbol": "DOGEUSDT",
-    "is_open": true,
-    "entry_price": 0.19073,
-    "entry_time": "2025-10-19T04:00:27.271186+00:00",
-    "last_signal": "LONG",
-    "last_confidence": 0.5872916744252323,
-    "position_type": "LONG"
+    "is_open": false,
+    "entry_price": 0.0,
+    "entry_time": null,
+    "last_signal": "HOLD",
+    "last_confidence": 0.5,
+    "position_type": null
   }
 }
