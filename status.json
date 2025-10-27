@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-10-27T20:58:00.796337+00:00",
+  "timestamp": "2025-10-27T21:00:00.798408+00:00",
   "market_open": false,
   "session_type": "AFTERHOURS",
   "positions": {
@@ -29,9 +29,9 @@
       "entry_time": "2025-08-19T16:56:26.391163",
       "last_signal": "HOLD",
       "last_confidence": 0.6527287244560425,
-      "realtime_pnl_pct": 17.62,
-      "realtime_pnl_dollar": 5386.12,
-      "current_price": 359.6
+      "realtime_pnl_pct": 17.57,
+      "realtime_pnl_dollar": 5371.12,
+      "current_price": 359.45
     },
     "PLTR": {
       "symbol": "PLTR",
@@ -270,7 +270,7 @@
   "realtime_prices": {
     "TSLA": 452.0,
     "HOOD": 145.79,
-    "COIN": 359.6,
+    "COIN": 359.45,
     "PLTR": 189.17,
     "NVDA": 191.44,
     "MSTR": 295.68,
@@ -292,5 +292,5 @@
     "SOUN": 18.335,
     "AAPL": 268.75
   },
-  "last_price_update": "2025-10-27T20:57:25.988616+00:00"
+  "last_price_update": "2025-10-27T20:59:26.189757+00:00"
 }
