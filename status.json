@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-12-16T20:37:55.409003+00:00",
+  "timestamp": "2025-12-16T20:46:07.110963+00:00",
   "market_open": true,
   "session_type": "regular",
   "positions": {
@@ -109,9 +109,9 @@
       "entry_time": "2025-12-15T18:38:43.600849",
       "last_signal": "HOLD",
       "last_signal_time": null,
-      "current_pnl_pct": -9.922801732253806,
-      "current_price": 23.92,
-      "realtime_pnl_pct": -9.922801732253806
+      "current_pnl_pct": -9.828657503295046,
+      "current_price": 23.945,
+      "realtime_pnl_pct": -9.828657503295046
     },
     "LCID": {
       "symbol": "LCID",
@@ -140,9 +140,9 @@
       "entry_time": "2025-12-16T20:01:09.555028",
       "last_signal": "LONG",
       "last_signal_time": null,
-      "current_pnl_pct": 3.4267912772585634,
-      "current_price": 6.64,
-      "realtime_pnl_pct": 3.4267912772585634
+      "current_pnl_pct": 3.816199376947042,
+      "current_price": 6.665,
+      "realtime_pnl_pct": 3.816199376947042
     },
     "ORCL": {
       "symbol": "ORCL",
@@ -205,9 +205,9 @@
       "entry_time": "2025-12-16T18:31:16.046868",
       "last_signal": "HOLD",
       "last_signal_time": null,
-      "current_pnl_pct": -0.611214456550635,
-      "current_price": 37.4,
-      "realtime_pnl_pct": -0.611214456550635
+      "current_pnl_pct": -0.7440871644964154,
+      "current_price": 37.35,
+      "realtime_pnl_pct": -0.7440871644964154
     },
     "IONQ": {
       "symbol": "IONQ",
@@ -252,9 +252,9 @@
       "entry_time": "2025-12-16T20:01:16.597517",
       "last_signal": "LONG",
       "last_signal_time": null,
-      "current_pnl_pct": 0.3939592908732914,
-      "current_price": 275.22,
-      "realtime_pnl_pct": 0.3939592908732914
+      "current_pnl_pct": 0.36842489239074594,
+      "current_price": 275.15,
+      "realtime_pnl_pct": 0.36842489239074594
     },
     "OKLO": {
       "symbol": "OKLO",
@@ -272,9 +272,9 @@
       "entry_time": "2025-12-15T19:16:08.009518",
       "last_signal": "HOLD",
       "last_signal_time": null,
-      "current_pnl_pct": -6.041666666666674,
-      "current_price": 6.765,
-      "realtime_pnl_pct": -6.041666666666674
+      "current_pnl_pct": -6.180555555555559,
+      "current_price": 6.755,
+      "realtime_pnl_pct": -6.180555555555559
     },
     "BMNR": {
       "symbol": "BMNR",
@@ -283,9 +283,9 @@
       "entry_time": "2025-12-16T19:01:18.631412",
       "last_signal": "HOLD",
       "last_signal_time": null,
-      "current_pnl_pct": -18.846749226006192,
-      "current_price": 31.455,
-      "realtime_pnl_pct": -18.846749226006192
+      "current_pnl_pct": -18.808049535603715,
+      "current_price": 31.47,
+      "realtime_pnl_pct": -18.808049535603715
     },
     "ETHZ": {
       "symbol": "ETHZ",
@@ -298,37 +298,37 @@
     }
   },
   "realtime_prices": {
-    "TSLA": 489.38,
-    "HOOD": 119.68,
-    "COIN": 253.265,
-    "PLTR": 188.08,
-    "NVDA": 177.98,
-    "AMD": 209.7,
-    "IBKR": 62.97,
-    "MSTR": 167.38,
-    "RIVN": 18.025,
-    "GOOG": 307.66,
-    "META": 660.915,
-    "RGTI": 23.92,
+    "TSLA": 489.71,
+    "HOOD": 119.455,
+    "COIN": 252.47,
+    "PLTR": 187.98,
+    "NVDA": 177.695,
+    "AMD": 209.415,
+    "IBKR": 62.905,
+    "MSTR": 167.92,
+    "RIVN": 18.04,
+    "GOOG": 307.53,
+    "META": 661.12,
+    "RGTI": 23.945,
     "LCID": 11.48,
-    "AMZN": 223.23,
-    "RUM": 6.64,
-    "ORCL": 189.64,
-    "NIO": 5.02,
-    "MARA": 10.68,
-    "LMT": 477.29,
-    "PANW": 187.64,
-    "F": 13.65,
-    "INTC": 37.4,
-    "IONQ": 49.37,
-    "SOUN": 10.925,
-    "LULU": 207.06,
-    "LLY": 1048.815,
-    "AAPL": 275.22,
-    "OKLO": 82.75,
-    "OPEN": 6.765,
-    "BMNR": 31.455,
-    "ETHZ": 6.88
+    "AMZN": 223.02,
+    "RUM": 6.665,
+    "ORCL": 188.635,
+    "NIO": 5.015,
+    "MARA": 10.675,
+    "LMT": 476.9,
+    "PANW": 187.6,
+    "F": 13.645,
+    "INTC": 37.35,
+    "IONQ": 49.47,
+    "SOUN": 11.07,
+    "LULU": 206.41,
+    "LLY": 1048.58,
+    "AAPL": 275.15,
+    "OKLO": 83.58,
+    "OPEN": 6.755,
+    "BMNR": 31.47,
+    "ETHZ": 6.895
   },
   "configs": {
     "TSLA": {
