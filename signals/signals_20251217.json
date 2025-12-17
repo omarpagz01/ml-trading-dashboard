@@ -53,5 +53,27 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-12-17T18:31:11.666424",
+    "symbol": "AMZN",
+    "action": "LONG",
+    "price": 223.735,
+    "timeframe": "1h",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-12-17T18:31:22.335842",
+    "symbol": "OPEN",
+    "action": "LONG",
+    "price": 6.45,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
