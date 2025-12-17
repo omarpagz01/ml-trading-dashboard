@@ -1,7 +1,7 @@
 {
-  "timestamp": "2025-12-17T14:08:00.934469+00:00",
-  "market_open": false,
-  "session_type": "pre_market",
+  "timestamp": "2025-12-17T14:30:00.381058+00:00",
+  "market_open": true,
+  "session_type": "regular",
   "positions": {
     "TSLA": {
       "symbol": "TSLA",
@@ -283,7 +283,39 @@
       "current_pnl_pct": 0.0
     }
   },
-  "realtime_prices": {},
+  "realtime_prices": {
+    "TSLA": 488.215,
+    "HOOD": 121.06,
+    "COIN": 255.5,
+    "PLTR": 187.72,
+    "NVDA": 176.1,
+    "AMD": 209.12,
+    "IBKR": 63.025,
+    "MSTR": 166.95,
+    "RIVN": 17.91,
+    "GOOG": 307.65,
+    "META": 656.96,
+    "RGTI": 24.19,
+    "LCID": 11.505,
+    "AMZN": 222.515,
+    "RUM": 6.675,
+    "ORCL": 185.07,
+    "NIO": 5.0,
+    "MARA": 10.78,
+    "LMT": 476.94,
+    "PANW": 187.08,
+    "F": 13.65,
+    "INTC": 37.28,
+    "IONQ": 50.22,
+    "SOUN": 11.22,
+    "LULU": 206.73,
+    "LLY": 1053.92,
+    "AAPL": 274.56,
+    "OKLO": 83.57,
+    "OPEN": 6.71,
+    "BMNR": 31.235,
+    "ETHZ": 6.865
+  },
   "configs": {
     "TSLA": {
       "symbol": "TSLA",
@@ -300,7 +332,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 80.48780487804879,
-      "last_optimization": "2025-12-17T13:59:27.941662"
+      "last_optimization": "2025-12-17T14:20:45.986508"
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -317,7 +349,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 72.72727272727273,
-      "last_optimization": "2025-12-17T13:59:27.941668"
+      "last_optimization": "2025-12-17T14:20:45.986514"
     },
     "COIN": {
       "symbol": "COIN",
@@ -334,7 +366,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 57.14285714285714,
-      "last_optimization": "2025-12-17T13:59:27.941670"
+      "last_optimization": "2025-12-17T14:20:45.986516"
     },
     "PLTR": {
       "symbol": "PLTR",
@@ -351,7 +383,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 70.37037037037037,
-      "last_optimization": "2025-12-17T13:59:27.941671"
+      "last_optimization": "2025-12-17T14:20:45.986517"
     },
     "NVDA": {
       "symbol": "NVDA",
@@ -368,7 +400,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 90.9090909090909,
-      "last_optimization": "2025-12-17T13:59:27.941672"
+      "last_optimization": "2025-12-17T14:20:45.986518"
     },
     "AMD": {
       "symbol": "AMD",
@@ -385,7 +417,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 71.42857142857143,
-      "last_optimization": "2025-12-17T13:59:27.941673"
+      "last_optimization": "2025-12-17T14:20:45.986520"
     },
     "IBKR": {
       "symbol": "IBKR",
@@ -402,7 +434,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 100.0,
-      "last_optimization": "2025-12-17T13:59:27.941675"
+      "last_optimization": "2025-12-17T14:20:45.986521"
     },
     "MSTR": {
       "symbol": "MSTR",
@@ -419,7 +451,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 69.6969696969697,
-      "last_optimization": "2025-12-17T13:59:27.941679"
+      "last_optimization": "2025-12-17T14:20:45.986526"
     },
     "RIVN": {
       "symbol": "RIVN",
@@ -433,7 +465,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 84.61538461538461,
-      "last_optimization": "2025-12-17T13:59:27.941682"
+      "last_optimization": "2025-12-17T14:20:45.986528"
     },
     "GOOG": {
       "symbol": "GOOG",
@@ -450,7 +482,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 70.0,
-      "last_optimization": "2025-12-17T13:59:27.941683"
+      "last_optimization": "2025-12-17T14:20:45.986529"
     },
     "META": {
       "symbol": "META",
@@ -465,7 +497,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 77.77777777777779,
-      "last_optimization": "2025-12-17T13:59:27.941684"
+      "last_optimization": "2025-12-17T14:20:45.986531"
     },
     "RGTI": {
       "symbol": "RGTI",
@@ -482,7 +514,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 90.9090909090909,
-      "last_optimization": "2025-12-17T13:59:27.941685"
+      "last_optimization": "2025-12-17T14:20:45.986532"
     },
     "LCID": {
       "symbol": "LCID",
@@ -499,7 +531,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 79.3103448275862,
-      "last_optimization": "2025-12-17T13:59:27.941686"
+      "last_optimization": "2025-12-17T14:20:45.986533"
     },
     "AMZN": {
       "symbol": "AMZN",
@@ -516,7 +548,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 87.5,
-      "last_optimization": "2025-12-17T13:59:27.941687"
+      "last_optimization": "2025-12-17T14:20:45.986534"
     },
     "RUM": {
       "symbol": "RUM",
@@ -533,7 +565,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 67.85714285714286,
-      "last_optimization": "2025-12-17T13:59:27.941689"
+      "last_optimization": "2025-12-17T14:20:45.986535"
     },
     "ORCL": {
       "symbol": "ORCL",
@@ -547,7 +579,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 82.6086956521739,
-      "last_optimization": "2025-12-17T13:59:27.941690"
+      "last_optimization": "2025-12-17T14:20:45.986536"
     },
     "NIO": {
       "symbol": "NIO",
@@ -564,7 +596,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 65.71428571428571,
-      "last_optimization": "2025-12-17T13:59:27.941690"
+      "last_optimization": "2025-12-17T14:20:45.986537"
     },
     "MARA": {
       "symbol": "MARA",
@@ -581,7 +613,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 74.35897435897436,
-      "last_optimization": "2025-12-17T13:59:27.941691"
+      "last_optimization": "2025-12-17T14:20:45.986538"
     },
     "LMT": {
       "symbol": "LMT",
@@ -598,7 +630,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 100.0,
-      "last_optimization": "2025-12-17T13:59:27.941692"
+      "last_optimization": "2025-12-17T14:20:45.986538"
     },
     "PANW": {
       "symbol": "PANW",
@@ -615,7 +647,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 100.0,
-      "last_optimization": "2025-12-17T13:59:27.941693"
+      "last_optimization": "2025-12-17T14:20:45.986539"
     },
     "F": {
       "symbol": "F",
@@ -629,7 +661,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 76.0,
-      "last_optimization": "2025-12-17T13:59:27.941694"
+      "last_optimization": "2025-12-17T14:20:45.986540"
     },
     "INTC": {
       "symbol": "INTC",
@@ -646,7 +678,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 80.76923076923077,
-      "last_optimization": "2025-12-17T13:59:27.941694"
+      "last_optimization": "2025-12-17T14:20:45.986541"
     },
     "IONQ": {
       "symbol": "IONQ",
@@ -663,7 +695,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 64.28571428571429,
-      "last_optimization": "2025-12-17T13:59:27.941696"
+      "last_optimization": "2025-12-17T14:20:45.986542"
     },
     "SOUN": {
       "symbol": "SOUN",
@@ -677,7 +709,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 92.85714285714286,
-      "last_optimization": "2025-12-17T13:59:27.941696"
+      "last_optimization": "2025-12-17T14:20:45.986543"
     },
     "LULU": {
       "symbol": "LULU",
@@ -694,7 +726,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 73.33333333333333,
-      "last_optimization": "2025-12-17T13:59:27.941697"
+      "last_optimization": "2025-12-17T14:20:45.986543"
     },
     "LLY": {
       "symbol": "LLY",
@@ -711,7 +743,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 83.33333333333334,
-      "last_optimization": "2025-12-17T13:59:27.941698"
+      "last_optimization": "2025-12-17T14:20:45.986545"
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -725,7 +757,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 100.0,
-      "last_optimization": "2025-12-17T13:59:27.941699"
+      "last_optimization": "2025-12-17T14:20:45.986546"
     },
     "OKLO": {
       "symbol": "OKLO",
@@ -742,7 +774,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 72.81553398058253,
-      "last_optimization": "2025-12-17T13:59:27.941699"
+      "last_optimization": "2025-12-17T14:20:45.986547"
     },
     "OPEN": {
       "symbol": "OPEN",
@@ -759,7 +791,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 78.94736842105263,
-      "last_optimization": "2025-12-17T13:59:27.941700"
+      "last_optimization": "2025-12-17T14:20:45.986548"
     },
     "BMNR": {
       "symbol": "BMNR",
@@ -773,7 +805,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 90.9090909090909,
-      "last_optimization": "2025-12-17T13:59:27.941701"
+      "last_optimization": "2025-12-17T14:20:45.986548"
     },
     "ETHZ": {
       "symbol": "ETHZ",
@@ -790,7 +822,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 88.23529411764706,
-      "last_optimization": "2025-12-17T13:59:27.941702"
+      "last_optimization": "2025-12-17T14:20:45.986549"
     }
   }
 }
