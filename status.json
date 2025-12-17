@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-12-17T12:46:00.607542+00:00",
+  "timestamp": "2025-12-17T13:24:00.076037+00:00",
   "market_open": false,
   "session_type": "pre_market",
   "positions": {
@@ -104,25 +104,21 @@
     },
     "RGTI": {
       "symbol": "RGTI",
-      "is_open": true,
-      "entry_price": 26.555,
-      "entry_time": "2025-12-15T18:38:43.600849",
+      "is_open": false,
+      "entry_price": 0.0,
+      "entry_time": null,
       "last_signal": "HOLD",
       "last_signal_time": null,
-      "current_pnl_pct": -9.753342120128035,
-      "current_price": 23.965,
-      "realtime_pnl_pct": -9.753342120128035
+      "current_pnl_pct": 0.0
     },
     "LCID": {
       "symbol": "LCID",
-      "is_open": true,
-      "entry_price": 12.115,
-      "entry_time": "2025-12-16T15:31:10.033514",
+      "is_open": false,
+      "entry_price": 0.0,
+      "entry_time": null,
       "last_signal": "HOLD",
       "last_signal_time": null,
-      "current_pnl_pct": -4.911267024349984,
-      "current_price": 11.52,
-      "realtime_pnl_pct": -4.911267024349984
+      "current_pnl_pct": 0.0
     },
     "AMZN": {
       "symbol": "AMZN",
@@ -135,14 +131,12 @@
     },
     "RUM": {
       "symbol": "RUM",
-      "is_open": true,
-      "entry_price": 6.42,
-      "entry_time": "2025-12-16T20:01:09.555028",
-      "last_signal": "LONG",
+      "is_open": false,
+      "entry_price": 0.0,
+      "entry_time": null,
+      "last_signal": "HOLD",
       "last_signal_time": null,
-      "current_pnl_pct": 3.9719626168224282,
-      "current_price": 6.675,
-      "realtime_pnl_pct": 3.9719626168224282
+      "current_pnl_pct": 0.0
     },
     "ORCL": {
       "symbol": "ORCL",
@@ -200,14 +194,12 @@
     },
     "INTC": {
       "symbol": "INTC",
-      "is_open": true,
-      "entry_price": 37.63,
-      "entry_time": "2025-12-16T18:31:16.046868",
+      "is_open": false,
+      "entry_price": 0.0,
+      "entry_time": null,
       "last_signal": "HOLD",
       "last_signal_time": null,
-      "current_pnl_pct": -0.7440871644964154,
-      "current_price": 37.35,
-      "realtime_pnl_pct": -0.7440871644964154
+      "current_pnl_pct": 0.0
     },
     "IONQ": {
       "symbol": "IONQ",
@@ -247,14 +239,12 @@
     },
     "AAPL": {
       "symbol": "AAPL",
-      "is_open": true,
-      "entry_price": 274.14,
-      "entry_time": "2025-12-16T20:01:16.597517",
-      "last_signal": "LONG",
+      "is_open": false,
+      "entry_price": 0.0,
+      "entry_time": null,
+      "last_signal": "HOLD",
       "last_signal_time": null,
-      "current_pnl_pct": 0.29546946815495817,
-      "current_price": 274.95,
-      "realtime_pnl_pct": 0.29546946815495817
+      "current_pnl_pct": 0.0
     },
     "OKLO": {
       "symbol": "OKLO",
@@ -267,25 +257,21 @@
     },
     "OPEN": {
       "symbol": "OPEN",
-      "is_open": true,
-      "entry_price": 7.2,
-      "entry_time": "2025-12-15T19:16:08.009518",
+      "is_open": false,
+      "entry_price": 0.0,
+      "entry_time": null,
       "last_signal": "HOLD",
       "last_signal_time": null,
-      "current_pnl_pct": -6.805555555555558,
-      "current_price": 6.71,
-      "realtime_pnl_pct": -6.805555555555558
+      "current_pnl_pct": 0.0
     },
     "BMNR": {
       "symbol": "BMNR",
-      "is_open": true,
-      "entry_price": 38.76,
-      "entry_time": "2025-12-16T19:01:18.631412",
+      "is_open": false,
+      "entry_price": 0.0,
+      "entry_time": null,
       "last_signal": "HOLD",
       "last_signal_time": null,
-      "current_pnl_pct": -19.001547987616096,
-      "current_price": 31.395,
-      "realtime_pnl_pct": -19.001547987616096
+      "current_pnl_pct": 0.0
     },
     "ETHZ": {
       "symbol": "ETHZ",
@@ -297,39 +283,7 @@
       "current_pnl_pct": 0.0
     }
   },
-  "realtime_prices": {
-    "TSLA": 490.13,
-    "HOOD": 119.48,
-    "COIN": 252.555,
-    "PLTR": 187.97,
-    "NVDA": 178.02,
-    "AMD": 209.39,
-    "IBKR": 63.015,
-    "MSTR": 167.55,
-    "RIVN": 17.905,
-    "GOOG": 307.82,
-    "META": 658.665,
-    "RGTI": 23.965,
-    "LCID": 11.52,
-    "AMZN": 222.935,
-    "RUM": 6.675,
-    "ORCL": 188.535,
-    "NIO": 5.015,
-    "MARA": 10.715,
-    "LMT": 477.135,
-    "PANW": 187.09,
-    "F": 13.65,
-    "INTC": 37.35,
-    "IONQ": 49.73,
-    "SOUN": 11.105,
-    "LULU": 206.82,
-    "LLY": 1054.795,
-    "AAPL": 274.95,
-    "OKLO": 83.56,
-    "OPEN": 6.71,
-    "BMNR": 31.395,
-    "ETHZ": 6.895
-  },
+  "realtime_prices": {},
   "configs": {
     "TSLA": {
       "symbol": "TSLA",
@@ -346,7 +300,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 80.48780487804879,
-      "last_optimization": "2025-12-16T20:37:10.789294"
+      "last_optimization": "2025-12-17T13:14:52.556454"
     },
     "HOOD": {
       "symbol": "HOOD",
@@ -363,7 +317,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 72.72727272727273,
-      "last_optimization": "2025-12-16T20:37:10.789300"
+      "last_optimization": "2025-12-17T13:14:52.556460"
     },
     "COIN": {
       "symbol": "COIN",
@@ -380,7 +334,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 57.14285714285714,
-      "last_optimization": "2025-12-16T20:37:10.789302"
+      "last_optimization": "2025-12-17T13:14:52.556462"
     },
     "PLTR": {
       "symbol": "PLTR",
@@ -397,7 +351,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 70.37037037037037,
-      "last_optimization": "2025-12-16T20:37:10.789303"
+      "last_optimization": "2025-12-17T13:14:52.556463"
     },
     "NVDA": {
       "symbol": "NVDA",
@@ -414,7 +368,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 90.9090909090909,
-      "last_optimization": "2025-12-16T20:37:10.789304"
+      "last_optimization": "2025-12-17T13:14:52.556464"
     },
     "AMD": {
       "symbol": "AMD",
@@ -431,7 +385,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 71.42857142857143,
-      "last_optimization": "2025-12-16T20:37:10.789305"
+      "last_optimization": "2025-12-17T13:14:52.556465"
     },
     "IBKR": {
       "symbol": "IBKR",
@@ -448,7 +402,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 100.0,
-      "last_optimization": "2025-12-16T20:37:10.789306"
+      "last_optimization": "2025-12-17T13:14:52.556467"
     },
     "MSTR": {
       "symbol": "MSTR",
@@ -465,7 +419,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 69.6969696969697,
-      "last_optimization": "2025-12-16T20:37:10.789311"
+      "last_optimization": "2025-12-17T13:14:52.556471"
     },
     "RIVN": {
       "symbol": "RIVN",
@@ -479,7 +433,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 84.61538461538461,
-      "last_optimization": "2025-12-16T20:37:10.789313"
+      "last_optimization": "2025-12-17T13:14:52.556474"
     },
     "GOOG": {
       "symbol": "GOOG",
@@ -496,7 +450,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 70.0,
-      "last_optimization": "2025-12-16T20:37:10.789315"
+      "last_optimization": "2025-12-17T13:14:52.556476"
     },
     "META": {
       "symbol": "META",
@@ -511,7 +465,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 77.77777777777779,
-      "last_optimization": "2025-12-16T20:37:10.789316"
+      "last_optimization": "2025-12-17T13:14:52.556477"
     },
     "RGTI": {
       "symbol": "RGTI",
@@ -528,7 +482,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 90.9090909090909,
-      "last_optimization": "2025-12-16T20:37:10.789317"
+      "last_optimization": "2025-12-17T13:14:52.556478"
     },
     "LCID": {
       "symbol": "LCID",
@@ -545,7 +499,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 79.3103448275862,
-      "last_optimization": "2025-12-16T20:37:10.789318"
+      "last_optimization": "2025-12-17T13:14:52.556479"
     },
     "AMZN": {
       "symbol": "AMZN",
@@ -562,7 +516,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 87.5,
-      "last_optimization": "2025-12-16T20:37:10.789319"
+      "last_optimization": "2025-12-17T13:14:52.556480"
     },
     "RUM": {
       "symbol": "RUM",
@@ -579,7 +533,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 67.85714285714286,
-      "last_optimization": "2025-12-16T20:37:10.789319"
+      "last_optimization": "2025-12-17T13:14:52.556482"
     },
     "ORCL": {
       "symbol": "ORCL",
@@ -593,7 +547,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 82.6086956521739,
-      "last_optimization": "2025-12-16T20:37:10.789320"
+      "last_optimization": "2025-12-17T13:14:52.556483"
     },
     "NIO": {
       "symbol": "NIO",
@@ -610,7 +564,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 65.71428571428571,
-      "last_optimization": "2025-12-16T20:37:10.789321"
+      "last_optimization": "2025-12-17T13:14:52.556484"
     },
     "MARA": {
       "symbol": "MARA",
@@ -627,7 +581,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 74.35897435897436,
-      "last_optimization": "2025-12-16T20:37:10.789322"
+      "last_optimization": "2025-12-17T13:14:52.556484"
     },
     "LMT": {
       "symbol": "LMT",
@@ -644,7 +598,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 100.0,
-      "last_optimization": "2025-12-16T20:37:10.789323"
+      "last_optimization": "2025-12-17T13:14:52.556485"
     },
     "PANW": {
       "symbol": "PANW",
@@ -661,7 +615,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 100.0,
-      "last_optimization": "2025-12-16T20:37:10.789324"
+      "last_optimization": "2025-12-17T13:14:52.556486"
     },
     "F": {
       "symbol": "F",
@@ -675,7 +629,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 76.0,
-      "last_optimization": "2025-12-16T20:37:10.789325"
+      "last_optimization": "2025-12-17T13:14:52.556487"
     },
     "INTC": {
       "symbol": "INTC",
@@ -692,7 +646,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 80.76923076923077,
-      "last_optimization": "2025-12-16T20:37:10.789325"
+      "last_optimization": "2025-12-17T13:14:52.556488"
     },
     "IONQ": {
       "symbol": "IONQ",
@@ -709,7 +663,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 64.28571428571429,
-      "last_optimization": "2025-12-16T20:37:10.789327"
+      "last_optimization": "2025-12-17T13:14:52.556490"
     },
     "SOUN": {
       "symbol": "SOUN",
@@ -723,7 +677,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 92.85714285714286,
-      "last_optimization": "2025-12-16T20:37:10.789327"
+      "last_optimization": "2025-12-17T13:14:52.556491"
     },
     "LULU": {
       "symbol": "LULU",
@@ -740,7 +694,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 73.33333333333333,
-      "last_optimization": "2025-12-16T20:37:10.789328"
+      "last_optimization": "2025-12-17T13:14:52.556491"
     },
     "LLY": {
       "symbol": "LLY",
@@ -757,7 +711,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 83.33333333333334,
-      "last_optimization": "2025-12-16T20:37:10.789329"
+      "last_optimization": "2025-12-17T13:14:52.556492"
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -771,7 +725,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 100.0,
-      "last_optimization": "2025-12-16T20:37:10.789330"
+      "last_optimization": "2025-12-17T13:14:52.556493"
     },
     "OKLO": {
       "symbol": "OKLO",
@@ -788,7 +742,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 72.81553398058253,
-      "last_optimization": "2025-12-16T20:37:10.789330"
+      "last_optimization": "2025-12-17T13:14:52.556494"
     },
     "OPEN": {
       "symbol": "OPEN",
@@ -805,7 +759,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 78.94736842105263,
-      "last_optimization": "2025-12-16T20:37:10.789331"
+      "last_optimization": "2025-12-17T13:14:52.556494"
     },
     "BMNR": {
       "symbol": "BMNR",
@@ -819,7 +773,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 90.9090909090909,
-      "last_optimization": "2025-12-16T20:37:10.789332"
+      "last_optimization": "2025-12-17T13:14:52.556495"
     },
     "ETHZ": {
       "symbol": "ETHZ",
@@ -836,7 +790,7 @@
       "default_return": 0.0,
       "optimized_return": 0,
       "win_rate": 88.23529411764706,
-      "last_optimization": "2025-12-16T20:37:10.789333"
+      "last_optimization": "2025-12-17T13:14:52.556496"
     }
   }
 }
