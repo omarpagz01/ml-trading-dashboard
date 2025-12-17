@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-12-17T16:16:09.142604+00:00",
+  "timestamp": "2025-12-17T16:20:00.979543+00:00",
   "market_open": true,
   "session_type": "regular",
   "positions": {
@@ -190,9 +190,9 @@
       "entry_time": "2025-12-17T15:01:13.765842",
       "last_signal": "HOLD",
       "last_signal_time": "2025-12-17T16:01:14.740719",
-      "current_pnl_pct": -0.9259259259259258,
-      "current_price": 13.375,
-      "realtime_pnl_pct": -0.9259259259259258
+      "current_pnl_pct": -0.740740740740738,
+      "current_price": 13.4,
+      "realtime_pnl_pct": -0.740740740740738
     },
     "INTC": {
       "symbol": "INTC",
@@ -201,9 +201,9 @@
       "entry_time": "2025-12-17T16:01:15.478060",
       "last_signal": "LONG",
       "last_signal_time": "2025-12-17T16:01:15.478060",
-      "current_pnl_pct": -0.15076754385964836,
-      "current_price": 36.425,
-      "realtime_pnl_pct": -0.15076754385964836
+      "current_pnl_pct": 0.06853070175440155,
+      "current_price": 36.505,
+      "realtime_pnl_pct": 0.06853070175440155
     },
     "IONQ": {
       "symbol": "IONQ",
@@ -257,9 +257,9 @@
       "entry_time": "2025-12-17T16:16:07.198968",
       "last_signal": "LONG",
       "last_signal_time": "2025-12-17T16:16:07.198968",
-      "current_pnl_pct": 0.0,
-      "current_price": 78.915,
-      "realtime_pnl_pct": 0.0
+      "current_pnl_pct": -0.41183551922955436,
+      "current_price": 78.59,
+      "realtime_pnl_pct": -0.41183551922955436
     },
     "OPEN": {
       "symbol": "OPEN",
@@ -290,37 +290,37 @@
     }
   },
   "realtime_prices": {
-    "TSLA": 475.6,
-    "HOOD": 119.94,
-    "COIN": 251.05,
-    "PLTR": 181.3,
-    "NVDA": 170.87,
-    "AMD": 199.86,
-    "IBKR": 62.75,
-    "MSTR": 163.885,
-    "RIVN": 18.0,
-    "GOOG": 299.685,
-    "META": 656.16,
-    "RGTI": 23.865,
-    "LCID": 11.39,
-    "AMZN": 223.76,
+    "TSLA": 476.61,
+    "HOOD": 120.2,
+    "COIN": 250.97,
+    "PLTR": 181.71,
+    "NVDA": 170.93,
+    "AMD": 200.36,
+    "IBKR": 62.87,
+    "MSTR": 164.2,
+    "RIVN": 18.03,
+    "GOOG": 299.91,
+    "META": 657.37,
+    "RGTI": 23.8,
+    "LCID": 11.4,
+    "AMZN": 223.99,
     "RUM": 6.66,
-    "ORCL": 178.155,
-    "NIO": 4.925,
-    "MARA": 10.245,
-    "LMT": 474.41,
-    "PANW": 186.66,
-    "F": 13.375,
-    "INTC": 36.425,
-    "IONQ": 48.72,
-    "SOUN": 11.08,
-    "LULU": 207.23,
-    "LLY": 1055.9,
-    "AAPL": 273.77,
-    "OKLO": 78.915,
-    "OPEN": 6.47,
-    "BMNR": 29.95,
-    "ETHZ": 6.72
+    "ORCL": 178.74,
+    "NIO": 4.945,
+    "MARA": 10.21,
+    "LMT": 475.5,
+    "PANW": 186.94,
+    "F": 13.4,
+    "INTC": 36.505,
+    "IONQ": 48.61,
+    "SOUN": 11.07,
+    "LULU": 207.9,
+    "LLY": 1055.98,
+    "AAPL": 273.52,
+    "OKLO": 78.59,
+    "OPEN": 6.48,
+    "BMNR": 29.895,
+    "ETHZ": 6.73
   },
   "configs": {
     "TSLA": {
