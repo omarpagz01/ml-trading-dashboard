@@ -20,5 +20,27 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-12-18T19:31:03.485397",
+    "symbol": "COIN",
+    "action": "LONG",
+    "price": 244.28,
+    "timeframe": "30m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-12-18T19:31:18.437527",
+    "symbol": "SOUN",
+    "action": "LONG",
+    "price": 10.99,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
