@@ -1,0 +1,24 @@
+[
+  {
+    "timestamp": "2025-12-19T17:01:02.448455",
+    "symbol": "TSLA",
+    "action": "LONG",
+    "price": 475.76,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2025-12-19T17:01:21.256446",
+    "symbol": "BMNR",
+    "action": "EXIT",
+    "price": 31.085,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  }
+]
