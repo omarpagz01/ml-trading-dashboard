@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-12-22T18:46:14.116690+00:00",
+  "timestamp": "2025-12-22T18:51:01.124255+00:00",
   "market_open": true,
   "session_type": "regular",
   "positions": {
@@ -37,9 +37,9 @@
       "entry_time": "2025-12-22T18:46:02.992290",
       "last_signal": "LONG",
       "last_signal_time": "2025-12-22T18:46:02.992290",
-      "current_pnl_pct": 0.0,
-      "current_price": 193.19,
-      "realtime_pnl_pct": 0.0
+      "current_pnl_pct": -0.09834877581655248,
+      "current_price": 193.0,
+      "realtime_pnl_pct": -0.09834877581655248
     },
     "NVDA": {
       "symbol": "NVDA",
@@ -57,9 +57,9 @@
       "entry_time": "2025-12-17T18:01:06.199865",
       "last_signal": "HOLD",
       "last_signal_time": "2025-12-22T18:46:03.707559",
-      "current_pnl_pct": 6.622582409386961,
-      "current_price": 214.45,
-      "realtime_pnl_pct": 6.622582409386961
+      "current_pnl_pct": 6.615124546313334,
+      "current_price": 214.435,
+      "realtime_pnl_pct": 6.615124546313334
     },
     "IBKR": {
       "symbol": "IBKR",
@@ -86,9 +86,9 @@
       "entry_time": "2025-12-17T19:31:07.588508",
       "last_signal": "HOLD",
       "last_signal_time": "2025-12-22T18:31:06.448469",
-      "current_pnl_pct": 23.117532647957763,
-      "current_price": 22.155,
-      "realtime_pnl_pct": 23.117532647957763
+      "current_pnl_pct": 22.784106696304516,
+      "current_price": 22.095,
+      "realtime_pnl_pct": 22.784106696304516
     },
     "GOOGL": {
       "symbol": "GOOGL",
@@ -133,9 +133,9 @@
       "entry_time": "2025-12-17T18:31:11.666424",
       "last_signal": "HOLD",
       "last_signal_time": "2025-12-22T18:46:06.520485",
-      "current_pnl_pct": 2.073882047958516,
-      "current_price": 228.375,
-      "realtime_pnl_pct": 2.073882047958516
+      "current_pnl_pct": 1.9956645138221443,
+      "current_price": 228.2,
+      "realtime_pnl_pct": 1.9956645138221443
     },
     "RUM": {
       "symbol": "RUM",
@@ -144,9 +144,9 @@
       "entry_time": "2025-12-22T14:46:07.910247",
       "last_signal": "HOLD",
       "last_signal_time": "2025-12-22T18:46:07.225054",
-      "current_pnl_pct": -1.54277699859748,
-      "current_price": 7.02,
-      "realtime_pnl_pct": -1.54277699859748
+      "current_pnl_pct": -1.262272089761569,
+      "current_price": 7.04,
+      "realtime_pnl_pct": -1.262272089761569
     },
     "ORCL": {
       "symbol": "ORCL",
@@ -200,9 +200,9 @@
       "entry_time": "2025-12-17T15:01:13.765842",
       "last_signal": "HOLD",
       "last_signal_time": "2025-12-22T18:31:15.051566",
-      "current_pnl_pct": -0.2592592592592603,
-      "current_price": 13.465,
-      "realtime_pnl_pct": -0.2592592592592603
+      "current_pnl_pct": -0.1851851851851878,
+      "current_price": 13.475,
+      "realtime_pnl_pct": -0.1851851851851878
     },
     "INTC": {
       "symbol": "INTC",
@@ -240,9 +240,9 @@
       "entry_time": "2025-12-18T19:46:06.822689",
       "last_signal": "HOLD",
       "last_signal_time": "2025-12-22T18:31:17.953692",
-      "current_pnl_pct": -1.9237883832778377,
-      "current_price": 212.08,
-      "realtime_pnl_pct": -1.9237883832778377
+      "current_pnl_pct": -2.000092489826127,
+      "current_price": 211.915,
+      "realtime_pnl_pct": -2.000092489826127
     },
     "LLY": {
       "symbol": "LLY",
@@ -372,45 +372,45 @@
     }
   },
   "realtime_prices": {
-    "TSLA": 494.935,
-    "HOOD": 122.05,
+    "TSLA": 494.81,
+    "HOOD": 122.1,
     "COIN": 249.64,
-    "PLTR": 193.19,
-    "NVDA": 183.415,
-    "AMD": 214.45,
-    "IBKR": 65.49,
-    "MSTR": 166.06,
-    "RIVN": 22.155,
-    "GOOGL": 308.94,
-    "META": 660.39,
-    "RGTI": 26.91,
-    "LCID": 12.29,
-    "AMZN": 228.375,
-    "RUM": 7.02,
-    "ORCL": 197.7,
+    "PLTR": 193.0,
+    "NVDA": 183.305,
+    "AMD": 214.435,
+    "IBKR": 65.5,
+    "MSTR": 166.01,
+    "RIVN": 22.095,
+    "GOOGL": 308.83,
+    "META": 661.365,
+    "RGTI": 26.94,
+    "LCID": 12.25,
+    "AMZN": 228.2,
+    "RUM": 7.04,
+    "ORCL": 197.83,
     "NIO": 4.995,
-    "MARA": 10.215,
-    "LMT": 482.75,
-    "PANW": 189.44,
-    "F": 13.465,
-    "INTC": 36.57,
-    "IONQ": 54.73,
+    "MARA": 10.22,
+    "LMT": 482.765,
+    "PANW": 189.205,
+    "F": 13.475,
+    "INTC": 36.545,
+    "IONQ": 54.77,
     "SOUN": 11.27,
-    "LULU": 212.08,
-    "LLY": 1067.75,
-    "AAPL": 270.88,
-    "OKLO": 80.87,
-    "OPEN": 6.455,
-    "BMNR": 31.38,
+    "LULU": 211.915,
+    "LLY": 1068.0,
+    "AAPL": 270.74,
+    "OKLO": 81.08,
+    "OPEN": 6.485,
+    "BMNR": 31.39,
     "ETHZ": 6.55,
-    "MSFT": 486.14,
-    "NFLX": 93.085,
+    "MSFT": 485.895,
+    "NFLX": 93.005,
     "BITI": 22.67,
-    "IBIT": 50.68,
-    "ETHU": 57.265,
-    "GM": 83.36,
-    "PYPL": 60.24,
-    "SOLT": 6.74
+    "IBIT": 50.695,
+    "ETHU": 57.13,
+    "GM": 83.38,
+    "PYPL": 60.2,
+    "SOLT": 6.72
   },
   "configs": {
     "TSLA": {
