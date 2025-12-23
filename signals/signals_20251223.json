@@ -42,5 +42,16 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-12-23T19:01:15.741067",
+    "symbol": "LULU",
+    "action": "EXIT",
+    "price": 211.67,
+    "timeframe": "30m",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
