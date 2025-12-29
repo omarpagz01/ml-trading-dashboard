@@ -64,5 +64,16 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-12-29T19:01:16.378064",
+    "symbol": "LULU",
+    "action": "EXIT",
+    "price": 211.935,
+    "timeframe": "30m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
