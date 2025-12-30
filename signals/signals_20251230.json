@@ -20,5 +20,16 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2025-12-30T17:31:20.553087",
+    "symbol": "AAPL",
+    "action": "LONG",
+    "price": 272.57,
+    "timeframe": "1h",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
