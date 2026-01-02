@@ -53,5 +53,16 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-02T19:01:20.971313",
+    "symbol": "NFLX",
+    "action": "LONG",
+    "price": 91.135,
+    "timeframe": "30m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
