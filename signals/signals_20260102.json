@@ -75,5 +75,27 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-02T20:01:13.736163",
+    "symbol": "IONQ",
+    "action": "EXIT",
+    "price": 46.36,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-02T20:01:14.445313",
+    "symbol": "SOUN",
+    "action": "EXIT",
+    "price": 10.505,
+    "timeframe": "30m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
