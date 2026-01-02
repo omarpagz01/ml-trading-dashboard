@@ -9,5 +9,27 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-02T15:31:17.993549",
+    "symbol": "LULU",
+    "action": "EXIT",
+    "price": 209.76,
+    "timeframe": "30m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-02T15:31:24.512863",
+    "symbol": "BITI",
+    "action": "LONG",
+    "price": 22.775,
+    "timeframe": "30m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
