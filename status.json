@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-05T18:53:00.902001+00:00",
+  "timestamp": "2026-01-05T19:01:25.048150+00:00",
   "market_open": true,
   "session_type": "regular",
   "positions": {
@@ -9,7 +9,7 @@
       "entry_price": 0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:00.994170",
+      "last_signal_time": "2026-01-05T19:01:00.801535",
       "current_pnl_pct": 0.0
     },
     "HOOD": {
@@ -18,10 +18,10 @@
       "entry_price": 116.51,
       "entry_time": "2025-12-29T19:16:01.494978",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:01.707098",
-      "current_pnl_pct": 4.583297571023937,
-      "current_price": 121.85,
-      "realtime_pnl_pct": 4.583297571023937
+      "last_signal_time": "2026-01-05T19:01:01.582852",
+      "current_pnl_pct": 4.729207793322454,
+      "current_price": 122.02,
+      "realtime_pnl_pct": 4.729207793322454
     },
     "COIN": {
       "symbol": "COIN",
@@ -29,7 +29,7 @@
       "entry_price": 0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:02.490985",
+      "last_signal_time": "2026-01-05T19:01:02.342661",
       "current_pnl_pct": 2.993802915248326
     },
     "PLTR": {
@@ -37,11 +37,11 @@
       "is_open": true,
       "entry_price": 173.76,
       "entry_time": "2026-01-05T18:46:03.227605",
-      "last_signal": "LONG",
-      "last_signal_time": "2026-01-05T18:46:03.227605",
-      "current_pnl_pct": 0.2129373848987135,
-      "current_price": 174.13,
-      "realtime_pnl_pct": 0.2129373848987135
+      "last_signal": "HOLD",
+      "last_signal_time": "2026-01-05T19:01:03.086596",
+      "current_pnl_pct": 0.25322283609576296,
+      "current_price": 174.2,
+      "realtime_pnl_pct": 0.25322283609576296
     },
     "NVDA": {
       "symbol": "NVDA",
@@ -49,7 +49,7 @@
       "entry_price": 0.0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:04.029966",
+      "last_signal_time": "2026-01-05T19:01:03.856345",
       "current_pnl_pct": 0.0
     },
     "AMD": {
@@ -58,10 +58,10 @@
       "entry_price": 221.77,
       "entry_time": "2026-01-05T18:31:04.733987",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:03.933082",
-      "current_pnl_pct": -0.013527528520539808,
-      "current_price": 221.74,
-      "realtime_pnl_pct": -0.013527528520539808
+      "last_signal_time": "2026-01-05T19:01:04.560034",
+      "current_pnl_pct": 0.013527528520539808,
+      "current_price": 221.8,
+      "realtime_pnl_pct": 0.013527528520539808
     },
     "IBKR": {
       "symbol": "IBKR",
@@ -69,21 +69,19 @@
       "entry_price": 65.39,
       "entry_time": "2025-12-29T18:31:05.872964",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:04.659927",
-      "current_pnl_pct": 9.076311362593673,
-      "current_price": 71.325,
-      "realtime_pnl_pct": 9.076311362593673
+      "last_signal_time": "2026-01-05T19:01:05.313574",
+      "current_pnl_pct": 9.091604220828863,
+      "current_price": 71.335,
+      "realtime_pnl_pct": 9.091604220828863
     },
     "MSTR": {
       "symbol": "MSTR",
-      "is_open": true,
-      "entry_price": 157.425,
-      "entry_time": "2025-12-23T18:16:05.884230",
-      "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:05.377898",
-      "current_pnl_pct": 3.6620612990312758,
-      "current_price": 163.19,
-      "realtime_pnl_pct": 3.6620612990312758
+      "is_open": false,
+      "entry_price": 0,
+      "entry_time": null,
+      "last_signal": "EXIT",
+      "last_signal_time": "2026-01-05T19:01:06.077866",
+      "current_pnl_pct": 4.481499126568194
     },
     "RIVN": {
       "symbol": "RIVN",
@@ -92,9 +90,9 @@
       "entry_time": "2025-12-17T19:31:07.588508",
       "last_signal": "HOLD",
       "last_signal_time": "2026-01-05T18:31:06.910714",
-      "current_pnl_pct": 8.613503751041959,
-      "current_price": 19.545,
-      "realtime_pnl_pct": 8.613503751041959
+      "current_pnl_pct": 8.335648791330925,
+      "current_price": 19.495,
+      "realtime_pnl_pct": 8.335648791330925
     },
     "GOOGL": {
       "symbol": "GOOGL",
@@ -111,7 +109,7 @@
       "entry_price": 0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:06.084553",
+      "last_signal_time": "2026-01-05T19:01:06.809532",
       "current_pnl_pct": 0.8658404597490988
     },
     "RGTI": {
@@ -120,7 +118,7 @@
       "entry_price": 0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:09.060233",
+      "last_signal_time": "2026-01-05T19:01:07.559865",
       "current_pnl_pct": 1.8531073446327688
     },
     "LCID": {
@@ -130,9 +128,9 @@
       "entry_time": "2025-12-26T15:31:10.018928",
       "last_signal": "HOLD",
       "last_signal_time": "2026-01-05T18:31:09.772785",
-      "current_pnl_pct": 1.0822510822510822,
-      "current_price": 11.675,
-      "realtime_pnl_pct": 1.0822510822510822
+      "current_pnl_pct": 0.6493506493506431,
+      "current_price": 11.625,
+      "realtime_pnl_pct": 0.6493506493506431
     },
     "AMZN": {
       "symbol": "AMZN",
@@ -140,7 +138,7 @@
       "entry_price": 0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:06.790878",
+      "last_signal_time": "2026-01-05T19:01:08.278120",
       "current_pnl_pct": 4.382416698326135
     },
     "RUM": {
@@ -149,10 +147,10 @@
       "entry_price": 7.13,
       "entry_time": "2025-12-22T14:46:07.910247",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:07.518664",
-      "current_pnl_pct": -11.15007012622721,
-      "current_price": 6.335,
-      "realtime_pnl_pct": -11.15007012622721
+      "last_signal_time": "2026-01-05T19:01:09.172502",
+      "current_pnl_pct": -10.3085553997195,
+      "current_price": 6.395,
+      "realtime_pnl_pct": -10.3085553997195
     },
     "ORCL": {
       "symbol": "ORCL",
@@ -160,7 +158,7 @@
       "entry_price": 0.0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:08.232588",
+      "last_signal_time": "2026-01-05T19:01:09.892186",
       "current_pnl_pct": 0.0
     },
     "NIO": {
@@ -168,8 +166,8 @@
       "is_open": true,
       "entry_price": 4.895,
       "entry_time": "2026-01-05T18:46:08.931975",
-      "last_signal": "LONG",
-      "last_signal_time": "2026-01-05T18:46:08.931975",
+      "last_signal": "HOLD",
+      "last_signal_time": "2026-01-05T19:01:10.611618",
       "current_pnl_pct": 0.0,
       "current_price": 4.895,
       "realtime_pnl_pct": 0.0
@@ -180,10 +178,10 @@
       "entry_price": 9.88,
       "entry_time": "2025-12-23T15:16:09.557803",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:09.633239",
-      "current_pnl_pct": 6.427125506072871,
-      "current_price": 10.515,
-      "realtime_pnl_pct": 6.427125506072871
+      "last_signal_time": "2026-01-05T19:01:11.340179",
+      "current_pnl_pct": 6.8319838056680045,
+      "current_price": 10.555,
+      "realtime_pnl_pct": 6.8319838056680045
     },
     "LMT": {
       "symbol": "LMT",
@@ -191,7 +189,7 @@
       "entry_price": 0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:10.346579",
+      "last_signal_time": "2026-01-05T19:01:12.083955",
       "current_pnl_pct": 1.2948533934795976
     },
     "PANW": {
@@ -200,10 +198,10 @@
       "entry_price": 186.69,
       "entry_time": "2025-12-29T19:31:15.075896",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:14.730180",
-      "current_pnl_pct": -2.335422357919538,
-      "current_price": 182.33,
-      "realtime_pnl_pct": -2.335422357919538
+      "last_signal_time": "2026-01-05T19:01:12.825355",
+      "current_pnl_pct": -2.2068669987680134,
+      "current_price": 182.57,
+      "realtime_pnl_pct": -2.2068669987680134
     },
     "F": {
       "symbol": "F",
@@ -212,9 +210,9 @@
       "entry_time": "2025-12-17T15:01:13.765842",
       "last_signal": "HOLD",
       "last_signal_time": "2026-01-05T18:31:15.460052",
-      "current_pnl_pct": -0.29629629629629,
-      "current_price": 13.46,
-      "realtime_pnl_pct": -0.29629629629629
+      "current_pnl_pct": -0.148148148148145,
+      "current_price": 13.48,
+      "realtime_pnl_pct": -0.148148148148145
     },
     "INTC": {
       "symbol": "INTC",
@@ -222,7 +220,7 @@
       "entry_price": 0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:16.171826",
+      "last_signal_time": "2026-01-05T19:01:13.542346",
       "current_pnl_pct": 0.0
     },
     "IONQ": {
@@ -231,7 +229,7 @@
       "entry_price": 0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:11.105699",
+      "last_signal_time": "2026-01-05T19:01:14.253716",
       "current_pnl_pct": -5.609284332688593
     },
     "SOUN": {
@@ -240,7 +238,7 @@
       "entry_price": 0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:17.585261",
+      "last_signal_time": "2026-01-05T19:01:14.995408",
       "current_pnl_pct": -4.413102820746127
     },
     "LULU": {
@@ -249,7 +247,7 @@
       "entry_price": 0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:18.296295",
+      "last_signal_time": "2026-01-05T19:01:15.725214",
       "current_pnl_pct": 0.12649466574380597
     },
     "LLY": {
@@ -258,10 +256,10 @@
       "entry_price": 1079.24,
       "entry_time": "2025-12-30T18:16:11.982613",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:11.814853",
-      "current_pnl_pct": -3.777195063192626,
-      "current_price": 1038.475,
-      "realtime_pnl_pct": -3.777195063192626
+      "last_signal_time": "2026-01-05T19:01:16.478195",
+      "current_pnl_pct": -3.775805196249212,
+      "current_price": 1038.49,
+      "realtime_pnl_pct": -3.775805196249212
     },
     "AAPL": {
       "symbol": "AAPL",
@@ -270,9 +268,9 @@
       "entry_time": "2025-12-30T17:31:20.553087",
       "last_signal": "HOLD",
       "last_signal_time": "2026-01-05T18:31:19.712929",
-      "current_pnl_pct": -1.977473676486769,
-      "current_price": 267.18,
-      "realtime_pnl_pct": -1.977473676486769
+      "current_pnl_pct": -2.021499064460502,
+      "current_price": 267.06,
+      "realtime_pnl_pct": -2.021499064460502
     },
     "OKLO": {
       "symbol": "OKLO",
@@ -280,7 +278,7 @@
       "entry_price": 0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:12.526429",
+      "last_signal_time": "2026-01-05T19:01:17.228657",
       "current_pnl_pct": 2.3307745987438766
     },
     "OPEN": {
@@ -289,10 +287,10 @@
       "entry_price": 6.275,
       "entry_time": "2025-12-23T16:01:17.855406",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:21.150805",
-      "current_pnl_pct": -2.549800796812751,
-      "current_price": 6.115,
-      "realtime_pnl_pct": -2.549800796812751
+      "last_signal_time": "2026-01-05T19:01:17.958201",
+      "current_pnl_pct": -2.868525896414352,
+      "current_price": 6.095,
+      "realtime_pnl_pct": -2.868525896414352
     },
     "BMNR": {
       "symbol": "BMNR",
@@ -300,10 +298,10 @@
       "entry_price": 28.37,
       "entry_time": "2025-12-26T16:31:22.198759",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:21.885169",
-      "current_pnl_pct": 15.06873457878041,
-      "current_price": 32.645,
-      "realtime_pnl_pct": 15.06873457878041
+      "last_signal_time": "2026-01-05T19:01:18.721815",
+      "current_pnl_pct": 15.59746210786042,
+      "current_price": 32.795,
+      "realtime_pnl_pct": 15.59746210786042
     },
     "ETHZ": {
       "symbol": "ETHZ",
@@ -311,10 +309,10 @@
       "entry_price": 5.15,
       "entry_time": "2025-12-24T15:31:22.860887",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:22.607645",
-      "current_pnl_pct": 3.1067961165048397,
-      "current_price": 5.31,
-      "realtime_pnl_pct": 3.1067961165048397
+      "last_signal_time": "2026-01-05T19:01:19.446747",
+      "current_pnl_pct": 3.883495145631054,
+      "current_price": 5.35,
+      "realtime_pnl_pct": 3.883495145631054
     },
     "MSFT": {
       "symbol": "MSFT",
@@ -322,7 +320,7 @@
       "entry_price": 0.0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:23.325423",
+      "last_signal_time": "2026-01-05T19:01:20.156591",
       "current_pnl_pct": 0.0
     },
     "NFLX": {
@@ -331,10 +329,10 @@
       "entry_price": 91.135,
       "entry_time": "2026-01-02T19:01:20.971313",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:24.072469",
-      "current_pnl_pct": 0.5157184396774004,
-      "current_price": 91.605,
-      "realtime_pnl_pct": 0.5157184396774004
+      "last_signal_time": "2026-01-05T19:01:20.882369",
+      "current_pnl_pct": 0.4718275086410189,
+      "current_price": 91.565,
+      "realtime_pnl_pct": 0.4718275086410189
     },
     "BITI": {
       "symbol": "BITI",
@@ -342,10 +340,10 @@
       "entry_price": 22.775,
       "entry_time": "2026-01-02T15:31:24.512863",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:24.777130",
-      "current_pnl_pct": -5.773874862788135,
-      "current_price": 21.46,
-      "realtime_pnl_pct": -5.773874862788135
+      "last_signal_time": "2026-01-05T19:01:21.616880",
+      "current_pnl_pct": -6.081229418221726,
+      "current_price": 21.39,
+      "realtime_pnl_pct": -6.081229418221726
     },
     "IBIT": {
       "symbol": "IBIT",
@@ -353,10 +351,10 @@
       "entry_price": 49.48,
       "entry_time": "2025-12-24T18:01:21.901110",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:25.500621",
-      "current_pnl_pct": 8.124494745351663,
-      "current_price": 53.5,
-      "realtime_pnl_pct": 8.124494745351663
+      "last_signal_time": "2026-01-05T19:01:22.360215",
+      "current_pnl_pct": 8.286176232821346,
+      "current_price": 53.58,
+      "realtime_pnl_pct": 8.286176232821346
     },
     "ETHU": {
       "symbol": "ETHU",
@@ -364,7 +362,7 @@
       "entry_price": 0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:13.229813",
+      "last_signal_time": "2026-01-05T19:01:23.063891",
       "current_pnl_pct": 0.6127114769090094
     },
     "GM": {
@@ -374,9 +372,9 @@
       "entry_time": "2025-12-26T18:31:32.049360",
       "last_signal": "HOLD",
       "last_signal_time": "2026-01-05T18:31:26.946763",
-      "current_pnl_pct": 0.15698587127158006,
-      "current_price": 82.94,
-      "realtime_pnl_pct": 0.15698587127158006
+      "current_pnl_pct": 0.33812341504649335,
+      "current_price": 83.09,
+      "realtime_pnl_pct": 0.33812341504649335
     },
     "PYPL": {
       "symbol": "PYPL",
@@ -384,10 +382,10 @@
       "entry_price": 59.225,
       "entry_time": "2025-12-29T16:01:23.984964",
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:31:27.660458",
-      "current_pnl_pct": 0.6078514140987749,
-      "current_price": 59.585,
-      "realtime_pnl_pct": 0.6078514140987749
+      "last_signal_time": "2026-01-05T19:01:23.816866",
+      "current_pnl_pct": 1.0468552131701097,
+      "current_price": 59.845,
+      "realtime_pnl_pct": 1.0468552131701097
     },
     "SOLT": {
       "symbol": "SOLT",
@@ -395,49 +393,49 @@
       "entry_price": 0.0,
       "entry_time": null,
       "last_signal": "HOLD",
-      "last_signal_time": "2026-01-05T18:46:13.935003",
+      "last_signal_time": "2026-01-05T19:01:24.547314",
       "current_pnl_pct": 0.0
     }
   },
   "realtime_prices": {
-    "TSLA": 456.22,
-    "HOOD": 121.85,
-    "COIN": 255.895,
-    "PLTR": 174.13,
-    "NVDA": 188.0,
-    "AMD": 221.74,
-    "IBKR": 71.325,
-    "MSTR": 163.19,
-    "RIVN": 19.545,
-    "GOOGL": 316.34,
-    "META": 660.96,
-    "RGTI": 25.295,
-    "LCID": 11.675,
-    "AMZN": 232.47,
-    "RUM": 6.335,
-    "ORCL": 193.83,
+    "TSLA": 456.95,
+    "HOOD": 122.02,
+    "COIN": 256.33,
+    "PLTR": 174.2,
+    "NVDA": 187.37,
+    "AMD": 221.8,
+    "IBKR": 71.335,
+    "MSTR": 164.48,
+    "RIVN": 19.495,
+    "GOOGL": 316.65,
+    "META": 661.745,
+    "RGTI": 25.355,
+    "LCID": 11.625,
+    "AMZN": 232.91,
+    "RUM": 6.395,
+    "ORCL": 193.485,
     "NIO": 4.895,
-    "MARA": 10.515,
-    "LMT": 510.64,
-    "PANW": 182.33,
-    "F": 13.46,
-    "INTC": 39.765,
-    "IONQ": 48.395,
-    "SOUN": 10.975,
-    "LULU": 214.14,
-    "LLY": 1038.475,
-    "AAPL": 267.18,
-    "OKLO": 89.98,
-    "OPEN": 6.115,
-    "BMNR": 32.645,
-    "ETHZ": 5.31,
-    "MSFT": 474.8,
-    "NFLX": 91.605,
-    "BITI": 21.46,
-    "IBIT": 53.5,
-    "ETHU": 63.83,
-    "GM": 82.94,
-    "PYPL": 59.585,
+    "MARA": 10.555,
+    "LMT": 510.29,
+    "PANW": 182.57,
+    "F": 13.48,
+    "INTC": 39.735,
+    "IONQ": 48.45,
+    "SOUN": 10.98,
+    "LULU": 214.005,
+    "LLY": 1038.49,
+    "AAPL": 267.06,
+    "OKLO": 89.94,
+    "OPEN": 6.095,
+    "BMNR": 32.795,
+    "ETHZ": 5.35,
+    "MSFT": 475.145,
+    "NFLX": 91.565,
+    "BITI": 21.39,
+    "IBIT": 53.58,
+    "ETHU": 64.49,
+    "GM": 83.09,
+    "PYPL": 59.845,
     "SOLT": 7.76
   },
   "configs": {
