@@ -97,5 +97,27 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-06T18:16:12.107634",
+    "symbol": "LMT",
+    "action": "LONG",
+    "price": 527.82,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-06T18:16:15.065736",
+    "symbol": "ETHU",
+    "action": "LONG",
+    "price": 63.81,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
