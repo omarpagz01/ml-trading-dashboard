@@ -20,5 +20,38 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-06T15:31:01.642719",
+    "symbol": "TSLA",
+    "action": "LONG",
+    "price": 439.06,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-06T15:31:02.568791",
+    "symbol": "HOOD",
+    "action": "EXIT",
+    "price": 121.835,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-06T15:31:04.217938",
+    "symbol": "PLTR",
+    "action": "EXIT",
+    "price": 178.81,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
