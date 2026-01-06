@@ -64,5 +64,38 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-06T16:31:08.012047",
+    "symbol": "META",
+    "action": "LONG",
+    "price": 653.51,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-06T16:31:09.530868",
+    "symbol": "LCID",
+    "action": "EXIT",
+    "price": 11.595,
+    "timeframe": "1h",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-06T16:31:14.676121",
+    "symbol": "PANW",
+    "action": "EXIT",
+    "price": 184.43,
+    "timeframe": "30m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
