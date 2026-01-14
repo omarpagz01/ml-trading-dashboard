@@ -53,5 +53,27 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-14T20:01:08.205048",
+    "symbol": "RGTI",
+    "action": "EXIT",
+    "price": 25.09,
+    "timeframe": "30m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-14T20:01:10.370156",
+    "symbol": "ORCL",
+    "action": "LONG",
+    "price": 191.04,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
