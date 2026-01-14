@@ -9,5 +9,27 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-14T16:01:18.864845",
+    "symbol": "BMNR",
+    "action": "EXIT",
+    "price": 33.56,
+    "timeframe": "30m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-14T16:01:20.325642",
+    "symbol": "MSFT",
+    "action": "LONG",
+    "price": 462.035,
+    "timeframe": "30m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
