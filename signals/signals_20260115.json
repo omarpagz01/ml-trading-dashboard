@@ -64,5 +64,16 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-15T17:01:01.444124",
+    "symbol": "TSLA",
+    "action": "EXIT",
+    "price": 442.51,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
