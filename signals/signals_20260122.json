@@ -53,5 +53,38 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-22T18:01:09.000389",
+    "symbol": "META",
+    "action": "EXIT",
+    "price": 646.04,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-22T18:01:20.516968",
+    "symbol": "OKLO",
+    "action": "LONG",
+    "price": 91.56,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-22T18:01:27.094325",
+    "symbol": "ETHU",
+    "action": "EXIT",
+    "price": 52.66,
+    "timeframe": "15m",
+    "strategy": "RSI Reversal",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
