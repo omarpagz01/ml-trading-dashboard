@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-01-23T22:41:00.854132+00:00",
+  "timestamp": "2026-01-25T02:11:00.447728+00:00",
   "market_open": false,
-  "session_type": "after_hours",
+  "session_type": "closed",
   "positions": {
     "TSLA": {
       "symbol": "TSLA",
@@ -359,628 +359,637 @@
   "configs": {
     "TSLA": {
       "symbol": "TSLA",
-      "timeframe": "30m",
-      "strategy_name": "Stochastic Cross [CGA]",
+      "timeframe": "15m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "stoch_k_period": 11.0,
-        "stoch_d_period": 6.0,
-        "stoch_oversold": 27.0,
-        "stoch_overbought": 80.0
+        "rsi_period": 26.0,
+        "rsi_oversold": 30.0,
+        "rsi_overbought": 64.0,
+        "tema_fast": 12.0,
+        "tema_slow": 20.0,
+        "regime_er_threshold": 0.47250501453429566
       },
       "default_return": 0.0,
-      "optimized_return": 54.97893555150972,
-      "win_rate": 88.23529411764706,
-      "last_optimization": "2026-01-23T01:28:45.316385"
+      "optimized_return": 0,
+      "win_rate": 77.27272727272727,
+      "last_optimization": "2026-01-25T02:01:40.867581"
     },
     "HOOD": {
       "symbol": "HOOD",
-      "timeframe": "1h",
-      "strategy_name": "Hybrid CCI/MACD (ADX) [CGA]",
+      "timeframe": "15m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "adx_threshold": 34.0,
-        "cci_period": 23.0,
-        "cci_low": -150.0,
-        "cci_high": 114.0,
-        "ema_fast": 6.0,
-        "ema_slow": 19.0,
-        "macd_signal": 7.0
+        "cci_period": 11.0,
+        "cci_low": -114.0,
+        "cci_high": 141.0,
+        "linreg_period": 22.0
       },
       "default_return": 0.0,
-      "optimized_return": 53.42447418131364,
-      "win_rate": 71.42857142857143,
-      "last_optimization": "2026-01-23T01:54:18.580739"
+      "optimized_return": 0,
+      "win_rate": 83.33333333333334,
+      "last_optimization": "2026-01-25T02:01:40.867590"
     },
     "COIN": {
       "symbol": "COIN",
-      "timeframe": "30m",
-      "strategy_name": "Hybrid RSI/TEMA [CGA]",
+      "timeframe": "15m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "rsi_period": 29.0,
-        "rsi_oversold": 21.0,
-        "rsi_overbought": 68.0,
-        "tema_fast": 10.0,
-        "tema_slow": 23.0,
-        "regime_er_threshold": 0.5
+        "bb_period": 17.0,
+        "bb_std": 2.6939196705847723
       },
       "default_return": 0.0,
-      "optimized_return": 44.908235115282345,
-      "win_rate": 85.71428571428571,
-      "last_optimization": "2026-01-23T02:19:38.012631"
+      "optimized_return": 0,
+      "win_rate": 78.57142857142857,
+      "last_optimization": "2026-01-25T02:01:40.867592"
     },
     "PLTR": {
       "symbol": "PLTR",
       "timeframe": "30m",
-      "strategy_name": "Hybrid RSI/TEMA [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "rsi_period": 30.0,
-        "rsi_oversold": 25.0,
-        "rsi_overbought": 77.0,
+        "rsi_period": 27.0,
+        "rsi_oversold": 24.0,
+        "rsi_overbought": 78.0,
         "tema_fast": 5.0,
-        "tema_slow": 25.0,
-        "regime_er_threshold": 0.43797062563574224
+        "tema_slow": 29.0,
+        "regime_er_threshold": 0.4985619460919752
       },
       "default_return": 0.0,
-      "optimized_return": 44.05571875371086,
-      "win_rate": 56.25,
-      "last_optimization": "2026-01-23T02:44:59.506505"
+      "optimized_return": 0,
+      "win_rate": 80.0,
+      "last_optimization": "2026-01-25T02:01:40.867593"
     },
     "NVDA": {
       "symbol": "NVDA",
-      "timeframe": "1h",
-      "strategy_name": "Hybrid BB/Donchian (ATR) [CGA]",
+      "timeframe": "30m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "atr_lookback": 25.0,
-        "atr_threshold": 1.2884138536072498,
-        "bb_period": 19.0,
-        "bb_std": 1.9568408248836122,
-        "donchian_period": 21.0
+        "atr_lookback": 29.0,
+        "atr_threshold": 1.5,
+        "bb_period": 25.0,
+        "bb_std": 2.230543544760674,
+        "donchian_period": 16.0
       },
       "default_return": 0.0,
-      "optimized_return": 40.43292200065651,
-      "win_rate": 100.0,
-      "last_optimization": "2026-01-23T03:10:28.338381"
+      "optimized_return": 0,
+      "win_rate": 80.0,
+      "last_optimization": "2026-01-25T02:01:40.867595"
     },
     "AMD": {
       "symbol": "AMD",
       "timeframe": "15m",
-      "strategy_name": "Hybrid RSI/TEMA [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
         "rsi_period": 26.0,
-        "rsi_oversold": 23.0,
-        "rsi_overbought": 80.0,
-        "tema_fast": 15.0,
-        "tema_slow": 25.0,
-        "regime_er_threshold": 0.2805979313119493
+        "rsi_oversold": 25.0,
+        "rsi_overbought": 69.0,
+        "tema_fast": 13.0,
+        "tema_slow": 29.0,
+        "regime_er_threshold": 0.3118482259746203
       },
       "default_return": 0.0,
-      "optimized_return": 139.31415482292658,
-      "win_rate": 65.0,
-      "last_optimization": "2026-01-23T12:50:27.096354"
+      "optimized_return": 0,
+      "win_rate": 75.0,
+      "last_optimization": "2026-01-25T02:01:40.867596"
     },
     "IBKR": {
       "symbol": "IBKR",
-      "timeframe": "1h",
-      "strategy_name": "Hybrid BB/Donchian (ATR) [CGA]",
+      "timeframe": "30m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "atr_lookback": 16.0,
-        "atr_threshold": 1.4889894575318254,
-        "bb_period": 15.0,
-        "bb_std": 2.2935852362432265,
-        "donchian_period": 27.0
+        "atr_lookback": 18.0,
+        "atr_threshold": 1.484663590510475,
+        "bb_period": 16.0,
+        "bb_std": 2.2373603482825426,
+        "donchian_period": 20.0
       },
       "default_return": 0.0,
-      "optimized_return": 61.124172601449466,
-      "win_rate": 100.0,
-      "last_optimization": "2026-01-23T04:00:50.555253"
+      "optimized_return": 0,
+      "win_rate": 91.66666666666666,
+      "last_optimization": "2026-01-25T02:01:40.867597"
     },
     "MSTR": {
       "symbol": "MSTR",
-      "timeframe": "15m",
-      "strategy_name": "Hybrid RSI/TEMA [CGA]",
+      "timeframe": "1h",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "rsi_period": 9.0,
-        "rsi_oversold": 28.0,
-        "rsi_overbought": 66.0,
-        "tema_fast": 15.0,
-        "tema_slow": 20.0,
-        "regime_er_threshold": 0.24229230981025288
+        "regime_er_threshold": 0.32832890191740355,
+        "mfi_period": 8.0,
+        "mfi_oversold": 25.0,
+        "mfi_overbought": 71.0,
+        "ema_fast": 6.0,
+        "ema_slow": 23.0,
+        "macd_signal": 11.0
       },
       "default_return": 0.0,
-      "optimized_return": 57.190573063365434,
-      "win_rate": 55.319148936170215,
-      "last_optimization": "2026-01-23T04:26:11.469132"
+      "optimized_return": 0,
+      "win_rate": 75.0,
+      "last_optimization": "2026-01-25T02:01:40.867603"
     },
     "RIVN": {
       "symbol": "RIVN",
       "timeframe": "1h",
-      "strategy_name": "Hybrid CCI/MACD (ADX) [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
         "adx_threshold": 27.0,
-        "cci_period": 26.0,
-        "cci_low": -95.0,
-        "cci_high": 100.0,
+        "cci_period": 29.0,
+        "cci_low": -96.0,
+        "cci_high": 98.0,
         "ema_fast": 5.0,
         "ema_slow": 15.0,
         "macd_signal": 7.0
       },
       "default_return": 0.0,
-      "optimized_return": 108.07185519904637,
+      "optimized_return": 0,
       "win_rate": 83.33333333333334,
-      "last_optimization": "2026-01-23T04:51:34.259035"
+      "last_optimization": "2026-01-25T02:01:40.867606"
     },
     "GOOGL": {
       "symbol": "GOOGL",
-      "timeframe": "15m",
-      "strategy_name": "MFI Extreme (Confirmed) [CGA]",
+      "timeframe": "1h",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "mfi_period": 11.0,
-        "mfi_oversold": 21.0,
-        "mfi_overbought": 85.0
+        "linreg_period": 21.0,
+        "slope_threshold": 0.001141985316378577,
+        "stoch_k_period": 8.0,
+        "stoch_d_period": 3.0,
+        "stoch_oversold": 22.0,
+        "stoch_overbought": 82.0,
+        "hma_period": 34.0
       },
       "default_return": 0.0,
-      "optimized_return": 51.13825017955593,
-      "win_rate": 100.0,
-      "last_optimization": "2026-01-23T05:16:58.630551"
+      "optimized_return": 0,
+      "win_rate": 90.0,
+      "last_optimization": "2026-01-25T02:01:40.867607"
     },
     "META": {
       "symbol": "META",
       "timeframe": "30m",
-      "strategy_name": "MFI Extreme (Trend) [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "mfi_period": 11.0,
-        "mfi_oversold": 26.0,
-        "mfi_overbought": 81.0,
-        "ema_trend": 65.0,
-        "adx_threshold": 34.0
+        "stoch_k_period": 5.0,
+        "stoch_d_period": 6.0,
+        "stoch_oversold": 27.0,
+        "stoch_overbought": 73.0
       },
       "default_return": 0.0,
-      "optimized_return": 22.595649849557574,
-      "win_rate": 100.0,
-      "last_optimization": "2026-01-23T05:42:18.592187"
+      "optimized_return": 0,
+      "win_rate": 80.0,
+      "last_optimization": "2026-01-25T02:01:40.867608"
     },
     "RGTI": {
       "symbol": "RGTI",
       "timeframe": "15m",
-      "strategy_name": "Hybrid MFI/Supertrend (ADX) [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "mfi_period": 19.0,
-        "mfi_oversold": 31.0,
-        "mfi_overbought": 81.0,
-        "supertrend_period": 11.0,
-        "supertrend_mult": 2.164783953491838,
-        "adx_threshold": 34.0
+        "mfi_period": 12.0,
+        "mfi_oversold": 19.0,
+        "mfi_overbought": 78.0,
+        "supertrend_period": 15.0,
+        "supertrend_mult": 2.0124107544494176,
+        "adx_threshold": 20.0
       },
       "default_return": 0.0,
-      "optimized_return": 187.23128190840222,
-      "win_rate": 75.0,
-      "last_optimization": "2026-01-23T06:07:30.980181"
+      "optimized_return": 0,
+      "win_rate": 80.0,
+      "last_optimization": "2026-01-25T02:01:40.867609"
     },
     "LCID": {
       "symbol": "LCID",
       "timeframe": "15m",
-      "strategy_name": "RSI Reversal [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "rsi_period": 24.0,
-        "rsi_oversold": 21.0,
-        "rsi_overbought": 63.0
+        "mfi_period": 16.0,
+        "mfi_oversold": 15.0,
+        "mfi_overbought": 73.0
       },
       "default_return": 0.0,
-      "optimized_return": 45.65623765854889,
+      "optimized_return": 0,
       "win_rate": 80.0,
-      "last_optimization": "2026-01-23T06:32:42.333208"
+      "last_optimization": "2026-01-25T02:01:40.867610"
     },
     "AMZN": {
       "symbol": "AMZN",
       "timeframe": "30m",
-      "strategy_name": "Hybrid Stoch/HMA (Slope) [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "linreg_period": 22.0,
-        "slope_threshold": 0.001823578202533224,
-        "stoch_k_period": 14.0,
-        "stoch_d_period": 7.0,
-        "stoch_oversold": 15.0,
-        "stoch_overbought": 78.0,
-        "hma_period": 35.0
+        "mfi_period": 7.0,
+        "mfi_oversold": 20.0,
+        "mfi_overbought": 79.0,
+        "ema_trend": 48.0,
+        "adx_threshold": 32.0
       },
       "default_return": 0.0,
-      "optimized_return": 30.82767458192601,
-      "win_rate": 83.33333333333334,
-      "last_optimization": "2026-01-23T06:57:56.290981"
+      "optimized_return": 0,
+      "win_rate": 90.9090909090909,
+      "last_optimization": "2026-01-25T02:01:40.867611"
     },
     "RUM": {
       "symbol": "RUM",
       "timeframe": "15m",
-      "strategy_name": "Hybrid RSI/TEMA [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "rsi_period": 19.0,
-        "rsi_oversold": 22.0,
-        "rsi_overbought": 69.0,
-        "tema_fast": 15.0,
-        "tema_slow": 25.0,
-        "regime_er_threshold": 0.274768986326725
+        "cci_period": 10.0,
+        "cci_low": -81.0,
+        "cci_high": 80.0,
+        "linreg_period": 14.0
       },
       "default_return": 0.0,
-      "optimized_return": 114.9915164933172,
-      "win_rate": 66.66666666666666,
-      "last_optimization": "2026-01-23T07:23:06.700818"
+      "optimized_return": 0,
+      "win_rate": 90.9090909090909,
+      "last_optimization": "2026-01-25T02:01:40.867612"
     },
     "ORCL": {
       "symbol": "ORCL",
-      "timeframe": "15m",
-      "strategy_name": "Hybrid RSI/TEMA [CGA]",
+      "timeframe": "30m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "rsi_period": 9.0,
-        "rsi_oversold": 34.0,
-        "rsi_overbought": 65.0,
-        "tema_fast": 12.0,
-        "tema_slow": 17.0,
-        "regime_er_threshold": 0.2515598463591099
+        "mfi_period": 10.0,
+        "mfi_oversold": 17.0,
+        "mfi_overbought": 74.0
       },
       "default_return": 0.0,
-      "optimized_return": 27.682837168021535,
-      "win_rate": 50.74626865671642,
-      "last_optimization": "2026-01-23T07:48:23.454684"
+      "optimized_return": 0,
+      "win_rate": 83.33333333333334,
+      "last_optimization": "2026-01-25T02:01:40.867613"
     },
     "NIO": {
       "symbol": "NIO",
-      "timeframe": "15m",
-      "strategy_name": "Hybrid Stoch/HMA (Slope) [CGA]",
+      "timeframe": "1h",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "linreg_period": 11.0,
-        "slope_threshold": 0.001701524522126426,
-        "stoch_k_period": 14.0,
-        "stoch_d_period": 5.0,
-        "stoch_oversold": 16.0,
-        "stoch_overbought": 69.0,
-        "hma_period": 24.0
+        "linreg_period": 25.0,
+        "slope_threshold": 0.0019780560341755627,
+        "stoch_k_period": 11.0,
+        "stoch_d_period": 4.0,
+        "stoch_oversold": 17.0,
+        "stoch_overbought": 76.0,
+        "hma_period": 32.0
       },
       "default_return": 0.0,
-      "optimized_return": 30.337453934154723,
-      "win_rate": 63.1578947368421,
-      "last_optimization": "2026-01-23T08:13:41.873750"
+      "optimized_return": 0,
+      "win_rate": 90.0,
+      "last_optimization": "2026-01-25T02:01:40.867614"
     },
     "MARA": {
       "symbol": "MARA",
       "timeframe": "15m",
-      "strategy_name": "CCI + LinReg [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "cci_period": 16.0,
-        "cci_low": -106.0,
-        "cci_high": 82.0,
-        "linreg_period": 21.0
+        "adx_threshold": 23.0,
+        "cci_period": 14.0,
+        "cci_low": -83.0,
+        "cci_high": 112.0,
+        "ema_fast": 15.0,
+        "ema_slow": 15.0,
+        "macd_signal": 10.0
       },
       "default_return": 0.0,
-      "optimized_return": 44.34784244198189,
-      "win_rate": 80.0,
-      "last_optimization": "2026-01-23T08:38:51.074404"
+      "optimized_return": 0,
+      "win_rate": 85.71428571428571,
+      "last_optimization": "2026-01-25T02:01:40.867615"
     },
     "LMT": {
       "symbol": "LMT",
       "timeframe": "1h",
-      "strategy_name": "Vortex Strong [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "vortex_period": 12.0,
-        "vortex_threshold": 0.12399887943526687
+        "linreg_period": 12.0,
+        "slope_threshold": 0.0013384938040269295,
+        "stoch_k_period": 8.0,
+        "stoch_d_period": 2.0,
+        "stoch_oversold": 29.0,
+        "stoch_overbought": 75.0,
+        "hma_period": 26.0
       },
       "default_return": 0.0,
-      "optimized_return": 36.32766402519647,
-      "win_rate": 100.0,
-      "last_optimization": "2026-01-23T09:03:29.370542"
+      "optimized_return": 0,
+      "win_rate": 93.33333333333333,
+      "last_optimization": "2026-01-25T02:01:40.867616"
     },
     "PANW": {
       "symbol": "PANW",
-      "timeframe": "15m",
-      "strategy_name": "CCI + LinReg [CGA]",
+      "timeframe": "30m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "cci_period": 14.0,
-        "cci_low": -132.0,
-        "cci_high": 99.0,
-        "linreg_period": 19.0
+        "cci_period": 10.0,
+        "cci_low": -80.0,
+        "cci_high": 80.0,
+        "roc_period": 18.0
       },
       "default_return": 0.0,
-      "optimized_return": 16.31654276757668,
-      "win_rate": 83.33333333333334,
-      "last_optimization": "2026-01-23T09:28:28.170226"
+      "optimized_return": 0,
+      "win_rate": 80.0,
+      "last_optimization": "2026-01-25T02:01:40.867617"
     },
     "F": {
       "symbol": "F",
       "timeframe": "15m",
-      "strategy_name": "MFI + LinReg [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "mfi_period": 10.0,
-        "mfi_oversold": 35.0,
-        "mfi_overbought": 74.0,
-        "linreg_period": 10.0
+        "rsi_period": 29.0,
+        "rsi_oversold": 25.0,
+        "rsi_overbought": 71.0,
+        "tema_fast": 13.0,
+        "tema_slow": 30.0,
+        "regime_er_threshold": 0.3993010873840134
       },
       "default_return": 0.0,
-      "optimized_return": 38.27435199460136,
-      "win_rate": 81.81818181818183,
-      "last_optimization": "2026-01-23T09:53:45.144892"
+      "optimized_return": 0,
+      "win_rate": 90.9090909090909,
+      "last_optimization": "2026-01-25T02:01:40.867618"
     },
     "INTC": {
       "symbol": "INTC",
-      "timeframe": "15m",
-      "strategy_name": "MFI Extreme (Trend) [CGA]",
+      "timeframe": "30m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
         "mfi_period": 11.0,
-        "mfi_oversold": 19.0,
-        "mfi_overbought": 67.0,
+        "mfi_oversold": 31.0,
+        "mfi_overbought": 70.0,
         "ema_trend": 49.0,
-        "adx_threshold": 27.0
+        "adx_threshold": 30.0
       },
       "default_return": 0.0,
-      "optimized_return": 90.44669378191917,
-      "win_rate": 88.88888888888889,
-      "last_optimization": "2026-01-23T10:18:59.632904"
+      "optimized_return": 0,
+      "win_rate": 80.0,
+      "last_optimization": "2026-01-25T02:01:40.867619"
     },
     "IONQ": {
       "symbol": "IONQ",
-      "timeframe": "30m",
-      "strategy_name": "Stochastic Cross [CGA]",
+      "timeframe": "15m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "stoch_k_period": 5.0,
-        "stoch_d_period": 4.0,
-        "stoch_oversold": 18.0,
-        "stoch_overbought": 66.0
+        "stoch_k_period": 15.0,
+        "stoch_d_period": 7.0,
+        "stoch_oversold": 15.0,
+        "stoch_overbought": 74.0
       },
       "default_return": 0.0,
-      "optimized_return": 128.67939983053796,
-      "win_rate": 92.85714285714286,
-      "last_optimization": "2026-01-23T10:44:19.457963"
+      "optimized_return": 0,
+      "win_rate": 75.0,
+      "last_optimization": "2026-01-25T02:01:40.867620"
     },
     "SOUN": {
       "symbol": "SOUN",
-      "timeframe": "15m",
-      "strategy_name": "MFI Extreme [CGA]",
+      "timeframe": "30m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "mfi_period": 17.0,
-        "mfi_oversold": 22.0,
-        "mfi_overbought": 65.0
+        "mfi_period": 9.0,
+        "mfi_oversold": 16.0,
+        "mfi_overbought": 66.0
       },
       "default_return": 0.0,
-      "optimized_return": 74.37592095760768,
-      "win_rate": 92.85714285714286,
-      "last_optimization": "2026-01-23T11:09:40.423729"
+      "optimized_return": 0,
+      "win_rate": 78.57142857142857,
+      "last_optimization": "2026-01-25T02:01:40.867621"
     },
     "LULU": {
       "symbol": "LULU",
-      "timeframe": "15m",
-      "strategy_name": "Hybrid Stoch/HMA (Slope) [CGA]",
+      "timeframe": "1h",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "linreg_period": 14.0,
-        "slope_threshold": 0.0018925315773513224,
-        "stoch_k_period": 18.0,
-        "stoch_d_period": 6.0,
-        "stoch_oversold": 26.0,
-        "stoch_overbought": 82.0,
-        "hma_period": 21.0
+        "adx_threshold": 28.0,
+        "cci_period": 16.0,
+        "cci_low": -126.0,
+        "cci_high": 124.0,
+        "ema_fast": 5.0,
+        "ema_slow": 19.0,
+        "macd_signal": 8.0
       },
       "default_return": 0.0,
-      "optimized_return": 66.08503081903339,
-      "win_rate": 78.57142857142857,
-      "last_optimization": "2026-01-23T11:34:54.514618"
+      "optimized_return": 0,
+      "win_rate": 92.3076923076923,
+      "last_optimization": "2026-01-25T02:01:40.867622"
     },
     "LLY": {
       "symbol": "LLY",
       "timeframe": "15m",
-      "strategy_name": "Hybrid BB/Donchian (ATR) [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "atr_lookback": 28.0,
-        "atr_threshold": 1.3577140814068018,
-        "bb_period": 25.0,
-        "bb_std": 2.792487603441511,
-        "donchian_period": 29.0
+        "atr_lookback": 15.0,
+        "atr_threshold": 1.3814627319360278,
+        "bb_period": 19.0,
+        "bb_std": 2.403051354220329,
+        "donchian_period": 25.0
       },
       "default_return": 0.0,
-      "optimized_return": 71.25561587314162,
-      "win_rate": 92.85714285714286,
-      "last_optimization": "2026-01-23T11:59:54.061701"
+      "optimized_return": 0,
+      "win_rate": 84.21052631578947,
+      "last_optimization": "2026-01-25T02:01:40.867622"
     },
     "AAPL": {
       "symbol": "AAPL",
-      "timeframe": "15m",
-      "strategy_name": "Hybrid MFI/Supertrend (ADX) [CGA]",
+      "timeframe": "1h",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "mfi_period": 21.0,
-        "mfi_oversold": 18.0,
-        "mfi_overbought": 69.0,
-        "supertrend_period": 13.0,
-        "supertrend_mult": 2.0,
-        "adx_threshold": 35.0
+        "rsi_period": 9.0,
+        "rsi_oversold": 20.0,
+        "rsi_overbought": 66.0,
+        "tema_fast": 10.0,
+        "tema_slow": 15.0,
+        "regime_er_threshold": 0.27596081597834127
       },
       "default_return": 0.0,
-      "optimized_return": 15.39450123430175,
-      "win_rate": 90.9090909090909,
-      "last_optimization": "2026-01-23T12:25:05.775094"
+      "optimized_return": 0,
+      "win_rate": 75.0,
+      "last_optimization": "2026-01-25T02:01:40.867623"
     },
     "OKLO": {
       "symbol": "OKLO",
-      "timeframe": "30m",
-      "strategy_name": "Hybrid RSI/TEMA [CGA]",
+      "timeframe": "15m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "rsi_period": 30.0,
-        "rsi_oversold": 20.0,
-        "rsi_overbought": 63.0,
-        "tema_fast": 13.0,
-        "tema_slow": 30.0,
-        "regime_er_threshold": 0.22321519032708498
+        "mfi_period": 13.0,
+        "mfi_oversold": 28.0,
+        "mfi_overbought": 70.0,
+        "supertrend_period": 10.0,
+        "supertrend_mult": 3.2534570079409755,
+        "adx_threshold": 35.0
       },
       "default_return": 0.0,
-      "optimized_return": 126.80601339267379,
-      "win_rate": 69.23076923076923,
-      "last_optimization": "2026-01-23T13:15:40.012147"
+      "optimized_return": 0,
+      "win_rate": 78.57142857142857,
+      "last_optimization": "2026-01-25T02:01:40.867624"
     },
     "OPEN": {
       "symbol": "OPEN",
-      "timeframe": "15m",
-      "strategy_name": "RSI Reversal [CGA]",
+      "timeframe": "1h",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "rsi_period": 23.0,
-        "rsi_oversold": 22.0,
-        "rsi_overbought": 77.0
+        "rsi_period": 11.0,
+        "rsi_oversold": 26.0,
+        "rsi_overbought": 64.0,
+        "tema_fast": 10.0,
+        "tema_slow": 17.0,
+        "regime_er_threshold": 0.5
       },
       "default_return": 0.0,
-      "optimized_return": 136.95345469243816,
-      "win_rate": 80.0,
-      "last_optimization": "2026-01-23T13:40:57.466904"
+      "optimized_return": 0,
+      "win_rate": 100.0,
+      "last_optimization": "2026-01-25T02:01:40.867624"
     },
     "BMNR": {
       "symbol": "BMNR",
-      "timeframe": "15m",
-      "strategy_name": "Hybrid Stoch/HMA (Slope) [CGA]",
+      "timeframe": "1h",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "linreg_period": 17.0,
-        "slope_threshold": 0.0017672563854576543,
-        "stoch_k_period": 15.0,
-        "stoch_d_period": 4.0,
-        "stoch_oversold": 15.0,
-        "stoch_overbought": 65.0,
-        "hma_period": 34.0
+        "rsi_period": 7.0,
+        "rsi_oversold": 21.0,
+        "rsi_overbought": 78.0,
+        "tema_fast": 6.0,
+        "tema_slow": 28.0,
+        "regime_er_threshold": 0.42324681406749465
       },
       "default_return": 0.0,
-      "optimized_return": 85.2423426229684,
-      "win_rate": 69.44444444444444,
-      "last_optimization": "2026-01-23T14:06:24.017968"
+      "optimized_return": 0,
+      "win_rate": 66.66666666666666,
+      "last_optimization": "2026-01-25T02:01:40.867625"
     },
     "ETHZ": {
       "symbol": "ETHZ",
-      "timeframe": "1h",
-      "strategy_name": "RSI Reversal [CGA]",
+      "timeframe": "30m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "rsi_period": 25.0,
-        "rsi_oversold": 33.0,
-        "rsi_overbought": 60.0
+        "rsi_period": 27.0,
+        "rsi_oversold": 24.0,
+        "rsi_overbought": 65.0,
+        "tema_fast": 12.0,
+        "tema_slow": 15.0,
+        "regime_er_threshold": 0.5
       },
       "default_return": 0.0,
-      "optimized_return": 1175.0024467386413,
-      "win_rate": 83.33333333333334,
-      "last_optimization": "2026-01-23T14:31:38.220481"
+      "optimized_return": 0,
+      "win_rate": 75.0,
+      "last_optimization": "2026-01-25T02:01:40.867626"
     },
     "MSFT": {
       "symbol": "MSFT",
       "timeframe": "15m",
-      "strategy_name": "Hybrid BB/Donchian (ATR) [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "atr_lookback": 20.0,
-        "atr_threshold": 1.4115375442382792,
-        "bb_period": 24.0,
-        "bb_std": 2.100324589097608,
-        "donchian_period": 16.0
+        "rsi_period": 27.0,
+        "rsi_oversold": 24.0,
+        "rsi_overbought": 68.0,
+        "tema_fast": 9.0,
+        "tema_slow": 30.0,
+        "regime_er_threshold": 0.4713739247268319
       },
       "default_return": 0.0,
-      "optimized_return": 13.378681787789892,
-      "win_rate": 72.0,
-      "last_optimization": "2026-01-23T14:56:58.210471"
+      "optimized_return": 0,
+      "win_rate": 85.71428571428571,
+      "last_optimization": "2026-01-25T02:01:40.867626"
     },
     "NFLX": {
       "symbol": "NFLX",
       "timeframe": "15m",
-      "strategy_name": "CCI + LinReg [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "cci_period": 19.0,
-        "cci_low": -150.0,
-        "cci_high": 84.0,
-        "linreg_period": 24.0
+        "stoch_k_period": 6.0,
+        "stoch_d_period": 4.0,
+        "stoch_oversold": 15.0,
+        "stoch_overbought": 66.0
       },
       "default_return": 0.0,
-      "optimized_return": 12.39073425594961,
-      "win_rate": 100.0,
-      "last_optimization": "2026-01-23T15:22:10.955375"
+      "optimized_return": 0,
+      "win_rate": 78.26086956521739,
+      "last_optimization": "2026-01-25T02:01:40.867627"
     },
     "BITI": {
       "symbol": "BITI",
       "timeframe": "30m",
-      "strategy_name": "Stochastic Cross [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "stoch_k_period": 7.0,
-        "stoch_d_period": 6.0,
-        "stoch_oversold": 31.0,
-        "stoch_overbought": 82.0
+        "rsi_period": 16.0,
+        "rsi_oversold": 37.0,
+        "rsi_overbought": 74.0,
+        "tema_fast": 15.0,
+        "tema_slow": 23.0,
+        "regime_er_threshold": 0.4065053227231908
       },
       "default_return": 0.0,
-      "optimized_return": 63.636673426846514,
+      "optimized_return": 0,
       "win_rate": 93.75,
-      "last_optimization": "2026-01-23T15:47:25.327433"
+      "last_optimization": "2026-01-25T02:01:40.867628"
     },
     "IBIT": {
       "symbol": "IBIT",
-      "timeframe": "30m",
-      "strategy_name": "Hybrid BB/Donchian (ATR) [CGA]",
+      "timeframe": "15m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "atr_lookback": 16.0,
-        "atr_threshold": 1.4066553864867049,
-        "bb_period": 26.0,
-        "bb_std": 2.5838883606216134,
-        "donchian_period": 17.0
+        "cci_period": 11.0,
+        "cci_low": -118.0,
+        "cci_high": 118.0,
+        "roc_period": 15.0
       },
       "default_return": 0.0,
-      "optimized_return": 21.622991430617212,
-      "win_rate": 100.0,
-      "last_optimization": "2026-01-23T16:12:41.851154"
+      "optimized_return": 0,
+      "win_rate": 90.0,
+      "last_optimization": "2026-01-25T02:01:40.867629"
     },
     "ETHU": {
       "symbol": "ETHU",
       "timeframe": "15m",
-      "strategy_name": "CCI + LinReg [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "cci_period": 13.0,
-        "cci_low": -119.0,
-        "cci_high": 119.0,
-        "linreg_period": 21.0
+        "cci_period": 12.0,
+        "cci_low": -135.0,
+        "cci_high": 86.0,
+        "linreg_period": 25.0
       },
       "default_return": 0.0,
-      "optimized_return": 108.4690767604144,
-      "win_rate": 88.88888888888889,
-      "last_optimization": "2026-01-23T16:37:54.671810"
+      "optimized_return": 0,
+      "win_rate": 84.61538461538461,
+      "last_optimization": "2026-01-25T02:01:40.867630"
     },
     "GM": {
       "symbol": "GM",
       "timeframe": "30m",
-      "strategy_name": "MFI Extreme [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "mfi_period": 16.0,
-        "mfi_oversold": 31.0,
-        "mfi_overbought": 78.0
+        "mfi_period": 12.0,
+        "mfi_oversold": 30.0,
+        "mfi_overbought": 75.0
       },
       "default_return": 0.0,
-      "optimized_return": 54.472314797948805,
-      "win_rate": 100.0,
-      "last_optimization": "2026-01-23T17:02:47.836216"
+      "optimized_return": 0,
+      "win_rate": 90.0,
+      "last_optimization": "2026-01-25T02:01:40.867630"
     },
     "PYPL": {
       "symbol": "PYPL",
-      "timeframe": "30m",
-      "strategy_name": "Hybrid Stoch/HMA (Slope) [CGA]",
+      "timeframe": "15m",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "linreg_period": 20.0,
-        "slope_threshold": 0.000903758398135122,
-        "stoch_k_period": 16.0,
+        "linreg_period": 19.0,
+        "slope_threshold": 0.0016994446159130754,
+        "stoch_k_period": 6.0,
         "stoch_d_period": 7.0,
-        "stoch_oversold": 31.0,
-        "stoch_overbought": 75.0,
+        "stoch_oversold": 17.0,
+        "stoch_overbought": 66.0,
         "hma_period": 35.0
       },
       "default_return": 0.0,
-      "optimized_return": 19.602352879146203,
-      "win_rate": 43.75,
-      "last_optimization": "2026-01-23T17:28:00.854347"
+      "optimized_return": 0,
+      "win_rate": 75.0,
+      "last_optimization": "2026-01-25T02:01:40.867631"
     },
     "SOLT": {
       "symbol": "SOLT",
       "timeframe": "15m",
-      "strategy_name": "Hybrid RSI/TEMA [CGA]",
+      "strategy_name": "RSI Reversal",
       "optimized_params": {
-        "rsi_period": 16.0,
-        "rsi_oversold": 26.0,
-        "rsi_overbought": 61.0,
+        "rsi_period": 26.0,
+        "rsi_oversold": 20.0,
+        "rsi_overbought": 64.0,
         "tema_fast": 8.0,
-        "tema_slow": 17.0,
-        "regime_er_threshold": 0.3881429790319309
+        "tema_slow": 29.0,
+        "regime_er_threshold": 0.4466918557834262
       },
       "default_return": 0.0,
-      "optimized_return": 195.17847399915635,
-      "win_rate": 58.333333333333336,
-      "last_optimization": "2026-01-23T17:53:14.730074"
+      "optimized_return": 0,
+      "win_rate": 85.71428571428571,
+      "last_optimization": "2026-01-25T02:01:40.867632"
     }
   }
 }
