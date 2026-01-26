@@ -31,5 +31,16 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-26T16:31:22.701988",
+    "symbol": "OPEN",
+    "action": "LONG",
+    "price": 5.98,
+    "timeframe": "1h",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
