@@ -31,5 +31,38 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-27T18:31:15.395211",
+    "symbol": "LMT",
+    "action": "LONG",
+    "price": 591.075,
+    "timeframe": "1h",
+    "strategy": "Hybrid Stoch/HMA (Slope) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-27T18:31:16.974325",
+    "symbol": "F",
+    "action": "EXIT",
+    "price": 13.855,
+    "timeframe": "15m",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-27T18:31:19.894418",
+    "symbol": "LULU",
+    "action": "LONG",
+    "price": 187.61,
+    "timeframe": "1h",
+    "strategy": "Hybrid CCI/MACD (ADX) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
