@@ -42,5 +42,16 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-28T19:16:11.842213",
+    "symbol": "NFLX",
+    "action": "EXIT",
+    "price": 85.15,
+    "timeframe": "15m",
+    "strategy": "Stochastic Cross [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
