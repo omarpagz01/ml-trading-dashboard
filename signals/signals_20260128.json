@@ -64,5 +64,16 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-28T20:01:21.301579",
+    "symbol": "IBIT",
+    "action": "LONG",
+    "price": 50.63,
+    "timeframe": "15m",
+    "strategy": "CCI Extreme (Trend) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
