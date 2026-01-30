@@ -20,5 +20,16 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-01-30T18:31:20.719401",
+    "symbol": "LULU",
+    "action": "EXIT",
+    "price": 173.14,
+    "timeframe": "1h",
+    "strategy": "Hybrid CCI/MACD (ADX) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
