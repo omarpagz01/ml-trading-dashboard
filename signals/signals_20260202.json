@@ -9,5 +9,27 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-02T16:01:18.761475",
+    "symbol": "ETHZ",
+    "action": "LONG",
+    "price": 4.01,
+    "timeframe": "30m",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-02T16:01:21.718398",
+    "symbol": "IBIT",
+    "action": "EXIT",
+    "price": 44.73,
+    "timeframe": "15m",
+    "strategy": "CCI Extreme (Trend) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
