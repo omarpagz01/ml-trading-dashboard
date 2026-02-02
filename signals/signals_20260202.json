@@ -31,5 +31,16 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-02T16:16:01.634199",
+    "symbol": "TSLA",
+    "action": "LONG",
+    "price": 420.17,
+    "timeframe": "15m",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
