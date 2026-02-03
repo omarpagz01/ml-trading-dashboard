@@ -108,5 +108,16 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-03T18:31:23.212523",
+    "symbol": "ETHZ",
+    "action": "EXIT",
+    "price": 3.53,
+    "timeframe": "30m",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
