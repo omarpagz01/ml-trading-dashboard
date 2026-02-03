@@ -64,5 +64,16 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-03T17:16:13.213948",
+    "symbol": "PYPL",
+    "action": "LONG",
+    "price": 41.98,
+    "timeframe": "15m",
+    "strategy": "Hybrid Stoch/HMA (Slope) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
