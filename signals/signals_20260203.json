@@ -31,5 +31,38 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-03T16:31:13.497588",
+    "symbol": "ORCL",
+    "action": "LONG",
+    "price": 156.54,
+    "timeframe": "30m",
+    "strategy": "MFI Extreme [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-03T16:31:22.945900",
+    "symbol": "OPEN",
+    "action": "EXIT",
+    "price": 5.11,
+    "timeframe": "1h",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-03T16:31:28.639711",
+    "symbol": "GM",
+    "action": "EXIT",
+    "price": 86.12,
+    "timeframe": "30m",
+    "strategy": "MFI Extreme (Confirmed) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
