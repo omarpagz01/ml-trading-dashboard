@@ -75,5 +75,27 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-03T17:31:17.105904",
+    "symbol": "INTC",
+    "action": "LONG",
+    "price": 49.575,
+    "timeframe": "30m",
+    "strategy": "MFI Extreme (Trend) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-03T17:31:25.858445",
+    "symbol": "BITI",
+    "action": "LONG",
+    "price": 26.105,
+    "timeframe": "30m",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
