@@ -86,5 +86,27 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-06T19:01:10.038979",
+    "symbol": "AMZN",
+    "action": "EXIT",
+    "price": 206.27,
+    "timeframe": "30m",
+    "strategy": "MFI Extreme (Trend) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-06T19:01:15.209943",
+    "symbol": "IONQ",
+    "action": "EXIT",
+    "price": 35.365,
+    "timeframe": "15m",
+    "strategy": "Stochastic Cross [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
