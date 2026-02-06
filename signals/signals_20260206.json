@@ -64,5 +64,27 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-06T18:31:07.871255",
+    "symbol": "MSTR",
+    "action": "EXIT",
+    "price": 131.12,
+    "timeframe": "1h",
+    "strategy": "Hybrid MFI/MACD (ER) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-06T18:31:16.934882",
+    "symbol": "PANW",
+    "action": "EXIT",
+    "price": 157.6,
+    "timeframe": "30m",
+    "strategy": "CCI Extreme (Trend) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
