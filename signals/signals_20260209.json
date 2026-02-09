@@ -31,5 +31,16 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-09T18:16:05.659103",
+    "symbol": "RUM",
+    "action": "LONG",
+    "price": 6.23,
+    "timeframe": "15m",
+    "strategy": "CCI + LinReg [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
