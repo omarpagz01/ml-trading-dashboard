@@ -42,5 +42,16 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-09T20:16:10.570400",
+    "symbol": "OKLO",
+    "action": "EXIT",
+    "price": 74.78,
+    "timeframe": "15m",
+    "strategy": "Hybrid MFI/Supertrend (ADX) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
