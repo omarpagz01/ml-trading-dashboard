@@ -20,5 +20,27 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-10T17:01:07.017791",
+    "symbol": "META",
+    "action": "LONG",
+    "price": 671.06,
+    "timeframe": "30m",
+    "strategy": "Stochastic Cross [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-10T17:01:16.833006",
+    "symbol": "OKLO",
+    "action": "LONG",
+    "price": 72.29,
+    "timeframe": "15m",
+    "strategy": "Hybrid MFI/Supertrend (ADX) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
