@@ -64,5 +64,16 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-10T19:01:12.116032",
+    "symbol": "PANW",
+    "action": "LONG",
+    "price": 166.305,
+    "timeframe": "30m",
+    "strategy": "CCI Extreme (Trend) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
