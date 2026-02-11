@@ -31,5 +31,16 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-11T16:31:06.518762",
+    "symbol": "MSTR",
+    "action": "LONG",
+    "price": 128.79,
+    "timeframe": "1h",
+    "strategy": "Hybrid MFI/MACD (ER) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
