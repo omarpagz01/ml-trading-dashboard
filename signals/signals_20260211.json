@@ -42,5 +42,27 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-11T18:46:06.425694",
+    "symbol": "MARA",
+    "action": "LONG",
+    "price": 7.4,
+    "timeframe": "15m",
+    "strategy": "Hybrid CCI/MACD (ADX) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-11T18:46:10.948963",
+    "symbol": "NFLX",
+    "action": "EXIT",
+    "price": 79.935,
+    "timeframe": "15m",
+    "strategy": "Stochastic Cross [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
