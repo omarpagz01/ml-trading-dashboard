@@ -42,5 +42,38 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-12T16:31:04.080022",
+    "symbol": "NVDA",
+    "action": "LONG",
+    "price": 187.49,
+    "timeframe": "30m",
+    "strategy": "Hybrid BB/Donchian (ATR) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-12T16:31:05.556675",
+    "symbol": "IBKR",
+    "action": "LONG",
+    "price": 73.98,
+    "timeframe": "30m",
+    "strategy": "Hybrid BB/Donchian (ATR) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-12T16:31:14.663444",
+    "symbol": "LMT",
+    "action": "LONG",
+    "price": 641.325,
+    "timeframe": "1h",
+    "strategy": "Hybrid Stoch/HMA (Slope) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
