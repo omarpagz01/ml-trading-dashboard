@@ -9,5 +9,27 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-12T15:31:15.512043",
+    "symbol": "LMT",
+    "action": "EXIT",
+    "price": 640.06,
+    "timeframe": "1h",
+    "strategy": "Hybrid Stoch/HMA (Slope) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-12T15:31:20.665046",
+    "symbol": "LLY",
+    "action": "LONG",
+    "price": 1035.24,
+    "timeframe": "15m",
+    "strategy": "Hybrid BB/Donchian (ATR) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
