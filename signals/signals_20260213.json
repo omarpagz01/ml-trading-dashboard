@@ -9,5 +9,27 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-13T15:31:18.944851",
+    "symbol": "SOUN",
+    "action": "EXIT",
+    "price": 7.735,
+    "timeframe": "30m",
+    "strategy": "MFI Extreme [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-13T15:31:21.086926",
+    "symbol": "AAPL",
+    "action": "LONG",
+    "price": 260.79,
+    "timeframe": "1h",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
