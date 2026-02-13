@@ -31,5 +31,27 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-13T18:31:08.019213",
+    "symbol": "MSTR",
+    "action": "EXIT",
+    "price": 132.38,
+    "timeframe": "1h",
+    "strategy": "Hybrid MFI/MACD (ER) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-13T18:31:21.936773",
+    "symbol": "LULU",
+    "action": "EXIT",
+    "price": 175.51,
+    "timeframe": "1h",
+    "strategy": "Hybrid CCI/MACD (ADX) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
