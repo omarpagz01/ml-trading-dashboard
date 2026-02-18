@@ -53,5 +53,27 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-18T19:31:15.751335",
+    "symbol": "LMT",
+    "action": "LONG",
+    "price": 651.58,
+    "timeframe": "1h",
+    "strategy": "Hybrid Stoch/HMA (Slope) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-18T19:31:21.595058",
+    "symbol": "AAPL",
+    "action": "EXIT",
+    "price": 264.435,
+    "timeframe": "1h",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
