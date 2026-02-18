@@ -42,5 +42,16 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-18T19:16:04.054344",
+    "symbol": "AMD",
+    "action": "EXIT",
+    "price": 200.77,
+    "timeframe": "15m",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
