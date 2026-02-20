@@ -9,5 +9,38 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-20T15:31:09.005500",
+    "symbol": "GOOGL",
+    "action": "EXIT",
+    "price": 310.63,
+    "timeframe": "1h",
+    "strategy": "Hybrid Stoch/HMA (Slope) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-20T15:31:27.468754",
+    "symbol": "BITI",
+    "action": "LONG",
+    "price": 28.385,
+    "timeframe": "30m",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-20T15:31:30.410762",
+    "symbol": "PYPL",
+    "action": "LONG",
+    "price": 42.43,
+    "timeframe": "15m",
+    "strategy": "Hybrid Stoch/HMA (Slope) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
