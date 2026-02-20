@@ -97,5 +97,27 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-20T17:31:08.265747",
+    "symbol": "RIVN",
+    "action": "EXIT",
+    "price": 15.07,
+    "timeframe": "1h",
+    "strategy": "Hybrid CCI/MACD (ADX) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-20T17:31:17.966701",
+    "symbol": "F",
+    "action": "EXIT",
+    "price": 13.835,
+    "timeframe": "15m",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
