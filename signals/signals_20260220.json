@@ -53,5 +53,16 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-20T16:01:04.787825",
+    "symbol": "NVDA",
+    "action": "EXIT",
+    "price": 189.98,
+    "timeframe": "30m",
+    "strategy": "Hybrid BB/Donchian (ATR) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
