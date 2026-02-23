@@ -9,5 +9,27 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-23T15:31:15.546390",
+    "symbol": "NIO",
+    "action": "LONG",
+    "price": 5.355,
+    "timeframe": "1h",
+    "strategy": "Hybrid Stoch/HMA (Slope) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-23T15:31:31.326464",
+    "symbol": "PYPL",
+    "action": "EXIT",
+    "price": 40.69,
+    "timeframe": "15m",
+    "strategy": "Hybrid Stoch/HMA (Slope) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
