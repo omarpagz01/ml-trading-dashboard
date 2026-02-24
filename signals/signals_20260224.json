@@ -53,5 +53,38 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-24T17:31:08.223181",
+    "symbol": "RIVN",
+    "action": "EXIT",
+    "price": 15.22,
+    "timeframe": "1h",
+    "strategy": "Hybrid CCI/MACD (ADX) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-24T17:31:14.691602",
+    "symbol": "NIO",
+    "action": "EXIT",
+    "price": 5.18,
+    "timeframe": "1h",
+    "strategy": "Hybrid Stoch/HMA (Slope) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-24T17:31:26.845541",
+    "symbol": "NFLX",
+    "action": "EXIT",
+    "price": 77.22,
+    "timeframe": "15m",
+    "strategy": "Stochastic Cross [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
