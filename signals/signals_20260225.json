@@ -9,5 +9,38 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-25T16:01:02.826666",
+    "symbol": "TSLA",
+    "action": "EXIT",
+    "price": 415.495,
+    "timeframe": "15m",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-25T16:01:13.810037",
+    "symbol": "ORCL",
+    "action": "EXIT",
+    "price": 151.0,
+    "timeframe": "30m",
+    "strategy": "MFI Extreme [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-25T16:01:26.302761",
+    "symbol": "SOLT",
+    "action": "EXIT",
+    "price": 2.63,
+    "timeframe": "15m",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
   }
 ]
