@@ -9,5 +9,16 @@
     "confidence": 0.0,
     "signal_strength": "EXIT",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-26T17:01:03.905282",
+    "symbol": "HOOD",
+    "action": "LONG",
+    "price": 77.36,
+    "timeframe": "15m",
+    "strategy": "CCI + LinReg [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
