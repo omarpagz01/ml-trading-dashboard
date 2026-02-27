@@ -64,5 +64,27 @@
     "confidence": 0.0,
     "signal_strength": "LONG",
     "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-27T17:31:08.138057",
+    "symbol": "MSTR",
+    "action": "EXIT",
+    "price": 129.18,
+    "timeframe": "1h",
+    "strategy": "Hybrid MFI/MACD (ER) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "EXIT",
+    "is_realtime": true
+  },
+  {
+    "timestamp": "2026-02-27T17:31:17.536797",
+    "symbol": "LMT",
+    "action": "LONG",
+    "price": 651.2,
+    "timeframe": "1h",
+    "strategy": "Hybrid Stoch/HMA (Slope) [CGA]",
+    "confidence": 0.0,
+    "signal_strength": "LONG",
+    "is_realtime": true
   }
 ]
