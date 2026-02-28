@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-28T09:34:00.740529+00:00",
+  "timestamp": "2026-02-28T09:44:00.804426+00:00",
   "market_open": false,
   "session_type": "closed",
   "positions": {
@@ -546,20 +546,16 @@
     "MSTR": {
       "symbol": "MSTR",
       "timeframe": "1h",
-      "strategy_name": "Hybrid MFI/MACD (ER) [CGA]",
+      "strategy_name": "CCI Extreme [CGA]",
       "optimized_params": {
-        "regime_er_threshold": 0.32832890191740355,
-        "mfi_period": 8.0,
-        "mfi_oversold": 25.0,
-        "mfi_overbought": 71.0,
-        "ema_fast": 6.0,
-        "ema_slow": 23.0,
-        "macd_signal": 11.0
+        "cci_period": 10.0,
+        "cci_low": -135.0,
+        "cci_high": 85.0
       },
       "default_return": 0.0,
-      "optimized_return": 31.41358708425821,
-      "win_rate": 75.0,
-      "last_optimization": "2026-02-09T13:18:38.198113"
+      "optimized_return": 87.91337720346084,
+      "win_rate": 86.66666666666667,
+      "last_optimization": "2026-02-28T09:43:11.105350"
     },
     "RIVN": {
       "symbol": "RIVN",
