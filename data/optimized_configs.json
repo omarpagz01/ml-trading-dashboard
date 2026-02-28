@@ -147,17 +147,19 @@
   },
   "META": {
     "symbol": "META",
-    "timeframe": "30m",
-    "strategy": "Stochastic Cross [CGA]",
+    "timeframe": "1h",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
     "optimized_params": {
-      "stoch_k_period": 5.0,
-      "stoch_d_period": 6.0,
-      "stoch_oversold": 27.0,
-      "stoch_overbought": 73.0
+      "rsi_period": 8.0,
+      "rsi_oversold": 27.0,
+      "rsi_overbought": 74.0,
+      "tema_fast": 13.0,
+      "tema_slow": 30.0,
+      "regime_er_threshold": 0.4401702147886679
     },
-    "optimized_return": 21.55448816877996,
-    "win_rate": 80.0,
-    "last_optimization": "2026-02-09T13:18:38.198122"
+    "optimized_return": 28.10182071152756,
+    "win_rate": 81.81818181818183,
+    "last_optimization": "2026-02-28T10:59:40.316323"
   },
   "RGTI": {
     "symbol": "RGTI",
