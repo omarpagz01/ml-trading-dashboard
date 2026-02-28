@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-28T07:54:00.257252+00:00",
+  "timestamp": "2026-02-28T08:04:00.427339+00:00",
   "market_open": false,
   "session_type": "closed",
   "positions": {
@@ -486,20 +486,18 @@
     },
     "PLTR": {
       "symbol": "PLTR",
-      "timeframe": "30m",
-      "strategy_name": "Hybrid RSI/TEMA [CGA]",
+      "timeframe": "15m",
+      "strategy_name": "Stochastic Cross [CGA]",
       "optimized_params": {
-        "rsi_period": 27.0,
-        "rsi_oversold": 24.0,
-        "rsi_overbought": 78.0,
-        "tema_fast": 5.0,
-        "tema_slow": 29.0,
-        "regime_er_threshold": 0.4985619460919752
+        "stoch_k_period": 6.0,
+        "stoch_d_period": 6.0,
+        "stoch_oversold": 15.0,
+        "stoch_overbought": 83.0
       },
       "default_return": 0.0,
-      "optimized_return": 39.609131191769876,
-      "win_rate": 80.0,
-      "last_optimization": "2026-02-09T13:18:38.198104"
+      "optimized_return": 48.98924262202284,
+      "win_rate": 90.0,
+      "last_optimization": "2026-02-28T08:01:24.483646"
     },
     "NVDA": {
       "symbol": "NVDA",
