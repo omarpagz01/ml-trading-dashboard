@@ -86,18 +86,17 @@
   },
   "IBKR": {
     "symbol": "IBKR",
-    "timeframe": "30m",
-    "strategy": "Hybrid BB/Donchian (ATR) [CGA]",
+    "timeframe": "1h",
+    "strategy": "Stochastic Cross [CGA]",
     "optimized_params": {
-      "atr_lookback": 18.0,
-      "atr_threshold": 1.484663590510475,
-      "bb_period": 16.0,
-      "bb_std": 2.2373603482825426,
-      "donchian_period": 20.0
+      "stoch_k_period": 21.0,
+      "stoch_d_period": 2.0,
+      "stoch_oversold": 21.0,
+      "stoch_overbought": 77.0
     },
-    "optimized_return": 47.49692237820922,
-    "win_rate": 91.66666666666666,
-    "last_optimization": "2026-02-09T13:18:38.198108"
+    "optimized_return": 51.020768691437254,
+    "win_rate": 100.0,
+    "last_optimization": "2026-02-28T09:17:46.184468"
   },
   "MSTR": {
     "symbol": "MSTR",
