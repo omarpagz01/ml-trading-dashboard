@@ -17,17 +17,19 @@
   },
   "HOOD": {
     "symbol": "HOOD",
-    "timeframe": "15m",
-    "strategy": "CCI + LinReg [CGA]",
+    "timeframe": "1h",
+    "strategy": "Hybrid RSI/TEMA [CGA]",
     "optimized_params": {
-      "cci_period": 11.0,
-      "cci_low": -114.0,
-      "cci_high": 141.0,
-      "linreg_period": 22.0
+      "rsi_period": 9.0,
+      "rsi_oversold": 26.0,
+      "rsi_overbought": 63.0,
+      "tema_fast": 14.0,
+      "tema_slow": 20.0,
+      "regime_er_threshold": 0.3360991678164232
     },
-    "optimized_return": 41.3662824232645,
-    "win_rate": 83.33333333333334,
-    "last_optimization": "2026-02-09T13:18:38.198099"
+    "optimized_return": 57.752290769657556,
+    "win_rate": 78.57142857142857,
+    "last_optimization": "2026-02-28T07:10:12.248533"
   },
   "COIN": {
     "symbol": "COIN",
