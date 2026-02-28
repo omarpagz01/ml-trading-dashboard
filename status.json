@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-28T08:24:00.680143+00:00",
+  "timestamp": "2026-02-28T08:34:00.818388+00:00",
   "market_open": false,
   "session_type": "closed",
   "positions": {
@@ -501,19 +501,15 @@
     },
     "NVDA": {
       "symbol": "NVDA",
-      "timeframe": "30m",
-      "strategy_name": "Hybrid BB/Donchian (ATR) [CGA]",
+      "timeframe": "15m",
+      "strategy_name": "CMO Extreme [CGA]",
       "optimized_params": {
-        "atr_lookback": 29.0,
-        "atr_threshold": 1.5,
-        "bb_period": 25.0,
-        "bb_std": 2.230543544760674,
-        "donchian_period": 16.0
+        "cmo_period": 20.0
       },
       "default_return": 0.0,
-      "optimized_return": 29.650553672369217,
-      "win_rate": 80.0,
-      "last_optimization": "2026-02-09T13:18:38.198105"
+      "optimized_return": 35.57353005191188,
+      "win_rate": 81.81818181818183,
+      "last_optimization": "2026-02-28T08:26:54.704931"
     },
     "AMD": {
       "symbol": "AMD",
